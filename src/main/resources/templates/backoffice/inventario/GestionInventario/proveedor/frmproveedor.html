@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proveedor</title>
+    <link rel="stylesheet" th:href="@{css/principal/principal.css}">
+    <script src="https://kit.fontawesome.com/1842a186b5.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{css/bootstrap/bootstrap.css}">
+</head>
+<body style="background-color: var(--body-color)">
+    <nav th:replace="fragment/layout :: nav"></nav>
+    <h1 class="text-center mt-3">Listado de Proveedores</h1>
+    <div class="container mt-3">
+        <button class="btn btn-primary btnnuevo"><i class="fas fa-plus me-1"></i>Nuevo</button>
+        <a th:href="@{/gestioninventario}" class="btn btn-secondary"><i class="fas fa-arrow-left me-1"></i>Retornar</a>
+        <table class="table table-bordered table-hover mt-3" id="tbproveedor">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Proveedor</th>
+                    <th>Telefono</th>
+                    <th>Email</th>
+                    <th>Empresa</th>
+                    <th class="text-center">Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="p:${proveedor}">
+                    <td th:text="${p.idproveedor}"></td>
+                    <td th:text="${p.nomproveedor}"></td>
+                    <td th:text="${p.telefono}"></td>
+                    <td th:text="${p.correo}"></td>
+                    <td th:text="${p.empresa.nomempresa}"></td>
+                    <td class="d-flex justify-content-center align-content-center">
+                        <button class="btn btn-info btnactualizar"
+                                th:data-idproveedor="${p.idproveedor}"><i class="fas fa-edit"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" id="modalproveedor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Proveedor</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form name="provedor" onsubmit="validarProveedor()">
+                    <div class="modal-body mt-1">
+                        <input type="hidden" id="txtidproveedor" readonly>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="txtnomproveedor"
+                                   placeholder="" name="txtnomproveedor">
+                            <label for="txtnomproveedor">Nombre</label>
+                            <small class="text-danger" id="validnomproveedor"></small>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" id="txttelefonoprov"
+                                   placeholder="" name="txttelefonoprov">
+                            <label for="txttelefonoprov">Telefono</label>
+                            <small class="text-danger" id="validtelefonoprov"></small>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="txtcorreoprov"
+                                   placeholder="" name="txtcorreoprov">
+                            <label for="txtcorreoprov">Email</label>
+                            <small class="text-danger" id="validcorreoprov"></small>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-select" type="text" id="cboEmpresa"></select>
+                            <label for="cboEmpresa">Empresa</label>
+                        </div>
+                        <div class="form-check form-switch" id="swproveedor">
+                            <input type="checkbox" class="form-check-input" id="swactivoprov" role="switch">
+                            <label for="swactivoprov" class="form-check-label">Estado</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-angle-left me-1"></i>Cerrar</button>
+                        <button type="button" class="btn btn-success btnguardar"><i class="fas fa-save me-1"></i>Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{js/js/principal/principal.js}"></script>
+    <script th:src="@{js/jquery/jquery.js}"></script>
+    <script th:src="@{js/bootstrap/bootstrap.bundle.js}"></script>
+    <script th:src="@{js/web/backoffice/proveedor/frmproveedor.js}"></script>
+</body>
+</html>

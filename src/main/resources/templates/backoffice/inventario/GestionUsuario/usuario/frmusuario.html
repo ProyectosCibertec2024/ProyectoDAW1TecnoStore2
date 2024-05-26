@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Usuarios</title>
+    <link rel="stylesheet" th:href="@{/css/principal/principal.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.css}">
+    <script src="https://kit.fontawesome.com/1842a186b5.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body style="background-color: var(--body-color)">
+    <nav th:replace="fragment/layout :: nav"></nav>
+    <h1 class="text-center mt-3">Listado de Usuarios</h1>
+    <div class="container">
+        <button class="btn btn-primary btnnuevo"><i class="fas fa-plus me-1"></i>Nuevo</button>
+        <a class="btn btn-secondary" th:href="@{/gestionusuario}"><i class="fas fa-arrow-left me-1"></i>Retornar</a>
+        <table class="table table-bordered table-hover mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Contraseña</th>
+                    <th>Rol</th>
+                    <th>Foto</th>
+                    <th class="text-center">Accion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="b:${listausuarios}">
+                    <td th:text="${b.idusuario}"></td>
+                    <td th:text="${b.nombre}"></td>
+                    <td th:text="${b.username}"></td>
+                    <td th:text="${b.rep_pass}"></td>
+                    <td th:text="${b.rol.descripcion}"></td>
+                    <td>
+                        <img th:src="${b.urlfoto}" alt="vacio" width="100" height="100">
+                    </td>
+                    <td class="text-center">
+                        <button class="btn btn-info btnactualizar mt-3"
+                                th:data-idusuario="${b.idusuario}"><i class="fas fa-edit"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" id="modalusuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Usuario</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form name="usuario" th:action="@{/usuario-gestion}" method="post" th:object="${u}"
+                      onsubmit="validarUsuario()" enctype="multipart/form-data">
+                    <div class="modal-body mt-1">
+                        <input type="text" id="txtidusuario" readonly>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="txtnomusuario"
+                                   placeholder="" name="txtnomusuario" th:field="*{nombre}">
+                            <label for="txtnomusuario">Nombre</label>
+                            <small class="text-danger" id="validnomusuario"></small>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" id="txtusernameusuario"
+                                   placeholder="" name="txtusernameusuario" th:field="*{username}">
+                            <label for="txtusernameusuario">Email</label>
+                            <small class="text-danger" id="validusernameusuario"></small>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="txtpasswordusuario"
+                                   placeholder="" name="txtpasswordusuario" th:field="*{password}">
+                            <label for="txtpasswordusuario">Password</label>
+                            <small class="text-danger" id="validpasswordusuario"></small>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" placeholder=""
+                                   id="txtreppassword" name="txtreppassword" th:field="*{rep_pass}">
+                            <label for="txtreppassword">Repetir Password</label>
+                            <small class="text-danger" id="validreppassword"></small>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="file" class="form-control" id="txturlimagenusuario"
+                                   placeholder="" name="imagen">
+                            <label for="txturlimagenusuario" class="ms-3" style="font-size: 14px;">Imagen</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" placeholder=""
+                                   id="txtdniusuario" name="txtdniusuario" th:field="*{dni}">
+                            <label for="txtdniusuario">DNI</label>
+                            <small class="text-danger" id="validdniusuario"></small>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="cboRol" name="cboRol" th:field="*{idrol}">
+                                <option value="0">Seleccione</option>
+                                <option th:each="r:${roles}" th:text="${r.descripcion}" th:value="${r.idrol}"></option>
+                            </select>
+                            <label for="cboRol">Rol</label>
+                        </div>
+                        <div class="form-check form-switch" id="swusuario">
+                            <input type="checkbox" class="form-check-input"
+                                   id="swactivouser" role="switch" th:field="*{activo}">
+                            <label for="swactivouser" class="form-check-label">Estado</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-angle-left me-1"></i>Cerrar</button>
+                        <button type="button" class="btn btn-success btnguardar"><i class="fas fa-save me-1"></i>Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{js/js/principal/principal.js}"></script>
+    <script th:src="@{js/jquery/jquery.js}"></script>
+    <script th:src="@{js/bootstrap/bootstrap.bundle.js}"></script>
+    <script th:src="@{js/web/backoffice/usuario/frmusuario.js}"></script>
+</body>
+</html>

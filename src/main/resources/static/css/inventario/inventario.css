@@ -1,0 +1,204 @@
+/*PARA QUE ENTIENDA EL CSS PES*/
+/*AHI CON AYUDA COMENTARE TODAS LAS LINEAS XD*/
+/* Cambios al contenedor principal */
+/* Contenedor principal */
+/* Cambios al contenedor del section-container*/
+.section-container {
+    display: flex; /* Utiliza flexbox para organizar los elementos secundarios */
+    justify-content: center; /* Centra los elementos secundarios horizontalmente */
+    margin-top: 40px; /* Margen superior de 40px */
+    flex-wrap: wrap; /* Permite que los elementos se ajusten automáticamente a la pantalla */
+    margin-right: 30px;
+}
+.section-container section {
+    flex: 1; /* Hace que cada sección ocupe el mismo espacio dentro del contenedor */
+    margin: 10px; /* Añade un margen de 10px alrededor de cada sección */
+    text-align: center; /* Centra el contenido de cada sección */
+    transition: all 0.3s; /* Transición suave para cambios de estilo */
+    max-width: 550px; /* Establece un ancho máximo para las secciones */
+    border: 2.5px solid #C8CCD9;
+    border-radius: 20px;
+}
+
+/* Estilos para la sección cuando se pasa el mouse */
+.section-container section:hover {
+    transform: scale(0.93); /* disminuye ligeramente el tamaño de la sección al pasar el mouse */
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3); /* Añade una sombra */ /* Agrega una sombra suave alrededor de la sección al pasar el mouse */
+}
+/*MODO DARK al pasar el mouse*/
+.dark .section-container section:hover {
+    transform: scale(0.93); /* disminuye ligeramente el tamaño de la sección al pasar el mouse */
+    box-shadow: 0 8px 16px #242526; /* Agrega una sombra suave alrededor de la sección al pasar el mouse */
+    background-color: #444647;
+}
+
+.section-container section a {
+    text-decoration: none; /* Quita el subrayado de los enlaces */
+    color: inherit; /* Hereda el color del texto de su elemento padre */
+}
+
+/* Estilos para cada cuadro dentro de las secciones */
+.section-container section .section-1,
+.section-container section .section-2,
+.section-container section .section-3 {
+    border: 1px solid #ddd; /* Añade un borde sólido con color #ddd */
+    border-radius: 12px; /* Añade bordes redondeados */
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-bottom: 30px;
+    padding-right: 20px;
+    box-shadow: 0 4px 8px rgba(253, 253, 253, 0.1); /* Añade una sombra */
+}
+
+/* Estilos para los íconos dentro de los cuadros */
+.section-container section .section-1 i,
+.section-container section .section-2 i,
+.section-container section .section-3 i {
+    font-size: 5vw; /* Tamaño del ícono relativo al ancho de la pantalla */
+    color: #555555; /* Color del ícono */
+    margin-bottom: 20px; /* Añade espacio inferior de 20px */
+}
+
+/* Estilos para los títulos dentro de los cuadros */
+.section-container section h1 {
+    color: #333; /* Color del título */
+    margin-bottom: 20px; /* Añade espacio inferior de 20px */
+}
+
+/* Media query para dispositivos medianos */
+@media (max-width: 768px) {
+    .section-container section {
+        flex-basis: 45%; /* Cambia el tamaño de las secciones para que quepan dos por fila */
+    }
+}
+
+/* Media query para dispositivos pequeños */
+@media (max-width: 480px) {
+    .section-container section {
+        flex-basis: 100%; /* Cambia el tamaño de las secciones para que ocupen toda la fila */
+    }
+}
+
+/* Estilos para el título */
+.titulo {
+    text-align: center; /* Centra el texto */
+    font-size: 45px; /* Tamaño de fuente de 55px */
+    color: #555; /* Color del texto */
+    padding-top: 30px;
+    padding-bottom: 15px;
+    margin-bottom: 30px; /* Margen inferior de 30px */
+}
+.titulo-2 {
+    text-align: center; /* Centra el texto */
+    font-size: 49px; /* Tamaño de fuente de 49px */
+    color: #555; /* Color del texto */
+    margin-top:60px;
+    margin-bottom: 50px; /* Margen inferior de 30px */
+}
+.titulo-3 {
+    text-align: center; /* Centra el texto */
+    font-size: 43px; /* Tamaño de fuente de 49px */
+    color: #555; /* Color del texto */
+    margin-top:40px;
+}
+.contenedor1-principal-inventario {
+    text-align: center; /* Alinea el texto dentro de este contenedor al centro */
+}
+.contenedor {
+    text-align: center; /* Alinea el texto dentro del contenedor al centro */
+    border: 2px solid #ccc; /* Establece un borde de 2px sólido con color #ccc */
+    border-radius: 10px; /* Establece un radio de borde de 10px para hacer los bordes redondeados */
+    padding: 20px; /* Añade un espacio de relleno de 20px dentro del contenedor */
+    display: inline-block; /* Cambia el comportamiento del contenedor a en línea y bloquea el nivel de bloqueo para permitir que el margen automático funcione */
+    margin: 0 auto; /* Centra horizontalmente el contenedor */
+}
+
+.contenedor i {
+    font-size: 40px; /* Establece el tamaño de fuente del icono en 40px */
+    border-radius: 50%; /* Hace que el icono tenga bordes redondeados para que parezca circular */
+    padding: 20px; /* Añade un espacio de relleno de 20px alrededor del icono */
+    background-color: #f0f0f0; /* Establece un color de fondo gris claro para el icono */
+    color: #555555; /* Color del ícono */
+}
+
+/* Estilos para el contenedor de los cuadros indicativos */
+.cuadro-indicativo {
+    display: flex; /* Utiliza flexbox para organizar los elementos secundarios */
+    justify-content: center; /* Centra los elementos secundarios horizontalmente */
+    flex-wrap: wrap; /* Permitir que los cuadros se envuelvan a una nueva línea */
+    margin-top: 40px; /* Margen superior de 40px */
+    margin-bottom: 40px;/* Margen inferior de 40px */
+}
+
+/* Estilos para cada cuadro */
+.cuadro {
+    border: 1px solid #ddd; /* Añade un borde sólido con color #ddd */
+    border-radius: 12px; /* Añade bordes redondeados */
+    padding: 30px; /* Añade espacio interno */
+    text-align: center; /* Centra el contenido */
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3); /* Añade una sombra */
+    width: calc(30% - 40px); /* Utiliza calc() para restar el margen */
+    margin: 20px; /* Añade margen */
+}
+
+/* Media query para dispositivos medianos */
+@media (max-width: 768px) {
+    .cuadro {
+        width: calc(50% - 40px); /* Cambia a dos columnas en dispositivos más pequeños */
+    }
+}
+
+/* Media query para dispositivos pequeños */
+@media (max-width: 480px) {
+    .cuadro {
+        width: calc(100% - 40px); /* Cambia a una columna en dispositivos móviles */
+    }
+}
+/* Estilos para el título de cada cuadro */
+.cuadro h2 {
+    color: #333; /* Color del título */
+    margin-bottom: 20px; /* Añade espacio inferior de 20px */
+}
+
+/* Estilos para el texto de cada cuadro */
+.cuadro p {
+    color: #666; /* Color del texto */
+    font-size: 16px; /* Tamaño de fuente de 16px */
+    line-height: 1.6; /* Altura de línea de 1.6 */
+}
+
+/* Estilos para los íconos de cada cuadro */
+.cuadro i {
+    font-size: 48px; /* Tamaño de fuente de 48px */
+    color: #555; /* Color del ícono */
+    margin-bottom: 20px; /* Añade espacio inferior de 20px */
+}
+/* Estilos para letras e íconos en modo oscuro cuando el interruptor está activado */
+.dark .cuadro i,
+.dark .section-container section i,
+.dark .titulo,
+.dark .titulo-2,
+.dark .titulo-3,
+.dark .empresa .name-empresa,
+.dark .bottom-content .mode-text,
+.dark .section-container h1,
+.dark .cuadro-indicativo p,
+.dark .cuadro-indicativo h2
+{
+    color: #fff; /* Cambia el color de las letras y los íconos a blanco */
+}
+
+nav.sidebar {
+    width: 250px;
+}
+
+main {
+    margin-left: 120px;
+}
+/*.sidebar.close {
+    width: 80px;
+}*/
+
+main.menu-close {
+    margin-left: 80px;
+}

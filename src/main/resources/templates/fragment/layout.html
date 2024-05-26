@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" th:href="@{css/principal/principal.css}">
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <title>Layout</title>
+</head>
+<body>
+<nav th:fragment="nav" class="sidebar close">
+    <header>
+        <div class="image-text">
+                <span class="image" th:each="b:${session.USUARIO}">
+                    <img th:src="${b.urlfoto}" alt="">
+                </span>
+
+            <div class="text logo-text" th:each="b:${session.USUARIO}">
+                <span class="name" th:text="${b.nombre}"></span>
+                <span class="profession" th:text="${b.rol.descripcion}"></span>
+            </div>
+        </div>
+
+        <i class='bx bx-chevron-right toggle'></i>
+    </header>
+
+    <div class="menu-bar">
+        <div class="menu">
+
+            <li class="search-box">
+                <i class='bx bx-search icon'></i>
+                <input type="text" placeholder="Search...">
+            </li>
+
+            <ul class="menu-links">
+                <li class="nav-link">
+                    <a th:href="@{/dashboard}">
+                        <i class='bx bx-home-alt icon' ></i>
+                        <span class="text nav-text">Inicio</span>
+                    </a>
+                </li>
+
+                <li class="nav-link" th:each="b:${session.ENLACES}">
+                    <a th:href="${b.ruta}">
+                        <i th:class='${b.icon}'></i>
+                        <span class="text nav-text" th:text="${b.descripcion}"></span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="bottom-content">
+            <li class="">
+                <a th:href="@{/logout}">
+                    <i class='bx bx-log-out icon' ></i>
+                    <span class="text nav-text">Cerrar Sesión</span>
+                </a>
+            </li>
+
+            <li class="mode">
+                <div class="sun-moon">
+                    <i class='bx bx-moon icon moon'></i>
+                    <i class='bx bx-sun icon sun'></i>
+                </div>
+                <span class="mode-text text">Dark mode</span>
+
+                <div class="toggle-switch">
+                    <span class="switch"></span>
+                </div>
+            </li>
+
+            <li class="empresa">
+                <div class="image-text-empresa">
+                        <span class="image-empresa">
+                            <img th:src="@{img/tecnostore.png}" alt="">
+                        </span>
+
+                    <div class="text logo-text-empresa">
+                        <span class="name-empresa"><strong>TecnoStore</strong></span>
+                        <span class="name-empresa1"><strong>Perú</strong></span>
+                    </div>
+                </div>
+            </li>
+        </div>
+    </div>
+</nav>
+
+<script th:src="@{js/js/principal/principal.js}"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empresa</title>
+    <link rel="stylesheet" th:href="@{css/principal/principal.css}">
+    <script src="https://kit.fontawesome.com/1842a186b5.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{css/bootstrap/bootstrap.css}">
+</head>
+<body style="background-color: var(--body-color)">
+    <nav th:replace="fragment/layout :: nav"></nav>
+    <h1 class="text-center mt-4">Listado De Empresas</h1>
+    <div class="container mt-2">
+        <button class="btn btn-primary btnnuevo"><i class="fas fa-plus me-1"></i>Nuevo</button>
+        <a th:href="@{/gestioninventario}" class="btn btn-secondary"><i class="fas fa-arrow-left me-1"></i>Retornar</a>
+        <table id="tbempresa" class="table table-bordered table-hover mt-3">
+            <thead>
+                <th>Id</th>
+                <th>Empresa</th>
+                <th>Direccion</th>
+                <th>Telefono</th>
+                <th>Email</th>
+                <th>Ruc</th>
+                <th class="text-center">Accion</th>
+            </thead>
+            <tbody>
+                <tr th:each="e:${empresa}">
+                    <td th:text="${e.idempresa}"></td>
+                    <td th:text="${e.nomempresa}"></td>
+                    <td th:text="${e.direccion}"></td>
+                    <td th:text="${e.telefono}"></td>
+                    <td th:text="${e.email}"></td>
+                    <td th:text="${e.ruc}"></td>
+                    <td class="d-flex justify-content-center align-content-center">
+                        <button class="btn btn-info btnactualizar"
+                        th:data-idempresa="${e.idempresa}"><i class="fas fa-edit"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="modal fade" id="modalempresa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="text-align: center;">Empresa</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form name="empresa" onsubmit="validarEmpresa()">
+                    <div class="modal-body m-1">
+                        <input type="hidden" id="txtidempresa" readonly>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control"
+                                   id="txtnomempresa" placeholder="" name="txtnomempresa">
+                            <label for="txtnomempresa">Empresa</label>
+                            <small class="text-danger" id="validnomempresa"></small>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control"
+                                   id="txtdireccion" placeholder="" name="txtdireccion">
+                            <label for="txtdireccion">Direccion</label>
+                            <small class="text-danger" id="validdireccion"></small>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control"
+                                   id="txttelefono" placeholder="" name="txttelefono">
+                            <label for="txttelefono">Telefono</label>
+                            <small class="text-danger" id="validtelefono"></small>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <select id="cboTipoEmpresa" class="form-select"></select>
+                            <label for="cboTipoEmpresa">Tipo Empresa</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control"
+                                   id="txtemail" placeholder="" name="txtemail">
+                            <label for="txtemail">Email</label>
+                            <small class="text-danger" id="validemail"></small>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control"
+                                   id="txtruc" placeholder="" name="txtruc">
+                            <label for="txtruc">Ruc</label>
+                            <small class="text-danger" id="validruc"></small>
+                        </div>
+                        <div class="form-check form-switch" id="switchempresa">
+                            <label class="form-check-label" for="swactivo">Estado Empresa</label>
+                            <input class="form-check-input" type="checkbox"
+                            role="switch" id="swactivo">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-angle-left me-1"></i>Cerrar</button>
+                        <button type="submit" class="btn btn-success btnguardar"><i class="fas fa-save me-1"></i>Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script th:src="@{js/js/principal/principal.js}"></script>
+    <script th:src="@{js/jquery/jquery.js}"></script>
+    <script th:src="@{js/bootstrap/bootstrap.bundle.js}"></script>
+    <script th:src="@{js/web/backoffice/empresa/frmempresa.js}"></script>
+</body>
+</html>

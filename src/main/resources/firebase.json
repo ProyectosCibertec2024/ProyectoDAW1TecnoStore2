@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "proyectotecnostore-spring",
+  "private_key_id": "268a691c8059f1946cb99df2864d9413975bfe66",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCzqXFDdmahrqzh\nHG88nU5x664zfxEJKwZ4Q9n+fkITOL7g7JMwFGim7rUlZljNWGOYBH/GGS2Cl6c8\nNDvSAL/AE46wc7AH+euT63Aqx4mUl2MOnkgNP6mrJ+nuFXj0l9EqcOyI0wSvXdz2\nQqUYguUQ27gCOXDNglPunorkpSkBDUVDy4gn9qANsMvjKajtBN3AB+LOOuXf4Jzg\nzmF69T0LqAbRf4+8FWMBXo33btyDEM2qkBBoanAPs10ie1IRxXhR1RLpucPPuWxw\n3fW4ZIRH26dzrUngbvUqAieRQkqdMrNRdujUia8RuUWWtUB968clByjGQMDT/CX5\nn3x1OPnfAgMBAAECggEADvPuy9UaZKGDnPa/YVWcVkntxTZxpggxMShAh/hdKnli\nFZlLBMjmDuK2K+cxQ+Hz5A6XzdaBnalej1mvkuJiEyvth80RHRDVZQnG26Cg2D+j\nTG+rAoNGbUrUou6hkwXhsD0Wyqp5bNkMj2hrkjcutnD7ByBdvZT3xFfoqm/+kioy\n48CEv2S6U0SybmBfXjycZswNi6yfOMP2a6H+vX76chEzIjWKEcoFr6VJ1O4AzL4E\nLOZjKncWp3FOPM1OThu+7taknYauZsmXGfeXwQEjit7CPpoY9onoM3gmY9NV2YvI\n3x2Hm4BarlO+WdNbH8cWaHTlbp+gLQOI3b2kFQjV+QKBgQD9ZYL91RxbtTw5+t0N\nzX/2y4hoAbKH3AEi5LuGPYnsbfcPmZSVrvmQ9GiUg94igG4T60u7R+ssmo/v0MHL\nzsFUJBwI9uNHFDPd0AoTQNxmHOYBkWIadkmVdQk07GxqjaXEpupZrBHPnTmNDU+T\nfKnXsorotiedopycLocPh5uI5wKBgQC1gf4Ueikm/RkKMfKNV8stzkvKITd7Wp8N\nHg7Bc0PwtGyA4RsYHsxi51g7MgG1cjqtaFG6oMdNGdqr2nbNmuWt7NVXkavN7efL\nbZ0mSBY1HjPydn6NFoQlL7YM54qJ01oJWkwJ0WJwZsA5D7w5VJoXdMVUzoFvAfvV\nS/mfL5uQSQKBgQD1aI2/pdisHM8yW/ogtwiajS4ThKlSGMlk8N+IuCrOtwVSr2wO\nt4JuV7a9NyU4hueVFQmoXJOwBBUoriYya5AjHEGmkO021qMQzL4lPWj24EAF/rZj\naHIFdG6xOdQaMgr8dKd8p0AssVmeeOi7rz2ScBFGJbwiV+2S+SDG8o+4uwKBgCSC\nzJhT5nlISkQpve++rEk/iTFUszNmDD54QGGbjRwbPwRBw9B7SYPPo4jsyzkzjCgb\npu0SsGSLAdi17lX3haIR1Oxzigq3g3wBRa5Qq97tf2eTfGtnDxfn3AgGf3CwChl9\nh3QmIVYY5SvVRXiG0yRKwfMIQzMQRBco3EKwMeu5AoGBAMu7LWtBlkfgfm/QmxvI\nYPIhpXG+Ue47WfnRZq9DBx1W79OIVu8lR3zD0r6E7JoNY/juyI/s9MG/YC+IMP5P\nS1PeCvhY9Q0vcxgPbq0kHbQ+W/yJUPZhRaWhWcB67d66lTTPEwSmPX+28KnwJGKx\nj9NEk0zUrmd9ACAweAwwvpKh\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-vawzs@proyectotecnostore-spring.iam.gserviceaccount.com",
+  "client_id": "105488331592615932666",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-vawzs%40proyectotecnostore-spring.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

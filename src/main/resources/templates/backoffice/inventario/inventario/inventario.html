@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
+    <link rel="stylesheet" th:href="@{css/principal/principal.css}">
+    <link rel="stylesheet" th:href="@{css/inventario/inventario.css}">
+    <script src="https://kit.fontawesome.com/1842a186b5.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<nav th:replace="fragment/layout :: nav"></nav>
+<main>
+    <div class="contenedor1-principal-inventario">
+        <h1 class="titulo">BIENVENIDO AL INVENTARIO</h1>
+        <div class="contenedor">
+            <i class="bx bx-bar-chart-alt-2 icon"></i>
+        </div>
+    </div>
+    <div>
+        <h1 class="titulo-3">Panel de Administración de Inventario</h1>
+    </div>
+    <section class="section-container">
+        <section>
+            <a th:href="@{/gestionusuario}">
+                <div class="section-1">
+                    <h1>Gestión de Usuarios</h1>
+                    <i class="fas fa-users"></i>
+                </div>
+            </a>
+        </section>
+        <section>
+            <a th:href="@{/gestioninventario}">
+                <div class="section-2">
+                    <h1>Gestión de Inventario</h1>
+                    <i class="fas fa-cubes"></i>
+                </div>
+            </a>
+        </section>
+        <section>
+            <a th:href="@{/gestionbancos}">
+                <div class="section-2">
+                    <h1>Gestión de Bancos</h1>
+                    <i class="fas fa-university"></i>
+                </div>
+            </a>
+        </section>
+        <section>
+            <a th:href="@{/gestionproveedores}">
+                <div class="section-2">
+                    <h1>Gestión de Proveedores</h1>
+                    <i class="fas fa-truck"></i>
+                </div>
+            </a>
+        </section>
+        <section>
+            <a th:href="@{/gestion-consultas}">
+                <div class="section-2">
+                    <h1>Gestión de Consultas</h1>
+                    <i class="fas fa-search"></i>
+                </div>
+            </a>
+        </section>
+    </section>
+    <div>
+        <h1 class="titulo-2">Mapa de Funcionalidades </h1>
+    </div>
+    <section class="cuadro-indicativo">
+        <section id="usuario" class="cuadro">
+            <h2>Gestión de Usuarios</h2>
+            <i class="fas fa-users"></i>
+            <p>Esta sección permite gestionar los usuarios del sistema.</p>
+            <p><strong>Función:</strong> Permite administrar los usuarios registrados en el sistema, incluyendo su información personal, roles, permisos, etc. También puede permitir la creación, edición y eliminación de usuarios.</p>
+        </section>
+        <section id="inventario" class="cuadro">
+            <h2>Gestión de Inventario</h2>
+            <i class="fas fa-cubes"></i>
+            <p>Esta sección facilita la gestión del inventario de productos.</p>
+            <p><strong>Función:</strong> Permite administrar el inventario de productos, incluyendo la visualización de detalles como nombre, descripción, cantidad disponible, etc. Además, permite realizar acciones como agregar, editar o eliminar productos del inventario.</p>
+        </section>
+    </section>
+</main>
+
+<script th:src="@{js/js/principal/principal.js}"></script>
+</body>
+</html>
+        

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de Usuarios</title>
+    <link rel="stylesheet" th:href="@{css/principal/principal.css}">
+    <link rel="stylesheet" th:href="@{css/inventario/gestionUsuario/gestionUsuario.css}">
+    <script src="https://kit.fontawesome.com/1842a186b5.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+<nav th:replace="fragment/layout :: nav"></nav>
+
+<main>
+    <div class="contenedor1-principal-usuario">
+        <h1 class="titulo">BIENVENIDO A GESTIÓN DE USUARIOS</h1>
+        <div class="contenedor">
+            <i class="fas fa-users"></i>
+        </div>
+    </div>
+
+    <div>
+        <h1 class="titulo-3">Panel de Administración de Gestion de Usuario</h1>
+    </div>
+
+    <section class="section-container">
+        <!--Empresa-->
+        <section>
+            <a th:href="@{/usuario-gestion}">
+                <div class="section-3">
+                    <h1>Usuarios</h1>
+                    <i class="fas fa-users"></i>
+                </div>
+            </a>
+        </section>
+        <!--Proveedor-->
+        <section>
+            <a th:href="@{/roles-gestion}">
+                <div class="section-3">
+                    <h1>Roles</h1>
+                    <i class="fas fa-tools"></i>
+                </div>
+            </a>
+        </section>
+        <!--Cliente-->
+        <section>
+            <a th:href="@{/menus-gestion}">
+                <div class="section-3">
+                    <h1>Menus</h1>
+                    <i class="fas fa-bars"></i>
+                </div>
+            </a>
+        </section>
+        <!--Producto-->
+        <section>
+            <a th:href="@{/rolenlace-gestion}">
+                <div class="section-1">
+                    <h1>Rol Enlaces</h1>
+                    <i class="fas fa-link"></i>
+                </div>
+            </a>
+        </section>
+    </section>
+
+    <div>
+        <h1 class="titulo-2">Mapa de Funcionalidades </h1>
+    </div>
+    <section class="cuadro-indicativo">
+        <section id="usuarios-gestion" class="cuadro">
+            <h2>Usuarios</h2>
+            <i class="fas fa-users"></i>
+            <p>Esta sección organiza los usuarios y asignacion de su rol.</p>
+            <p><strong>Función:</strong> Permite ver información detallada sobre los productos disponibles, como su nombre, descripción, precio, cantidad en stock, etc. También puede permitir agregar, editar o eliminar productos.</p>
+        </section>
+        <section id="roles-gestion" class="cuadro">
+            <h2>Roles</h2>
+            <i class="fas fa-tools"></i>
+            <p>Esta sección organiza los roles.</p>
+            <p><strong>Función:</strong> Permite agrupar productos similares juntos para una mejor organización y búsqueda. Los usuarios pueden explorar productos dentro de una categoría específica y también pueden agregar, editar o eliminar categorías.</p>
+        </section>
+        <section id="menu-gestion" class="cuadro">
+            <h2>Menu</h2>
+            <i class="fas fa-bars"></i>
+            <p>Esta sección organiza los menus y crea menus.</p>
+            <p><strong>Función:</strong> Permite ver detalles sobre los proveedores, como su nombre, información de contacto, términos de pago, etc. Los usuarios pueden ver qué productos están asociados con cada proveedor y también pueden agregar, editar o eliminar proveedores.</p>
+        </section>
+        <section id="rolenlace-gestion" class="cuadro">
+            <h2>Rol Enlaces</h2>
+            <i class="fas fa-link"></i>
+            <p>Esta sección organiza los enlaces hacia los menus con roles.</p>
+            <p><strong>Función:</strong> Permite ver detalles sobre los proveedores, como su nombre, información de contacto, términos de pago, etc. Los usuarios pueden ver qué productos están asociados con cada proveedor y también pueden agregar, editar o eliminar proveedores.</p>
+        </section>
+    </section>
+
+</main>
+
+<script th:src="@{js/js/principal/principal.js}"></script>
+</body>
+</html>

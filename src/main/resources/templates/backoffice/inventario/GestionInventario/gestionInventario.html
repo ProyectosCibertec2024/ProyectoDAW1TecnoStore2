@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestion de inventarios</title>
+  <link rel="stylesheet" th:href="@{css/principal/principal.css}">
+  <link rel="stylesheet" th:href="@{css/inventario/gestionInventario/gestionInventario.css}">
+  <script src="https://kit.fontawesome.com/1842a186b5.js" crossorigin="anonymous"></script>
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+  <!--<link rel="stylesheet" th:href="@{css/bootstrap/bootstrap.css}">-->
+</head>
+<body>
+<nav th:replace="fragment/layout :: nav"></nav>
+<main>
+  <div class="contenedor1-principal-inventario">
+    <h1 class="titulo">BIENVENIDO A GESTIÓN DE INVENTARIO</h1>
+    <div class="contenedor">
+      <i class="fas fa-cubes"></i>
+    </div>
+  </div>
+
+  <div>
+    <h1 class="titulo-3">Panel de Administración de Gestion de Inventario</h1>
+  </div>
+
+  <section class="section-container">
+    <!--Empresa-->
+    <section>
+      <a th:href="@{/empresa}">
+        <div class="section-3">
+          <h1>Empresa</h1>
+          <i class="fas fa-building"></i>
+        </div>
+      </a>
+    </section>
+    <!--Proveedor-->
+    <section>
+      <a th:href="@{/proveedor}">
+        <div class="section-3">
+          <h1>Proveedor</h1>
+          <i class="fas fa-truck"></i>
+        </div>
+      </a>
+    </section>
+  <!--Cliente-->
+    <section>
+      <a th:href="@{/cliente}">
+        <div class="section-3">
+          <h1>Cliente</h1>
+          <i class="fas fa-user-alt"></i>
+        </div>
+      </a>
+    </section>
+    <!--Producto-->
+    <section>
+      <a th:href="@{/producto}">
+        <div class="section-1">
+          <h1>Producto</h1>
+          <i class="fas fa-box"></i>
+        </div>
+      </a>
+    </section>
+    <!--Categoria-->
+    <section>
+      <a th:href="@{/categoria}">
+        <div class="section-2">
+          <h1>Categoría</h1>
+          <i class="fas fa-list"></i>
+        </div>
+      </a>
+    </section>
+  </section>
+
+  <div>
+    <h1 class="titulo-2">Mapa de Funcionalidades </h1>
+  </div>
+  <section class="cuadro-indicativo">
+    <section id="producto" class="cuadro">
+      <h2>Producto</h2>
+      <i class="fas fa-box"></i>
+      <p>Esta sección representa la gestión de los productos en el inventario.</p>
+      <p><strong>Función:</strong> Permite ver información detallada sobre los productos disponibles, como su nombre, descripción, precio, cantidad en stock, etc. También puede permitir agregar, editar o eliminar productos.</p>
+    </section>
+    <section id="categoria" class="cuadro">
+      <h2>Categoría</h2>
+      <i class="fas fa-list"></i>
+      <p>Esta sección organiza los productos en categorías específicas.</p>
+      <p><strong>Función:</strong> Permite agrupar productos similares juntos para una mejor organización y búsqueda. Los usuarios pueden explorar productos dentro de una categoría específica y también pueden agregar, editar o eliminar categorías.</p>
+    </section>
+    <section id="proveedor" class="cuadro">
+      <h2>Proveedor</h2>
+      <i class="fas fa-truck"></i>
+      <p>Esta sección gestiona la información sobre los proveedores de los productos.</p>
+      <p><strong>Función:</strong> Permite ver detalles sobre los proveedores, como su nombre, información de contacto, términos de pago, etc. Los usuarios pueden ver qué productos están asociados con cada proveedor y también pueden agregar, editar o eliminar proveedores.</p>
+    </section>
+  </section>
+
+</main>
+<script th:src="@{js/js/principal/principal.js}"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+#titulologin{
+    text-align: center;
+    font-size: 31px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+#card{
+    background-color: transparent;
+        --bs-card-bg: transparent;
+}
