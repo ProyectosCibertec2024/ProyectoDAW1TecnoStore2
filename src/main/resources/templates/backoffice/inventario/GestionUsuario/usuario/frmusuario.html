@@ -55,7 +55,7 @@
                 <form name="usuario" th:action="@{/usuario-gestion}" method="post" th:object="${u}"
                       onsubmit="validarUsuario()" enctype="multipart/form-data">
                     <div class="modal-body mt-1">
-                        <input type="text" id="txtidusuario" readonly>
+                        <input type="hidden" id="txtidusuario" readonly>
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="txtnomusuario"
                                    placeholder="" name="txtnomusuario" th:field="*{nombre}">
