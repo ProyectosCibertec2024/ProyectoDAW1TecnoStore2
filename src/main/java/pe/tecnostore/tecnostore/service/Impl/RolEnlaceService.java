@@ -46,17 +46,16 @@ public class RolEnlaceService implements IRolEnlaceService {
 
     @Override
     public void asignarMenusARolUpdate(Integer idrol, List<Integer> idmenus) {
-        // Obtener todas las asociaciones de menú existentes para el rol
+
         List<RolEnlace> asociacionesExistentes = rolEnlaceRepository.findByPkIdrol(idrol);
 
-        // Eliminar las asociaciones existentes que no están presentes en las nuevas asociaciones
         for (RolEnlace asociacionExistente : asociacionesExistentes) {
             if (!idmenus.contains(asociacionExistente.getPk().getIdenlace())) {
                 rolEnlaceRepository.delete(asociacionExistente);
             }
         }
 
-        // Agregar las nuevas asociaciones de menú que no están presentes actualmente en las asociaciones existentes
+
         for (Integer idmenu : idmenus) {
             boolean existe = asociacionesExistentes.stream()
                     .anyMatch(asociacion -> asociacion.getPk().getIdenlace() == (idmenu));
