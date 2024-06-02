@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,7 @@ public class UsuarioController {
     private IUsuarioService usuarioService;
     private ImagenService imagenService;
     private IRolService rolService;
+    private BCryptPasswordEncoder encoder;
 
     /**Principal**/
     @GetMapping("/dashboard")
@@ -82,7 +84,6 @@ public class UsuarioController {
     }
 
     @PostMapping(value = "/usuario-gestion")
-    @ResponseBody
     public String guardarUsuario(@ModelAttribute("u") Usuario usuario,
                                  @RequestParam("imagen") MultipartFile imagen, Model model) {
         try {
@@ -95,12 +96,18 @@ public class UsuarioController {
                     String imagenUrl = imagenService.uploadFile(archivo, nombreArchivo, contenido, "usuarios");
                     usuario.setNombrefoto(nombreArchivo);
                     usuario.setUrlfoto(imagenUrl);
+                    String repPass = usuario.getRep_pass();
+                    String encodedPassword = encoder.encode(repPass);
+                    usuario.setPassword(encodedPassword);
                     usuarioService.actualizarUsuario(usuario.getNombre(), usuario.getUsername(),
                             usuario.getPassword(),usuario.getRep_pass(),usuario.getUrlfoto(),
                             usuario.getNombrefoto(),usuario.getDni(),usuario.getIdrol(),
                             usuario.getActivo(),usuario.getIdusuario());
                     model.addAttribute("u", new Usuario());
                 }else {
+                    String repPass = usuario.getRep_pass();
+                    String encodedPassword = encoder.encode(repPass);
+                    usuario.setPassword(encodedPassword);
                     usuarioService.actualizarUsuarioSinImagen(usuario.getNombre(),
                             usuario.getUsername(),usuario.getPassword(),usuario.getRep_pass(), usuario.getDni(),
                             usuario.getIdrol(), usuario.getActivo(),usuario.getIdusuario());
@@ -114,6 +121,7 @@ public class UsuarioController {
                     String imagenUrl = imagenService.uploadFile(archivo, nombreArchivo, contenido, "usuarios");
                     usuario.setNombrefoto(nombreArchivo);
                     usuario.setUrlfoto(imagenUrl);
+                    usuario.setPassword(usuario.getRep_pass());
                     LocalDate fecha = LocalDate.now();
                     usuario.setFecharegistro(fecha);
                     usuarioService.guardarUsuario(usuario);
@@ -121,7 +129,8 @@ public class UsuarioController {
                 }
             }
         }catch (Exception e) {
-            System.out.println("Error : " + e.getCause().getMessage());
+            System.out.println("Error : " + e.getMessage());
+            return "backoffice/inventario/GestionUsuario/usuario/frmusuario";
         }
         return "redirect:/usuario-gestion";
     }
@@ -134,7 +143,7 @@ public class UsuarioController {
 
     @GetMapping(value = "/idusuario")
     @ResponseBody
-    public Integer obtenerIdUsuario() {
+    public int obtenerIdUsuario() {
         return usuarioService.obtenerId();
     }
 }
