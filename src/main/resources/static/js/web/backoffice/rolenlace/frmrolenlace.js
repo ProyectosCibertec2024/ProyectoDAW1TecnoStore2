@@ -1,6 +1,8 @@
 $(document).on("click",".btnnuevo",function () {
     $("#modalrolenlace").modal("show");
-    $("#actualizar").val("false")
+    $("#actualizar").val("false");
+    $(".check-enlace").prop("checked", false);
+    $("#cboidrol").val(0);
 });
 
 $(document).on("click",".btnactualizar",function () {

@@ -52,10 +52,9 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Usuario</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form name="usuario" th:action="@{/usuario-gestion}" method="post" th:object="${u}"
-                      onsubmit="validarUsuario()" enctype="multipart/form-data">
+                <form name="usuario" th:action="@{/usuario-gestion}" method="post" th:object="${u}" enctype="multipart/form-data">
                     <div class="modal-body mt-1">
-                        <input type="hidden" id="txtidusuario" readonly>
+                        <input type="hidden" id="txtidusuario" name="idusuario">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="txtnomusuario"
                                    placeholder="" name="txtnomusuario" th:field="*{nombre}">
@@ -67,12 +66,6 @@
                                    placeholder="" name="txtusernameusuario" th:field="*{username}">
                             <label for="txtusernameusuario">Email</label>
                             <small class="text-danger" id="validusernameusuario"></small>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="txtpasswordusuario"
-                                   placeholder="" name="txtpasswordusuario" th:field="*{password}">
-                            <label for="txtpasswordusuario">Password</label>
-                            <small class="text-danger" id="validpasswordusuario"></small>
                         </div>
                         <div class="form-floating mb-3">
                             <input class="form-control" type="text" placeholder=""
@@ -106,7 +99,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-angle-left me-1"></i>Cerrar</button>
-                        <button type="button" class="btn btn-success btnguardar"><i class="fas fa-save me-1"></i>Guardar</button>
+                        <button type="submit" class="btn btn-success btnguardar"><i class="fas fa-save me-1"></i>Guardar</button>
                     </div>
                 </form>
             </div>

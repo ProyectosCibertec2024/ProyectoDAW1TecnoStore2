@@ -14,7 +14,7 @@
     <div class="container mt-3">
         <button class="btn btn-primary btnnuevo"><i class="fas fa-plus me-1"></i>Nuevo</button>
         <a class="btn btn-secondary" th:href="@{/gestionusuario}"><i class="fas fa-arrow-left me-1"></i>Retornar</a>
-        <table class="table table-bordered table-hover mt-3" id="tbmenu">
+        <table class="table table-bordered table-hover mt-3" id="tbenlacemenu">
             <thead>
                 <tr>
                     <td>ID</td>
@@ -35,22 +35,37 @@
         </table>
     </div>
 
-    <div class="modal fade" id="modalmenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalenlacemenu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Menu</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body mt-1">
-                    <form>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-angle-left me-1"></i>Cerrar</button>
-                    <button type="button" class="btn btn-success btnguardar"><i class="fas fa-save me-1"></i>Guardar</button>
-                </div>
+                <form onsubmit="return validarEnlaceMenu()">
+                    <div class="modal-body mt-1">
+                        <input type="text" id="txtidenlacemenu">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="txtdescripcionenlacemenu" placeholder="">
+                            <label for="txtdescripcionenlacemenu">Nombre</label>
+                            <small class="text-danger" id="validdescripenlacemenu"></small>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="txtrutaenlacemenu" placeholder="">
+                            <label for="txtrutaenlacemenu">Ruta</label>
+                            <small class="text-danger" id="validrutaenlacemenu" ></small>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="txticonoenlacemenu" placeholder="">
+                            <label for="txticonoenlacemenu">Icono</label>
+                            <small class="text-danger" id="validiconoenlacemenu"></small>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-angle-left me-1"></i>Cerrar</button>
+                        <button type="submit" class="btn btn-success btnguardar"><i class="fas fa-save me-1"></i>Guardar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -58,6 +73,6 @@
     <script th:src="@{js/js/principal/principal.js}"></script>
     <script th:src="@{js/jquery/jquery.js}"></script>
     <script th:src="@{js/bootstrap/bootstrap.bundle.js}"></script>
-
+    <script th:src="@{js/web/backoffice/enlacemenu/frmenlacemenu.js}"></script>
 </body>
 </html>

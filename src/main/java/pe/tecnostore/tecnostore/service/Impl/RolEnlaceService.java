@@ -46,7 +46,6 @@ public class RolEnlaceService implements IRolEnlaceService {
 
     @Override
     public void asignarMenusARolUpdate(Integer idrol, List<Integer> idmenus) {
-
         List<RolEnlace> asociacionesExistentes = rolEnlaceRepository.findByPkIdrol(idrol);
 
         for (RolEnlace asociacionExistente : asociacionesExistentes) {
@@ -54,7 +53,6 @@ public class RolEnlaceService implements IRolEnlaceService {
                 rolEnlaceRepository.delete(asociacionExistente);
             }
         }
-
 
         for (Integer idmenu : idmenus) {
             boolean existe = asociacionesExistentes.stream()
