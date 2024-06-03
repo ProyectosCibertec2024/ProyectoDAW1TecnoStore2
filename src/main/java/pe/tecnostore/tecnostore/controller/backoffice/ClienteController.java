@@ -11,6 +11,8 @@ import pe.tecnostore.tecnostore.service.interfaces.IClienteService;
 import java.time.LocalDate;
 import java.util.List;
 
+@SessionAttributes({"ENLACES","USUARIO"})
+
 @AllArgsConstructor
 @Controller
 public class ClienteController {

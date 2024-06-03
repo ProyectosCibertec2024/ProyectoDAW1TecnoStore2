@@ -10,6 +10,8 @@ import pe.tecnostore.tecnostore.service.interfaces.IEnlaceMenuService;
 
 import java.util.List;
 
+@SessionAttributes({"ENLACES","USUARIO"})
+
 @AllArgsConstructor
 @Controller
 public class EnlaceMenuController {

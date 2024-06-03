@@ -10,6 +10,8 @@ import pe.tecnostore.tecnostore.service.interfaces.IRolService;
 
 import java.util.List;
 
+@SessionAttributes({"ENLACES","USUARIO"})
+
 @AllArgsConstructor
 @Controller
 public class RolController {

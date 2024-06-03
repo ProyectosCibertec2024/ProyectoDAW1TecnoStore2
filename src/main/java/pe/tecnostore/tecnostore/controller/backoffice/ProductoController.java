@@ -1,6 +1,5 @@
 package pe.tecnostore.tecnostore.controller.backoffice;
 
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pe.tecnostore.tecnostore.firebase.storage.ImagenService;
 import pe.tecnostore.tecnostore.model.bd.Producto;
-import pe.tecnostore.tecnostore.model.dto.response.RespuestaResponse;
 import pe.tecnostore.tecnostore.service.interfaces.ICategoriaService;
 import pe.tecnostore.tecnostore.service.interfaces.IProductoService;
 import pe.tecnostore.tecnostore.service.interfaces.IProveedorService;
@@ -16,6 +14,8 @@ import pe.tecnostore.tecnostore.service.interfaces.IProveedorService;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
+
+@SessionAttributes({"ENLACES","USUARIO"})
 
 @AllArgsConstructor
 @Controller

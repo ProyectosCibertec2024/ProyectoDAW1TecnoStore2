@@ -1,6 +1,7 @@
 package pe.tecnostore.tecnostore.model.bd;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
@@ -34,7 +35,7 @@ public class Empresa {
     @OneToMany(mappedBy = "empresa", targetEntity = Proveedor.class)
     private List<Proveedor> lstProveedor;
 
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.READ_WRITE)
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(name = "tipobanco_empresa", joinColumns = @JoinColumn(name = "idempresa"),
                 foreignKey = @ForeignKey(name = "FkIdEmpresaToTipoBancoEmpresa"),
