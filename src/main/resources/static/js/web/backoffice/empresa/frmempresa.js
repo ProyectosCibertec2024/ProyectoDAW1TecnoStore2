@@ -72,6 +72,7 @@ $(document).on("click", ".btnguardar", function () {
                 }else{
                     alert(resultado.mensaje)
                 }
+                console.log(resultado);
             }
         });
     }

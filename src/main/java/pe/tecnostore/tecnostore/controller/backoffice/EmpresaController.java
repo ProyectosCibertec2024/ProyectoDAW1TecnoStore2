@@ -40,7 +40,8 @@ public class EmpresaController {
         boolean rs = true;
         String men = "Guardado Exitosamente";
         try {
-            if (empresa.getIdempresa() != null) {
+            int cod = empresaService.obtenerIdGenerado();
+            if (empresa.getIdempresa() < cod) {
                 empresaService.actualizarEmpresa(empresa.getNomempresa(), empresa.getDireccion(),
                         empresa.getTelefono(), empresa.getIdtipoempresa(), empresa.getEmail(),
                         empresa.getRuc(), empresa.getActivo(), empresa.getIdempresa());
