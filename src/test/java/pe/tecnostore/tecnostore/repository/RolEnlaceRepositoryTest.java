@@ -3,8 +3,8 @@ package pe.tecnostore.tecnostore.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import pe.tecnostore.tecnostore.model.dto.object.RolMenuDTO;
-import pe.tecnostore.tecnostore.model.dto.object.RolMenuIdRolDTO;
+import pe.tecnostore.tecnostore.model.dto.object.gestion.usuarios.RolMenuDTO;
+import pe.tecnostore.tecnostore.model.dto.object.gestion.usuarios.RolMenuIdRolDTO;
 
 import java.util.List;
 

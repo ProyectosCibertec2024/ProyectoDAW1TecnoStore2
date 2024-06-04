@@ -1,7 +1,7 @@
 package pe.tecnostore.tecnostore.service.interfaces;
 
 import pe.tecnostore.tecnostore.model.bd.TipoBanco;
-import pe.tecnostore.tecnostore.model.dto.object.TipoBancoEmpresaListDTO;
+import pe.tecnostore.tecnostore.model.dto.object.gestion.bancos.TipoBancoEmpresaListDTO;
 
 import java.util.List;
 

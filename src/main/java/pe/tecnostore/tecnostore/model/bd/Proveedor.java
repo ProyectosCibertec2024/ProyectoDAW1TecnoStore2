@@ -30,12 +30,4 @@ public class Proveedor {
     @JoinColumn(name = "idempresa", insertable = false, updatable = false,
     foreignKey = @ForeignKey(name = "FkIdEmpresaToEmpresa"))
     private Empresa empresa;
-
-    @JsonIgnore
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinTable(name = "tipoprov_proveedor", joinColumns = @JoinColumn(name = "idproveedor"),
-            inverseJoinColumns = @JoinColumn(name = "idtipoproveedor"),
-            foreignKey = @ForeignKey(name = "FkProveedorToManyTipoProvProv"),
-            inverseForeignKey = @ForeignKey(name = "FkTipoProveedorManyTipoProvProv"))
-    private List<TipoProveedor> tipoProveedors;
 }

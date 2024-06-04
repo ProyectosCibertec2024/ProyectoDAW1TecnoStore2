@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import pe.tecnostore.tecnostore.model.dto.object.TipoBancoEmpresaListDTO;
+import pe.tecnostore.tecnostore.model.dto.object.gestion.bancos.TipoBancoEmpresaListDTO;
 
 import java.util.List;
 

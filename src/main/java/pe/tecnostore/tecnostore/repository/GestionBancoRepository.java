@@ -7,14 +7,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pe.tecnostore.tecnostore.model.bd.Empresa;
-import pe.tecnostore.tecnostore.model.dto.object.TipoBancoEmpresaListDTO;
+import pe.tecnostore.tecnostore.model.dto.object.gestion.bancos.TipoBancoEmpresaListDTO;
 
 import java.util.List;
 
 @Repository
 public interface GestionBancoRepository extends JpaRepository<Empresa, Integer> {
 
-    @Query("SELECT new pe.tecnostore.tecnostore.model.dto.object.TipoBancoEmpresaListDTO(e.idempresa,e.nomempresa, CAST(GROUP_CONCAT(tb.nombanco) as string ), e.telefono, CAST(GROUP_CONCAT(tb.idtipobanco) as string))" +
+    @Query("SELECT new pe.tecnostore.tecnostore.model.dto.object.gestion.bancos.TipoBancoEmpresaListDTO(e.idempresa,e.nomempresa, CAST(GROUP_CONCAT(tb.nombanco) as string ), e.telefono, CAST(GROUP_CONCAT(tb.idtipobanco) as string))" +
            "FROM Empresa e JOIN e.tipoBancoList tb GROUP BY e.idempresa, e.nomempresa, e.telefono")
     List<TipoBancoEmpresaListDTO> listadoBancosToEmpresa();
 
