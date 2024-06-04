@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import pe.tecnostore.tecnostore.model.dto.object.gestion.consultas.EmpresaConsultaDTO;
+import pe.tecnostore.tecnostore.model.dto.object.gestion.consultas.ProductoConsultaDTO;
+import pe.tecnostore.tecnostore.model.dto.object.gestion.consultas.ProveedorConsultaDTO;
 import pe.tecnostore.tecnostore.model.dto.object.gestion.consultas.UsuarioConsultaDTO;
 import pe.tecnostore.tecnostore.service.interfaces.IRolService;
 import pe.tecnostore.tecnostore.service.interfaces.ITipoEmpresaService;
 import pe.tecnostore.tecnostore.service.interfaces.gestion.consultas.IGestionConsultaEmpresaService;
+import pe.tecnostore.tecnostore.service.interfaces.gestion.consultas.IGestionConsultaProductoService;
 import pe.tecnostore.tecnostore.service.interfaces.gestion.consultas.IGestionConsultaProveedorService;
 import pe.tecnostore.tecnostore.service.interfaces.gestion.consultas.IGestionConsultaUsuarioService;
 
@@ -28,6 +31,7 @@ public class GestionConsultasController {
     private ITipoEmpresaService tipoEmpresaService;
     private IGestionConsultaEmpresaService gestionConsultaEmpresaService;
     private IGestionConsultaProveedorService gestionConsultaProveedorService;
+    private IGestionConsultaProductoService gestionConsultaProductoService;
 
     /**GESTION CONSULTAS**/
     @GetMapping(value = "/gestion-consultas")
@@ -98,22 +102,36 @@ public class GestionConsultasController {
 
     /*GESTION CONSULTAS PROVEEDOR*/
     @GetMapping(value = "/gestionconsulta-proveedores")
-    public String gestionConsultaProveedores(Model model) {
-        return "";
+    public String gestionConsultaProveedores() {
+        return "backoffice/inventario/GestionConsultas/proveedor/frmgestionconsultaproveedor";
     }
 
     @PostMapping(value = "/gestionconsulta-proveedores")
-    public String gestionConsultaProveedores(@RequestParam("nomproveedor") String nomproveedor) {
+    public String gestionConsultaProveedores(@RequestParam("nomproveedor") String nomproveedor,
+                                             Model model) {
         try {
-
+            String mensaje;
+            if(nomproveedor.isEmpty()) {
+                mensaje = "El Nombre Proveedor Esta Vacio";
+                model.addAttribute("error", mensaje);
+            }else {
+                List<ProveedorConsultaDTO> lista = gestionConsultaProveedorService.consultaProveedorxNomprov(nomproveedor);
+                if(lista.isEmpty()) {
+                    mensaje = "No Se Encontraron Proveedores";
+                    model.addAttribute("error", mensaje);
+                }else {
+                    model.addAttribute("proveedorconsultagestion", lista);
+                }
+            }
         }catch (Exception e) {
             System.out.println("Error en : " + e.getMessage());
         }
         return "backoffice/inventario/GestionConsultas/proveedor/frmgestionconsultaproveedor";
     }
+
     /*GESTION CONSULTAS PRODUCTO*/
     @GetMapping(value = "/gestionconsulta-productos")
-    public String gestionConsultaProductos(Model model) {
+    public String gestionConsultaProductos() {
         return "backoffice/inventario/GestionConsultas/producto/frmgestionconsultaproductos";
     }
 
@@ -121,7 +139,19 @@ public class GestionConsultasController {
     public String gestionConsultaProductos(@RequestParam("nomproducto") String nomproducto,
                                            Model model) {
         try {
-
+            String mensaje;
+            if(nomproducto.isEmpty()) {
+                mensaje = "El Nombre del Producto Esta Vacio";
+                model.addAttribute("error", mensaje);
+            }else {
+                List<ProductoConsultaDTO> lista = gestionConsultaProductoService.consultaProductoXMarca(nomproducto);
+                if(lista.isEmpty()) {
+                    mensaje = "No Se Encontraron Productos";
+                    model.addAttribute("error", mensaje);
+                }else {
+                    model.addAttribute("productoconsultagestion", lista);
+                }
+            }
         }catch (Exception e) {
             System.out.println("Error en : " + e.getMessage());
         }
