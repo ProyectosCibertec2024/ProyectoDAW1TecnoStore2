@@ -12,6 +12,7 @@ import pe.tecnostore.tecnostore.model.dto.object.gestion.consultas.UsuarioConsul
 import pe.tecnostore.tecnostore.service.interfaces.IRolService;
 import pe.tecnostore.tecnostore.service.interfaces.ITipoEmpresaService;
 import pe.tecnostore.tecnostore.service.interfaces.gestion.consultas.IGestionConsultaEmpresaService;
+import pe.tecnostore.tecnostore.service.interfaces.gestion.consultas.IGestionConsultaProveedorService;
 import pe.tecnostore.tecnostore.service.interfaces.gestion.consultas.IGestionConsultaUsuarioService;
 
 import java.util.List;
@@ -26,6 +27,7 @@ public class GestionConsultasController {
     private IRolService rolService;
     private ITipoEmpresaService tipoEmpresaService;
     private IGestionConsultaEmpresaService gestionConsultaEmpresaService;
+    private IGestionConsultaProveedorService gestionConsultaProveedorService;
 
     /**GESTION CONSULTAS**/
     @GetMapping(value = "/gestion-consultas")
@@ -95,9 +97,35 @@ public class GestionConsultasController {
     }
 
     /*GESTION CONSULTAS PROVEEDOR*/
+    @GetMapping(value = "/gestionconsulta-proveedores")
+    public String gestionConsultaProveedores(Model model) {
+        return "";
+    }
 
+    @PostMapping(value = "/gestionconsulta-proveedores")
+    public String gestionConsultaProveedores(@RequestParam("nomproveedor") String nomproveedor) {
+        try {
 
+        }catch (Exception e) {
+            System.out.println("Error en : " + e.getMessage());
+        }
+        return "backoffice/inventario/GestionConsultas/proveedor/frmgestionconsultaproveedor";
+    }
     /*GESTION CONSULTAS PRODUCTO*/
+    @GetMapping(value = "/gestionconsulta-productos")
+    public String gestionConsultaProductos(Model model) {
+        return "backoffice/inventario/GestionConsultas/producto/frmgestionconsultaproductos";
+    }
 
+    @PostMapping(value = "/gestionconsulta-productos")
+    public String gestionConsultaProductos(@RequestParam("nomproducto") String nomproducto,
+                                           Model model) {
+        try {
+
+        }catch (Exception e) {
+            System.out.println("Error en : " + e.getMessage());
+        }
+        return "backoffice/inventario/GestionConsultas/producto/frmgestionconsultaproductos";
+    }
 
 }
