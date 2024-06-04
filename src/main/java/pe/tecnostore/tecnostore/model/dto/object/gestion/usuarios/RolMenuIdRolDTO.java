@@ -1,4 +1,4 @@
-package pe.tecnostore.tecnostore.model.dto.object;
+package pe.tecnostore.tecnostore.model.dto.object.gestion.usuarios;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

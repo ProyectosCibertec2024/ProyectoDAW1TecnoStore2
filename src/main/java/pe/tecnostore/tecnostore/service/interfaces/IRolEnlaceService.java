@@ -1,7 +1,7 @@
 package pe.tecnostore.tecnostore.service.interfaces;
 
-import pe.tecnostore.tecnostore.model.dto.object.RolMenuDTO;
-import pe.tecnostore.tecnostore.model.dto.object.RolMenuIdRolDTO;
+import pe.tecnostore.tecnostore.model.dto.object.gestion.usuarios.RolMenuDTO;
+import pe.tecnostore.tecnostore.model.dto.object.gestion.usuarios.RolMenuIdRolDTO;
 
 import java.util.List;
 

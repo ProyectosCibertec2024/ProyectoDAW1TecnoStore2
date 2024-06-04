@@ -1,4 +1,4 @@
-package pe.tecnostore.tecnostore.model.dto.object;
+package pe.tecnostore.tecnostore.model.dto.object.gestion.bancos;
 
 import lombok.Data;
 

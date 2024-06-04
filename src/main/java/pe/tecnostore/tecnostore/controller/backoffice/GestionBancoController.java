@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pe.tecnostore.tecnostore.model.bd.Empresa;
-import pe.tecnostore.tecnostore.model.dto.object.TipoBancoEmpresaDTO;
+import pe.tecnostore.tecnostore.model.dto.object.gestion.bancos.TipoBancoEmpresaDTO;
 import pe.tecnostore.tecnostore.service.interfaces.IEmpresaService;
 import pe.tecnostore.tecnostore.service.interfaces.IGestionBancoService;
 

@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pe.tecnostore.tecnostore.model.bd.RolEnlace;
 import pe.tecnostore.tecnostore.model.bd.RolEnlacePK;
-import pe.tecnostore.tecnostore.model.dto.object.RolMenuDTO;
-import pe.tecnostore.tecnostore.model.dto.object.RolMenuIdRolDTO;
+import pe.tecnostore.tecnostore.model.dto.object.gestion.usuarios.RolMenuDTO;
+import pe.tecnostore.tecnostore.model.dto.object.gestion.usuarios.RolMenuIdRolDTO;
 import pe.tecnostore.tecnostore.repository.RolEnlaceRepository;
 import pe.tecnostore.tecnostore.service.interfaces.IRolEnlaceService;
 

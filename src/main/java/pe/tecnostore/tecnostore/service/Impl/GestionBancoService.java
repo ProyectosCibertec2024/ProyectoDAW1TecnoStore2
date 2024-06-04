@@ -2,9 +2,8 @@ package pe.tecnostore.tecnostore.service.Impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import pe.tecnostore.tecnostore.model.bd.Empresa;
 import pe.tecnostore.tecnostore.model.bd.TipoBanco;
-import pe.tecnostore.tecnostore.model.dto.object.TipoBancoEmpresaListDTO;
+import pe.tecnostore.tecnostore.model.dto.object.gestion.bancos.TipoBancoEmpresaListDTO;
 import pe.tecnostore.tecnostore.repository.GestionBancoRepository;
 import pe.tecnostore.tecnostore.repository.TipoBancoRepository;
 import pe.tecnostore.tecnostore.service.interfaces.IGestionBancoService;
