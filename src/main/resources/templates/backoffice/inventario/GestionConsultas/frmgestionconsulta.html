@@ -33,7 +33,7 @@
                 <a th:href="@{/gestionconsulta-empresas}">
                     <div class="section-2">
                         <h1>Empresa</h1>
-                        <i class="fas fa-cubes"></i>
+                        <i class="fas fa-building"></i>
                     </div>
                 </a>
             </section>
@@ -58,18 +58,42 @@
             <h1 class="titulo-2">Mapa de Funcionalidades</h1>
         </div>
         <section class="cuadro-indicativo">
-            <section id="usuario" class="cuadro">
-                <h2>Gestión de Consultas de Usuarios</h2>
+            <section id="usuarios" class="cuadro">
+                <h2>Usuarios</h2>
                 <i class="fas fa-users"></i>
-                <p>Esta sección permite gestionar los usuarios del sistema.</p>
-                <p><strong>Función:</strong> Permite administrar los usuarios registrados en el sistema, incluyendo su información personal, roles, permisos, etc. También puede permitir la creación, edición y eliminación de usuarios.</p>
+                <p>Descripción: Esta sección proporciona información sobre los usuarios del sistema.</p>
+                <p><strong>Función:</strong>
+                    Permite visualizar los usuarios registrados en el sistema, incluyendo su información personal, roles, permisos, etc. No permite realizar cambios en los registros de usuarios, solo consultar su información.
+                </p>
             </section>
-            <section id="inventario" class="cuadro">
-                <h2>Gestión de Consultas de Empresas</h2>
-                <i class="fas fa-cubes"></i>
-                <p>Esta sección facilita la gestión del inventario de productos.</p>
-                <p><strong>Función:</strong> Permite administrar el inventario de productos, incluyendo la visualización de detalles como nombre, descripción, cantidad disponible, etc. Además, permite realizar acciones como agregar, editar o eliminar productos del inventario.</p>
+
+            <section id="empresa" class="cuadro">
+                <h2>Empresa</h2>
+                <i class="fas fa-building"></i>
+                <p>Descripción: Esta sección brinda detalles sobre las empresas asociadas al sistema.</p>
+                <p><strong>Función:</strong>
+                    Permite acceder a la información de las empresas, como su nombre, dirección, información de contacto, etc. No permite realizar modificaciones en los datos de las empresas, solo consultar la información existente.
+                </p>
             </section>
+
+            <section id="proveedor" class="cuadro">
+                <h2>Proveedor</h2>
+                <i class="fas fa-truck"></i>
+                <p>Descripción: Esta sección ofrece información sobre los proveedores de productos.</p>
+                <p><strong>Función:</strong>
+                    Permite consultar la información de los proveedores, incluyendo su nombre, información de contacto, términos de pago, etc. No permite editar ni eliminar registros de proveedores, solo permite la visualización de datos.
+                </p>
+            </section>
+
+            <section id="producto" class="cuadro">
+                <h2>Producto</h2>
+                <i class="fas fa-box"></i>
+                <p>Descripción: Esta sección muestra detalles sobre los productos disponibles en el sistema.</p>
+                <p><strong>Función:</strong>
+                    Permite acceder a la información de los productos, como su nombre, descripción, precio, cantidad en stock, etc. No permite modificar la información de los productos, solo permite la consulta de datos.
+                </p>
+            </section>
+
         </section>
     </main>
 
