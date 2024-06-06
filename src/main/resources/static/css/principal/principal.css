@@ -373,3 +373,13 @@ body.dark .switch::before{
 body.dark .home .text{
     color: var(--text-color);
 }
+main {
+    margin-left: 120px;
+}
+/*.sidebar.close {
+    width: 80px;
+}*/
+
+main.menu-close {
+    margin-left: 80px;
+}

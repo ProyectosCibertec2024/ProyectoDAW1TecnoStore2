@@ -1,18 +1,110 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!----======== CSS ======== -->
+    <!----======== EL CSS ES DE HOME NO DE PRINCIPAL , YA QUE PRINCIPAL ES PARA TODAS LAS PAGINAS ,
+     ES COMO DECIR QUE PRINCIPAL ES EL PADRE DE TODOS Y HOME ES EL HIJO Y CSS DE PRINCIPAL.======== -->
     <link rel="stylesheet" th:href="@{css/principal/principal.css}">
+    <link rel="stylesheet" th:href="@{css/home/home.css}">
     <!----===== Boxicons CSS ===== -->
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css' rel='stylesheet'>
     <!----===== JS ===== -->
     <title>Menu Principal</title>
 </head>
 <body>
 <nav th:replace="fragment/layout :: nav"></nav>
+<main class="main-home">
+    <h1 class="dashboard-title">DASHBOARD</h1>
+       <article>
+           <section class="section-containecito">
+               <img th:src="@{/img/ic_empresa.svg}" alt="Imagen de Empresa">
+               <div class="content">
+                   <h2>Empresa</h2>
+                   <p>Cantidad importante sobre la empresa.</p>
+               </div>
+               <p class="quantity"><strong>Cantidad total:</strong> + cantidad</p>
+           </section>
+           <section class="section-containecito">
+               <img th:src="@{/img/ic_truck.svg}" alt="Imagen de Proveedor">
+               <div class="content">
+                   <h2>Proveedor</h2>
+                   <p>Dato relevante sobre el proveedor.</p>
+               </div>
+               <p class="quantity"><strong>Cantidad total:</strong> + cantidad</p>
+           </section>
+           <section class="section-containecito">
+               <img th:src="@{/img/ic_user_alt.svg}" alt="Imagen de Cliente">
+               <div class="content">
+                   <h2>Cliente</h2>
+                   <p>Dato importante sobre el cliente.</p>
+               </div>
+               <p class="quantity"><strong>Cantidad total:</strong> + cantidad</p>
+           </section>
+           <section class="section-containecito">
+               <img th:src="@{/img/ic_box.svg}" alt="Imagen de Producto">
+               <div class="content">
+                   <h2>Producto</h2>
+                   <p>Dato importante sobre el producto.</p>
+               </div>
+               <p class="quantity"><strong>Cantidad total:</strong> + cantidad</p>
+           </section>
+           <section class="section-containecito">
+               <img th:src="@{/img/ic_list.svg}" alt="Imagen de Categoría">
+               <div class="content">
+                   <h2>Categoría</h2>
+                   <p>Dato esencial sobre la categoría.</p>
+               </div>
+               <p class="quantity"><strong>Cantidad total:</strong> + cantidad</p>
+           </section>
+       </article>
+    <article class="scroll-view">
+        <section class="linear-layout">
+
+            <h1 class="title">Bienvenido a Tecnostore Peru</h1>
+
+            <section class="description">
+                <p class="paragraph">Tecnostore Peru es tu tienda de tecnología de confianza. Ofrecemos una amplia gama de productos electrónicos, desde teléfonos inteligentes y computadoras hasta accesorios y equipos de red. Nuestro objetivo es proporcionar productos de alta calidad a precios competitivos, con un excelente servicio al cliente.</p>
+            </section>
+            <section>
+                <div class="logo-container">
+                    <img id="logo_tecnostore" th:src="@{/img/logo_tecnostore.png}" alt="Logo Tecnostore Peru">
+                </div>
+            </section>
+            <section class="services">
+                <h2 class="subtitle">¿A qué se dedica Tecnostore Peru?</h2>
+                <p class="paragraph">En Tecnostore Peru, nos dedicamos a:<br><br>
+                    <i class="fa-solid fa-check"></i> Venta de teléfonos inteligentes de las mejores marcas.<br><br>
+                    <i class="fa-solid fa-check"></i>Venta de laptops y computadoras de escritorio.<br><br>
+                    <i class="fa-solid fa-check"></i>Venta de accesorios tecnológicos como cargadores, fundas, audífonos, y más.<br><br>
+                    <i class="fa-solid fa-check"></i>Servicio de reparación y mantenimiento de dispositivos electrónicos.<br><br>
+                    <i class="fa-solid fa-check"></i>Asesoría en tecnología para empresas y particulares.<br><br>
+                    <i class="fa-solid fa-check"></i> Venta de equipos de red y soluciones de conectividad.<br>
+                </p>
+            </section>
+
+            <section class="contact">
+                <h2 class="subtitle">Información de Contacto:</h2>
+                <p class="paragraph"><strong>Dirección:</strong> Av. Tecnológica 1234, Lima, Perú</p>
+                <p class="paragraph"><strong>Teléfono:</strong> +51 123 456 789</p>
+                <p class="paragraph"><strong>Email:</strong> info@tecnostoreperu.com</p>
+            </section>
+
+            <section class="social-media">
+                <h2 class="subtitle">Síguenos en nuestras redes sociales:</h2>
+                <div class="social-icons">
+                    <img id="iv_facebook" th:src="@{/img/ic_facebook.png}" alt="Facebook">
+                    <img id="iv_twitter" th:src="@{/img/ic_twitter.png}" alt="Twitter">
+                    <img id="iv_instagram" th:src="@{/img/ic_instagram.png}" alt="Instagram">
+                </div>
+            </section>
+        </section>
+    </article>
+</main>
+
 <script th:src="@{js/js/principal/principal.js}"></script>
 </body>
 </html>
