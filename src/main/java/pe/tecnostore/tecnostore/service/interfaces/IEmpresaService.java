@@ -11,4 +11,5 @@ public interface IEmpresaService {
     int obtenerIdGenerado();
     void actualizarEmpresa(String nomempresa, String direccion, String telefono,
                                      Integer idtipoempresa, String email, String ruc, Boolean activo, Integer idempresa);
+    int obtenerCantidadEmpresa();
 }

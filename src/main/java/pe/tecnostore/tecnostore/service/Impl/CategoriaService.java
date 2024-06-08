@@ -38,4 +38,9 @@ public class CategoriaService implements ICategoriaService {
     public int obtenerID() {
         return categoriaRepository.obtenerIdGenerado();
     }
+
+    @Override
+    public int obtenerCantidadCategoria() {
+        return categoriaRepository.obtenerCantidadCategoria();
+    }
 }

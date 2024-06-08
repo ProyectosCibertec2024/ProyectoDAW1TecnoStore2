@@ -19,4 +19,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
             "WHERE idcliente=:idcliente")
     void actualizarCliente(String nomcliente, String apecliente, String dnicliente,
                            String direccion, String telefono, Boolean activo, Integer idcliente);
+
+    @Query("SELECT COUNT(*) FROM Cliente")
+    int obtenerCantidadCliente();
 }

@@ -24,9 +24,9 @@
                <img th:src="@{/img/ic_empresa.svg}" alt="Imagen de Empresa">
                <div class="content">
                    <h2>Empresa</h2>
-                   <p>Cantidad importante sobre la empresa.</p>
+                   <p>Dato importante sobre la empresa.</p>
                </div>
-               <p class="quantity"><strong>Cantidad total:</strong> + cantidad</p>
+               <p class="quantity"><strong th:text="${countempresa}"></strong></p>
            </section>
            <section class="section-containecito">
                <img th:src="@{/img/ic_truck.svg}" alt="Imagen de Proveedor">
@@ -34,7 +34,7 @@
                    <h2>Proveedor</h2>
                    <p>Dato relevante sobre el proveedor.</p>
                </div>
-               <p class="quantity"><strong>Cantidad total:</strong> + cantidad</p>
+               <p class="quantity"><strong th:text="${countproveedor}"></strong></p>
            </section>
            <section class="section-containecito">
                <img th:src="@{/img/ic_user_alt.svg}" alt="Imagen de Cliente">
@@ -42,7 +42,7 @@
                    <h2>Cliente</h2>
                    <p>Dato importante sobre el cliente.</p>
                </div>
-               <p class="quantity"><strong>Cantidad total:</strong> + cantidad</p>
+               <p class="quantity"><strong th:text="${countclient}"></strong></p>
            </section>
            <section class="section-containecito">
                <img th:src="@{/img/ic_box.svg}" alt="Imagen de Producto">
@@ -50,7 +50,7 @@
                    <h2>Producto</h2>
                    <p>Dato importante sobre el producto.</p>
                </div>
-               <p class="quantity"><strong>Cantidad total:</strong> + cantidad</p>
+               <p class="quantity"><strong th:text="${countproducto}"></strong></p>
            </section>
            <section class="section-containecito">
                <img th:src="@{/img/ic_list.svg}" alt="Imagen de Categoría">
@@ -58,7 +58,7 @@
                    <h2>Categoría</h2>
                    <p>Dato esencial sobre la categoría.</p>
                </div>
-               <p class="quantity"><strong>Cantidad total:</strong> + cantidad</p>
+               <p class="quantity"><strong th:text="${countcategoria}"></strong></p>
            </section>
        </article>
     <article class="scroll-view">

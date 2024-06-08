@@ -11,4 +11,5 @@ public interface IProveedorService {
     int obtenerIdProveedor();
     void actualizarProveedor(String nomproveedor, String telefono, String correo,
                              Boolean estado, Integer idempresa, Integer idproveedor);
+    int obtenerCantidadProveedor();
 }

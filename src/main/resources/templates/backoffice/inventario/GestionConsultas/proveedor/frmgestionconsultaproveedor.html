@@ -7,21 +7,27 @@
     <script src="https://kit.fontawesome.com/1842a186b5.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" th:href="@{css/bootstrap/bootstrap.css}">
+    <style>
+        .dark #ConsultaProveedor{
+            color: #fff;
+        }
+    </style>
 </head>
 <body style="background-color: var(--body-color)">
     <nav th:replace="fragment/layout :: nav"></nav>
-    <h1 class="text-center mt-3">Consultas De Proveedores</h1>
-    <div class="container mt-3">
-        <form th:action="@{/gestionconsulta-proveedores}" method="post">
-            <div class="mb-3 form-floating d-flex align-items-center me-2">
-                <input type="text" name="nomproveedor" class="form-control me-2 w-100" id="txtnomproveedor">
-                <label for="txtnomproveedor">Nombre Proveedor</label>
-                <button type="submit" class="btn btn-primary me-2">Consultar</button>
-                <a th:href="@{/gestion-consultas}" class="btn btn-danger">Retornar</a>
-            </div>
-            <div th:if="${proveedorconsultagestion != null}">
-                <table class="table table-hover table-bordered">
-                    <thead>
+    <main>
+        <h1 id="ConsultaProveedor" class="text-center mt-3">Consultas De Proveedores</h1>
+        <div class="container mt-3">
+            <form th:action="@{/gestionconsulta-proveedores}" method="post">
+                <div class="mb-3 form-floating d-flex align-items-center me-2">
+                    <input type="text" name="nomproveedor" class="form-control me-2 w-100" id="txtnomproveedor">
+                    <label for="txtnomproveedor">Nombre Proveedor</label>
+                    <button type="submit" class="btn btn-primary me-2">Consultar</button>
+                    <a th:href="@{/gestion-consultas}" class="btn btn-danger">Retornar</a>
+                </div>
+                <div th:if="${proveedorconsultagestion != null}">
+                    <table class="table table-hover table-bordered">
+                        <thead>
                         <tr>
                             <td>ID Proveedor</td>
                             <td>Proveedor</td>
@@ -30,8 +36,8 @@
                             <td>Telefono</td>
                             <td>Registro</td>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         <tr th:each="gcp:${proveedorconsultagestion}">
                             <td th:text="${gcp.idproveedor}"></td>
                             <td th:text="${gcp.nomproveedor}"></td>
@@ -40,16 +46,20 @@
                             <td th:text="${gcp.telefono}"></td>
                             <td th:text="${gcp.registro}"></td>
                         </tr>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+                <div th:if="${error != null}">
+                    <p class="alert alert-danger" th:text="${error}"></p>
+                </div>
+            </form>
+            <div th:if="${proveedorconsultagestion == null}">
+                <p class="alert alert-info">No Se Encontraron Consultas</p>
             </div>
-            <div th:if="${error != null}">
-                <p class="alert alert-danger" th:text="${error}"></p>
-            </div>
-        </form>
-        <div th:if="${proveedorconsultagestion == null}">
-            <p class="alert alert-info">No Se Encontraron Consultas</p>
         </div>
-    </div>
+    </main>
+    <script th:src="@{js/js/principal/principal.js}"></script>
+    <script th:src="@{js/jquery/jquery.js}"></script>
+    <script th:src="@{js/bootstrap/bootstrap.bundle.js}"></script>
 </body>
 </html>

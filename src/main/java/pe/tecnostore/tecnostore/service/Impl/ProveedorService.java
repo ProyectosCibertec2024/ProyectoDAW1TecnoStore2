@@ -38,4 +38,9 @@ public class ProveedorService implements IProveedorService {
     public void actualizarProveedor(String nomproveedor, String telefono, String correo, Boolean estado, Integer idempresa, Integer idproveedor) {
         proveedorRepository.actualizarProveedor(nomproveedor,telefono,correo,estado,idempresa,idproveedor);
     }
+
+    @Override
+    public int obtenerCantidadProveedor() {
+        return proveedorRepository.obtenerCantidadProveedor();
+    }
 }

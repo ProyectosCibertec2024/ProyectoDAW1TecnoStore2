@@ -36,4 +36,7 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer> {
                             Double descuento, String ram, String espaciodisco,
                             String pantallatamanio, Integer idproveedor, Boolean activo,
                             Integer idproducto);
+
+    @Query("SELECT COUNT(*) FROM Producto")
+    int obtenerCantidadProducto();
 }

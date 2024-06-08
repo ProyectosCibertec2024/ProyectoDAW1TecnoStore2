@@ -10,4 +10,7 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
 
     @Query(value = "SELECT coalesce(max(c.idcategoria), 0) + 1 FROM categoria c", nativeQuery = true)
     int obtenerIdGenerado();
+
+    @Query("SELECT COUNT(*) FROM Categoria")
+    int obtenerCantidadCategoria();
 }

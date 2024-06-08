@@ -38,4 +38,9 @@ public class EmpresaService implements IEmpresaService {
     public void actualizarEmpresa(String nomempresa, String direccion, String telefono, Integer idtipoempresa, String email, String ruc, Boolean activo, Integer idempresa) {
         empresaRepository.actualizarEmpresa(nomempresa, direccion, telefono, idtipoempresa, email, ruc, activo, idempresa);
     }
+
+    @Override
+    public int obtenerCantidadEmpresa() {
+        return empresaRepository.obtenerCantidadEmpresa();
+    }
 }
