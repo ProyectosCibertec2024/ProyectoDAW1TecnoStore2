@@ -23,9 +23,9 @@ public class ImagenService {
     public String uploadFile(File file, String fileName, String contentType, String folderName) throws IOException {
         String fullPath = folderName + "/" + fileName;
 
-        BlobId blobId = BlobId.of("proyectotecnostore-spring.appspot.com", fullPath); // Replace with your bucker name
+        BlobId blobId = BlobId.of("proyectotecnostore-spring.appspot.com", fullPath); // Reemplaza con tu nombre de bucket
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType(contentType).build();
-        InputStream inputStream = ImagenService.class.getClassLoader().getResourceAsStream("firebase.json"); // change the file name with your one
+        InputStream inputStream = ImagenService.class.getClassLoader().getResourceAsStream("firebase.json"); // Cambia el nombre del archivo según el tuyo
         Credentials credentials = GoogleCredentials.fromStream(inputStream);
         Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
         storage.create(blobInfo, Files.readAllBytes(file.toPath()));
@@ -34,11 +34,10 @@ public class ImagenService {
         return String.format(DOWNLOAD_URL, URLEncoder.encode(fullPath, StandardCharsets.UTF_8));
     }
 
-    public File convertToFile(MultipartFile multipartFile, String fileName) throws IOException {
-        File tempFile = new File(fileName);
+    public File convertToFile(MultipartFile multipartFile) throws IOException {
+        File tempFile = Files.createTempFile(null, null).toFile();
         try (FileOutputStream fos = new FileOutputStream(tempFile)) {
             fos.write(multipartFile.getBytes());
-            fos.close();
         }
         return tempFile;
     }
@@ -48,17 +47,21 @@ public class ImagenService {
     }
 
     public String upload(MultipartFile multipartFile, String nomCarpeta) {
+        File file = null;
         try {
             String fileName = multipartFile.getOriginalFilename();
             String contentType = multipartFile.getContentType();
 
-            File file = this.convertToFile(multipartFile, fileName);
+            file = this.convertToFile(multipartFile);
             String URL = this.uploadFile(file, fileName, contentType, nomCarpeta);
-            file.delete();
             return URL;
         } catch (Exception e) {
             System.out.println("Error Storage : " + e.getCause().getMessage());
             return "Image couldn't upload, Something went wrong";
+        } finally {
+            if (file != null && file.exists()) {
+                file.delete();
+            }
         }
     }
 }

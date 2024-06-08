@@ -102,7 +102,7 @@ public class UsuarioController {
             if(usuario.getIdusuario() < cod) {
                 if(!imagen.isEmpty()) {
                     String nombreArchivo = imagen.getOriginalFilename();
-                    File archivo = imagenService.convertToFile(imagen, nombreArchivo);
+                    File archivo = imagenService.convertToFile(imagen);
                     String contenido = imagen.getContentType();
                     String imagenUrl = imagenService.uploadFile(archivo, nombreArchivo, contenido, "usuarios");
                     usuario.setNombrefoto(nombreArchivo);
@@ -127,7 +127,7 @@ public class UsuarioController {
             }else {
                 if(!imagen.isEmpty()) {
                     String nombreArchivo = imagen.getOriginalFilename();
-                    File archivo = imagenService.convertToFile(imagen, nombreArchivo);
+                    File archivo = imagenService.convertToFile(imagen);
                     String contenido = imagen.getContentType();
                     String imagenUrl = imagenService.uploadFile(archivo, nombreArchivo, contenido, "usuarios");
                     usuario.setNombrefoto(nombreArchivo);
