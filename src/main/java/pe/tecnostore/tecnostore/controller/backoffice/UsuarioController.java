@@ -14,8 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import pe.tecnostore.tecnostore.firebase.storage.ImagenService;
 import pe.tecnostore.tecnostore.model.bd.EnlaceMenu;
 import pe.tecnostore.tecnostore.model.bd.Usuario;
-import pe.tecnostore.tecnostore.service.interfaces.IRolService;
-import pe.tecnostore.tecnostore.service.interfaces.IUsuarioService;
+import pe.tecnostore.tecnostore.service.interfaces.*;
 
 import java.io.File;
 import java.time.LocalDate;
@@ -32,6 +31,12 @@ public class UsuarioController {
     private IRolService rolService;
     private BCryptPasswordEncoder encoder;
 
+    private ICategoriaService categoriaService;
+    private IClienteService clienteService;
+    private IEmpresaService empresaService;
+    private IProductoService productoService;
+    private IProveedorService proveedorService;
+
     /**Principal**/
     @GetMapping("/dashboard")
     public String menu(Authentication auth, Model model) {
@@ -41,6 +46,12 @@ public class UsuarioController {
             List<EnlaceMenu> lista = usuarioService.traerEnlaceUsuario(u.getRol().getIdrol());
             model.addAttribute("ENLACES", lista);
             model.addAttribute("USUARIO", u);
+            String men = "Cantidad total: ";
+            model.addAttribute("countempresa",men + empresaService.obtenerCantidadEmpresa());
+            model.addAttribute("countproveedor",men + proveedorService.obtenerCantidadProveedor());
+            model.addAttribute("countclient",men + clienteService.obtenerCantidadCliente());
+            model.addAttribute("countproducto",men + productoService.obtenerCantidadProducto());
+            model.addAttribute("countcategoria",men + categoriaService.obtenerCantidadCategoria());
             return "backoffice/principal/principal";
         }
         return "backoffice/principal/principal";

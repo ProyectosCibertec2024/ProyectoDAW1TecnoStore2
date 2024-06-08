@@ -5,25 +5,49 @@ const main = document.querySelector('main');
 const modeSwitch = document.querySelector('.toggle-switch');
 const modeText = document.querySelector('.mode-text');
 
+// Verifica el estado del sidebar guardado en localStorage
+if (localStorage.getItem('sidebarState') === 'open') {
+    sidebar.classList.remove('close');
+    main.classList.remove('menu-close');
+    main.style.marginLeft = '300px';
+} else {
+    sidebar.classList.add('close');
+    main.classList.add('menu-close');
+    main.style.marginLeft = '120px';
+}
+
+// Verifica el estado del modo oscuro guardado en localStorage
+if (localStorage.getItem('darkMode') === 'enabled') {
+    body.classList.add('dark');
+    modeText.innerText = 'Light mode';
+} else {
+    body.classList.remove('dark');
+    modeText.innerText = 'Dark mode';
+}
+
 toggle.addEventListener('click', () => {
     sidebar.classList.toggle('close');
     main.classList.toggle('menu-close');
 
     if (sidebar.classList.contains('close')) {
-        // Si el menú está cerrado, ajusta el margen izquierdo del contenido principal
-        // a su valor inicial (80px) con una transición
         main.style.transition = 'margin-left 0.3s ease';
         main.style.marginLeft = '120px';
+        localStorage.setItem('sidebarState', 'closed');
     } else {
-        // Si el menú está abierto, ajusta el margen izquierdo del contenido principal
-        // para que el menú no se superponga y ocupe todo el ancho de la pantalla
-        // con una transición
         main.style.transition = 'margin-left 0.3s ease';
         main.style.marginLeft = '300px';
+        localStorage.setItem('sidebarState', 'open');
     }
 });
 
 modeSwitch.addEventListener('click', () => {
     body.classList.toggle('dark');
-    modeText.innerText = body.classList.contains('dark') ? 'Light mode' : 'Dark mode';
+
+    if (body.classList.contains('dark')) {
+        modeText.innerText = 'Light mode';
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        modeText.innerText = 'Dark mode';
+        localStorage.setItem('darkMode', 'disabled');
+    }
 });

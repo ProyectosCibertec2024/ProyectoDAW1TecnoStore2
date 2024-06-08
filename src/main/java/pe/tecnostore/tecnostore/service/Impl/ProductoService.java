@@ -43,4 +43,9 @@ public class ProductoService implements IProductoService {
     public void actualizarProductoSinImagen(String marca, Integer idcategoria, Integer stock, Double precio, String color, String resolucion, String procesador, Double descuento, String ram, String espaciodisco, String pantallatamanio, Integer idproveedor, Boolean activo, Integer idproducto) {
         productoRepository.actualizarProductoSinImagen(marca,idcategoria,stock,precio,color,resolucion,procesador,descuento,ram,espaciodisco,pantallatamanio,idproveedor,activo,idproducto);
     }
+
+    @Override
+    public int obtenerCantidadProducto() {
+        return productoRepository.obtenerCantidadProducto();
+    }
 }

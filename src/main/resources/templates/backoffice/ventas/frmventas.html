@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ventas</title>
+    <link rel="stylesheet" th:href="@{css/principal/principal.css}">
+    <script src="https://kit.fontawesome.com/1842a186b5.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{css/bootstrap/bootstrap.css}">
+</head>
+<body style="background-color: var(--body-color)">
+    <nav th:replace="fragment/layout :: nav"></nav>
+    <h1 class="text-center mt-3">Listado De Ventas</h1>
+    <div class="container mt-3">
+        <button class="btn btn-primary btnnuevo"><i class="fas fa-plus me-1"></i>Nueva Venta</button>
+        <table class="table table-hover table-bordered" id="tbventas">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Numero Venta</td>
+                    <td>Usuario</td>
+                    <td>Cliente</td>
+                    <td>Registro</td>
+                    <td>Total</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="">
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

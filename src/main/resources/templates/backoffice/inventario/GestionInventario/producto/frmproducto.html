@@ -7,160 +7,167 @@
     <script src="https://kit.fontawesome.com/1842a186b5.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" th:href="@{css/bootstrap/bootstrap.css}">
+    <style>
+        .dark #titleProducto{
+            color: #fff;
+        }
+    </style>
 </head>
 <body style="background-color: var(--body-color)">
     <nav th:replace="fragment/layout :: nav"></nav>
-    <h1 class="text-center mt-3">Listado de Productos</h1>
-    <div class="container mt-3">
-        <button class="btn btn-primary btnnuevo"><i class="fas fa-plus me-1"></i>Nuevo</button>
-        <a th:href="@{/gestioninventario}" class="btn btn-secondary"><i class="fas fa-arrow-left me-1"></i>Retornar</a>
-        <table class="table table-hover table-bordered mt-3" id="tbproducto">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Producto</th>
-                    <th>Categoria</th>
-                    <th>Precio</th>
-                    <th>Fecha</th>
-                    <th>Imagen</th>
-                    <th class="text-center">Accion</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="p:${producto}">
-                    <td th:text="${p.idproducto}"></td>
-                    <td th:text="${p.marca}"></td>
-                    <td th:text="${p.categoria.descripcion}"></td>
-                    <td th:text="${p.precio}"></td>
-                    <td th:text="${p.fecharegistro}"></td>
-                    <td>
-                        <img th:src="${p.urlimagen}" alt="nada" width="80" height="80">
-                    </td>
-                    <td class="text-center">
-                        <button class="btn btn-info btnactualizar mt-3"
-                                th:data-idproducto="${p.idproducto}"><i class="fas fa-edit"></i></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+   <main>
+       <h1 id="titleProducto" class="text-center mt-3">Listado de Productos</h1>
+       <div class="container mt-3">
+           <button class="btn btn-primary btnnuevo"><i class="fas fa-plus me-1"></i>Nuevo</button>
+           <a th:href="@{/gestioninventario}" class="btn btn-secondary"><i class="fas fa-arrow-left me-1"></i>Retornar</a>
+           <table class="table table-hover table-bordered mt-3" id="tbproducto">
+               <thead>
+               <tr>
+                   <th>ID</th>
+                   <th>Producto</th>
+                   <th>Categoria</th>
+                   <th>Precio</th>
+                   <th>Fecha</th>
+                   <th>Imagen</th>
+                   <th class="text-center">Accion</th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr th:each="p:${producto}">
+                   <td th:text="${p.idproducto}"></td>
+                   <td th:text="${p.marca}"></td>
+                   <td th:text="${p.categoria.descripcion}"></td>
+                   <td th:text="${p.precio}"></td>
+                   <td th:text="${p.fecharegistro}"></td>
+                   <td>
+                       <img th:src="${p.urlimagen}" alt="nada" width="80" height="80">
+                   </td>
+                   <td class="text-center">
+                       <button class="btn btn-info btnactualizar mt-3"
+                               th:data-idproducto="${p.idproducto}"><i class="fas fa-edit"></i></button>
+                   </td>
+               </tr>
+               </tbody>
+           </table>
+       </div>
 
-    <!--Modal-->
-    <div class="modal fade" id="modalproducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Producto</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form name="producto" th:object="${p}" th:action="@{/producto}" method="post" onsubmit="return validarProducto()" enctype="multipart/form-data">
-                    <div class="modal-body mt-1">
-                        <input type="text" id="txtidproducto" name="idproducto" readonly>
-                        <div class="row mb-3">
-                            <div class="form-floating col-md-4">
-                                <input type="text" class="form-control" id="txtmarcaprod"
-                                       placeholder="" name="marca" th:field="*{marca}">
-                                <label for="txtmarcaprod" class="ms-3">Marca</label>
-                                <small class="text-danger" id="validmarcaprod"></small>
-                            </div>
-                            <div class="col-md-4 form-floating">
-                                <select class="form-select" id="cbocategoriaprod" name="idcategoria" th:field="*{idcategoria}">
-                                    <option value="0">Seleccione</option>
-                                    <option th:each="c:${c}" th:value="${c.idcategoria}" th:text="${c.descripcion}"></option>
-                                </select>
-                                <label for="cbocategoriaprod" class="ms-3">Categoria</label>
-                                <small class="text-danger" id="valididcategoriaprod"></small>
-                            </div>
-                            <div class="col-md-4 form-floating">
-                                <input type="text" class="form-control" id="txtstockprod"
-                                       placeholder="" name="stock" th:field="*{stock}">
-                                <label for="txtstockprod" class="ms-3">Stock</label>
-                                <small class="text-danger" id="validstockprod"></small>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4 form-floating">
-                                <input type="text" class="form-control" id="txtprecioprod"
-                                       placeholder="" name="precio" th:field="*{precio}">
-                                <label for="txtprecioprod" class="ms-3">Precio</label>
-                                <small class="text-danger" id="validprecioprod"></small>
-                            </div>
-                            <div class="col-md-4 form-floating">
-                                <input type="text" class="form-control" id="txtcolorprod"
-                                       placeholder="" name="color" th:field="*{color}">
-                                <label for="txtcolorprod" class="ms-3">Color</label>
-                                <small class="text-danger" id="validcolorprod"></small>
-                            </div>
-                            <div class="col-md-4 form-floating">
-                                <input type="text" class="form-control" id="txtresolucionprod"
-                                       placeholder="" name="resolucion" th:field="*{resolucion}">
-                                <label for="txtresolucionprod" class="ms-3">Resolucion</label>
-                                <small class="text-danger" id="validresolucionprod"></small>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4 form-floating">
-                                <input type="text" class="form-control" id="txtprocesadorprod"
-                                       placeholder="" name="procesador" th:field="*{procesador}">
-                                <label for="txtprocesadorprod" class="ms-3">Procesador</label>
-                                <small class="text-danger" id="validprocesadorprod"></small>
-                            </div>
-                            <div class="col-md-4 form-floating">
-                                <input type="text" class="form-control" id="txtramprod"
-                                       placeholder="" name="ram" th:field="*{ram}">
-                                <label for="txtramprod" class="ms-3">Ram</label>
-                                <small class="text-danger" id="validramprod"></small>
-                            </div>
-                            <div class="col-md-4 form-floating">
-                                <input type="text" class="form-control" id="txtespacioprod"
-                                       placeholder="" name="espaciodisco" th:field="*{espaciodisco}">
-                                <label for="txtespacioprod" class="ms-3">Espacio</label>
-                                <small class="text-danger" id="validespacioprod"></small>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-4 form-floating">
-                                <input type="text" class="form-control" id="txtpantallaprod"
-                                       placeholder="" name="pantallatamanio" th:field="*{pantallatamanio}">
-                                <label for="txtpantallaprod" class="ms-3">Pantalla</label>
-                                <small class="text-danger" id="validpantallaprod"></small>
-                            </div>
-                            <div class="col-md-4 form-floating">
-                                <select class="form-select" id="cboproveedorprod" name="idproveedor" th:field="*{idproveedor}">
-                                    <option value="0">Seleccione</option>
-                                    <option th:each="pr:${prov}" th:value="${pr.idproveedor}" th:text="${pr.nomproveedor}"></option>
-                                </select>
-                                <label for="cboproveedorprod" class="ms-3">Proveedor</label>
-                                <small class="text-danger" id="valididproveedorprod"></small>
-                            </div>
-                            <div class="col-md-4 form-floating">
-                                <input type="text" class="form-control" id="txtdescuentoprod"
-                                       placeholder="" name="descuento" th:field="*{descuento}">
-                                <label for="txtdescuentoprod"  class="ms-3">Descuento</label>
-                                <small class="text-danger" id="validdescuentoprod"></small>
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-md-5 form-floating">
-                                <input type="file" class="form-control" id="txturlimagen"
-                                       placeholder="" name="imagen">
-                                <label for="txturlimagen" class="ms-3" style="font-size: 14px;">Imagen</label>
-                            </div>
-                            <div class="col-md-4 form-check form-switch mt-3" id="swproducto">
-                                <input type="checkbox" class="form-check-input" id="swactivoprod"
-                                       role="switch" name="activo" th:field="*{activo}">
-                                <label for="swactivoprod" class="form-check-label">Estado</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-angle-left me-1"></i>Cerrar</button>
-                        <button type="submit" class="btn btn-success btnguardar"><i class="fas fa-save me-1"></i>Guardar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+       <!--Modal-->
+       <div class="modal fade" id="modalproducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+           <div class="modal-dialog modal-xl">
+               <div class="modal-content">
+                   <div class="modal-header">
+                       <h1 class="modal-title fs-5" id="exampleModalLabel">Producto</h1>
+                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                   </div>
+                   <form name="producto" th:object="${p}" th:action="@{/producto}" method="post" onsubmit="return validarProducto()" enctype="multipart/form-data">
+                       <div class="modal-body mt-1">
+                           <input type="text" id="txtidproducto" name="idproducto" readonly>
+                           <div class="row mb-3">
+                               <div class="form-floating col-md-4">
+                                   <input type="text" class="form-control" id="txtmarcaprod"
+                                          placeholder="" name="marca" th:field="*{marca}">
+                                   <label for="txtmarcaprod" class="ms-3">Marca</label>
+                                   <small class="text-danger" id="validmarcaprod"></small>
+                               </div>
+                               <div class="col-md-4 form-floating">
+                                   <select class="form-select" id="cbocategoriaprod" name="idcategoria" th:field="*{idcategoria}">
+                                       <option value="0">Seleccione</option>
+                                       <option th:each="c:${c}" th:value="${c.idcategoria}" th:text="${c.descripcion}"></option>
+                                   </select>
+                                   <label for="cbocategoriaprod" class="ms-3">Categoria</label>
+                                   <small class="text-danger" id="valididcategoriaprod"></small>
+                               </div>
+                               <div class="col-md-4 form-floating">
+                                   <input type="text" class="form-control" id="txtstockprod"
+                                          placeholder="" name="stock" th:field="*{stock}">
+                                   <label for="txtstockprod" class="ms-3">Stock</label>
+                                   <small class="text-danger" id="validstockprod"></small>
+                               </div>
+                           </div>
+                           <div class="row mb-3">
+                               <div class="col-md-4 form-floating">
+                                   <input type="text" class="form-control" id="txtprecioprod"
+                                          placeholder="" name="precio" th:field="*{precio}">
+                                   <label for="txtprecioprod" class="ms-3">Precio</label>
+                                   <small class="text-danger" id="validprecioprod"></small>
+                               </div>
+                               <div class="col-md-4 form-floating">
+                                   <input type="text" class="form-control" id="txtcolorprod"
+                                          placeholder="" name="color" th:field="*{color}">
+                                   <label for="txtcolorprod" class="ms-3">Color</label>
+                                   <small class="text-danger" id="validcolorprod"></small>
+                               </div>
+                               <div class="col-md-4 form-floating">
+                                   <input type="text" class="form-control" id="txtresolucionprod"
+                                          placeholder="" name="resolucion" th:field="*{resolucion}">
+                                   <label for="txtresolucionprod" class="ms-3">Resolucion</label>
+                                   <small class="text-danger" id="validresolucionprod"></small>
+                               </div>
+                           </div>
+                           <div class="row mb-3">
+                               <div class="col-md-4 form-floating">
+                                   <input type="text" class="form-control" id="txtprocesadorprod"
+                                          placeholder="" name="procesador" th:field="*{procesador}">
+                                   <label for="txtprocesadorprod" class="ms-3">Procesador</label>
+                                   <small class="text-danger" id="validprocesadorprod"></small>
+                               </div>
+                               <div class="col-md-4 form-floating">
+                                   <input type="text" class="form-control" id="txtramprod"
+                                          placeholder="" name="ram" th:field="*{ram}">
+                                   <label for="txtramprod" class="ms-3">Ram</label>
+                                   <small class="text-danger" id="validramprod"></small>
+                               </div>
+                               <div class="col-md-4 form-floating">
+                                   <input type="text" class="form-control" id="txtespacioprod"
+                                          placeholder="" name="espaciodisco" th:field="*{espaciodisco}">
+                                   <label for="txtespacioprod" class="ms-3">Espacio</label>
+                                   <small class="text-danger" id="validespacioprod"></small>
+                               </div>
+                           </div>
+                           <div class="row mb-3">
+                               <div class="col-md-4 form-floating">
+                                   <input type="text" class="form-control" id="txtpantallaprod"
+                                          placeholder="" name="pantallatamanio" th:field="*{pantallatamanio}">
+                                   <label for="txtpantallaprod" class="ms-3">Pantalla</label>
+                                   <small class="text-danger" id="validpantallaprod"></small>
+                               </div>
+                               <div class="col-md-4 form-floating">
+                                   <select class="form-select" id="cboproveedorprod" name="idproveedor" th:field="*{idproveedor}">
+                                       <option value="0">Seleccione</option>
+                                       <option th:each="pr:${prov}" th:value="${pr.idproveedor}" th:text="${pr.nomproveedor}"></option>
+                                   </select>
+                                   <label for="cboproveedorprod" class="ms-3">Proveedor</label>
+                                   <small class="text-danger" id="valididproveedorprod"></small>
+                               </div>
+                               <div class="col-md-4 form-floating">
+                                   <input type="text" class="form-control" id="txtdescuentoprod"
+                                          placeholder="" name="descuento" th:field="*{descuento}">
+                                   <label for="txtdescuentoprod"  class="ms-3">Descuento</label>
+                                   <small class="text-danger" id="validdescuentoprod"></small>
+                               </div>
+                           </div>
+                           <div class="row mb-3">
+                               <div class="col-md-5 form-floating">
+                                   <input type="file" class="form-control" id="txturlimagen"
+                                          placeholder="" name="imagen">
+                                   <label for="txturlimagen" class="ms-3" style="font-size: 14px;">Imagen</label>
+                               </div>
+                               <div class="col-md-4 form-check form-switch mt-3" id="swproducto">
+                                   <input type="checkbox" class="form-check-input" id="swactivoprod"
+                                          role="switch" name="activo" th:field="*{activo}">
+                                   <label for="swactivoprod" class="form-check-label">Estado</label>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="modal-footer">
+                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-angle-left me-1"></i>Cerrar</button>
+                           <button type="submit" class="btn btn-success btnguardar"><i class="fas fa-save me-1"></i>Guardar</button>
+                       </div>
+                   </form>
+               </div>
+           </div>
+       </div>
+   </main>
 
     <script th:src="@{js/js/principal/principal.js}"></script>
     <script th:src="@{js/jquery/jquery.js}"></script>

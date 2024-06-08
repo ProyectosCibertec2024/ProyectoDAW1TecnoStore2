@@ -10,4 +10,5 @@ public interface ICategoriaService {
     Categoria buscarCategoria(int id);
     void eliminarCategoria(int id);
     int obtenerID();
+    int obtenerCantidadCategoria();
 }

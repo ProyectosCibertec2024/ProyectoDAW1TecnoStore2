@@ -14,7 +14,7 @@ public class DetalleVenta {
     private Integer idproducto;
     private Integer cantidad;
     private Double precio;
-    private Double total;
+    private Double subtotal;
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)

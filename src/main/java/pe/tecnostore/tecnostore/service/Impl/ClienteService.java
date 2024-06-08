@@ -38,4 +38,9 @@ public class ClienteService implements IClienteService {
     public void actualizarCliente(String nomcliente, String apecliente, String dnicliente, String direccion, String telefono, Boolean activo, Integer idcliente) {
         clienteRepository.actualizarCliente(nomcliente, apecliente, dnicliente, direccion, telefono, activo, idcliente);
     }
+
+    @Override
+    public int obtenerCantidadCliente() {
+        return clienteRepository.obtenerCantidadCliente();
+    }
 }

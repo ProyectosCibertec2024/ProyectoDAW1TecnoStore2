@@ -18,4 +18,7 @@ public interface ProveedorRepository extends JpaRepository<Proveedor, Integer> {
             "estado=:estado, idempresa=:idempresa WHERE idproveedor=:idproveedor")
     void actualizarProveedor(String nomproveedor, String telefono, String correo,
                              Boolean estado, Integer idempresa, Integer idproveedor);
+
+    @Query("SELECT COUNT(*) FROM Proveedor")
+    int obtenerCantidadProveedor();
 }

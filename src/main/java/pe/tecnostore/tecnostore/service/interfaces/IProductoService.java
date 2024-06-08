@@ -18,4 +18,6 @@ public interface IProductoService {
                                      Double descuento, String ram, String espaciodisco,
                                      String pantallatamanio, Integer idproveedor, Boolean activo,
                                      Integer idproducto);
+
+    int obtenerCantidadProducto();
 }

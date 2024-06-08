@@ -5,24 +5,34 @@
     <title>Roles</title>
     <link rel="stylesheet" th:href="@{/css/principal/principal.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.css}">
+    <script th:src="@{js/jquery/jquery.js}"></script>
+    <script th:src="@{js/bootstrap/bootstrap.bundle.js}"></script>
+    <script th:src="@{js/web/backoffice/roles/frmroles.js}"></script>
     <script src="https://kit.fontawesome.com/1842a186b5.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+        .dark #titleRoles{
+            color: #fff;
+        }
+    </style>
 </head>
 <body style="background-color: var(--body-color)">
     <nav th:replace="fragment/layout :: nav"></nav>
-    <h1 class="text-center mt-3">Listado de Roles</h1>
-    <div class="container mt-3">
-        <button class="btn btn-primary btnnuevo"><i class="fas fa-plus me-1"></i>Nuevo</button>
-        <a class="btn btn-secondary" th:href="@{/gestionusuario}"><i class="fas fa-arrow-left me-1"></i>Retornar</a>
-        <table class="table table-hover table-bordered mt-2" id="tbroles">
-            <thead>
+    <main>
+        <h1 style="" id="titleRoles" class="text-center mt-3">Listado de Roles</h1>
+        <div class="container mt-3">
+            <button class="btn btn-primary btnnuevo"><i class="fas fa-plus me-1"></i>Nuevo</button>
+            <a class="btn btn-secondary" th:href="@{/gestionusuario}"><i class="fas fa-arrow-left me-1"></i>Retornar</a>
+            <table class="table table-hover table-bordered mt-2" id="tbroles">
+                <thead>
                 <tr>
                     <th>ID</th>
                     <th>Rol</th>
                     <th class="text-center">Acción</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <tr th:each="b:${rol}">
                     <td th:text="${b.idrol}"></td>
                     <td th:text="${b.descripcion}"></td>
@@ -31,39 +41,37 @@
                                 th:data-idrol="${b.idrol}"><i class="fas fa-edit"></i></button>
                     </td>
                 </tr>
-            </tbody>
-        </table>
-    </div>
+                </tbody>
+            </table>
+        </div>
 
-    <div class="modal fade" id="modalroles" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Rol</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form onsubmit="return validarRoles()">
-                    <div class="modal-body mt-1">
-                        <input type="hidden" id="txtidrol" readonly>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="txtnomrol"
-                                   placeholder="" name="txtnomrol">
-                            <label for="txtnomrol">Nombre</label>
-                            <small class="text-danger" id="validnomrol"></small>
+        <div class="modal fade" id="modalroles" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Rol</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form onsubmit="return validarRoles()">
+                        <div class="modal-body mt-1">
+                            <input type="hidden" id="txtidrol" readonly>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="txtnomrol"
+                                       placeholder="" name="txtnomrol">
+                                <label for="txtnomrol">Nombre</label>
+                                <small class="text-danger" id="validnomrol"></small>
+                            </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-angle-left me-1"></i>Cerrar</button>
-                        <button type="button" class="btn btn-success btnguardar"><i class="fas fa-save me-1"></i>Guardar</button>
-                    </div>
-                </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-angle-left me-1"></i>Cerrar</button>
+                            <button type="button" class="btn btn-success btnguardar"><i class="fas fa-save me-1"></i>Guardar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <script th:src="@{js/js/principal/principal.js}"></script>
-    <script th:src="@{js/jquery/jquery.js}"></script>
-    <script th:src="@{js/bootstrap/bootstrap.bundle.js}"></script>
-    <script th:src="@{js/web/backoffice/roles/frmroles.js}"></script>
 </body>
 </html>

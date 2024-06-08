@@ -1,179 +1,161 @@
-/*PARA QUE ENTIENDA EL CSS PES*/
-/*AHI CON AYUDA COMENTARE TODAS LAS LINEAS XD*/
-/* Cambios al contenedor principal */
 /* Contenedor principal */
-/* Cambios al contenedor del section-container*/
 .section-container {
-    display: flex; /* Utiliza flexbox para organizar los elementos secundarios */
-    justify-content: center; /* Centra los elementos secundarios horizontalmente */
-    margin-top: 40px; /* Margen superior de 40px */
-    flex-wrap: wrap; /* Permite que los elementos se ajusten automáticamente a la pantalla */
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
     margin-right: 30px;
 }
+
 .section-container section {
-    flex: 1; /* Hace que cada sección ocupe el mismo espacio dentro del contenedor */
-    margin: 10px; /* Añade un margen de 10px alrededor de cada sección */
-    text-align: center; /* Centra el contenido de cada sección */
-    transition: all 0.3s; /* Transición suave para cambios de estilo */
-    max-width: 550px; /* Establece un ancho máximo para las secciones */
+    flex: 1;
+    margin: 10px;
+    text-align: center;
+    transition: all 0.3s;
+    max-width: 550px;
     border: 2.5px solid #C8CCD9;
     border-radius: 20px;
 }
 
-/* Estilos para la sección cuando se pasa el mouse */
 .section-container section:hover {
-    transform: scale(0.93); /* disminuye ligeramente el tamaño de la sección al pasar el mouse */
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3); /* Añade una sombra */ /* Agrega una sombra suave alrededor de la sección al pasar el mouse */
+    transform: scale(0.93);
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
 }
-/*MODO DARK al pasar el mouse*/
+
 .dark .section-container section:hover {
-    transform: scale(0.93); /* disminuye ligeramente el tamaño de la sección al pasar el mouse */
-    box-shadow: 0 8px 16px #242526; /* Agrega una sombra suave alrededor de la sección al pasar el mouse */
+    transform: scale(0.93);
+    box-shadow: 0 8px 16px #242526;
     background-color: #444647;
 }
 
 .section-container section a {
-    text-decoration: none; /* Quita el subrayado de los enlaces */
-    color: inherit; /* Hereda el color del texto de su elemento padre */
+    text-decoration: none;
+    color: inherit;
 }
 
-/* Estilos para cada cuadro dentro de las secciones */
 .section-container section .section-1,
 .section-container section .section-2,
 .section-container section .section-3 {
-    border: 1px solid #ddd; /* Añade un borde sólido con color #ddd */
-    border-radius: 12px; /* Añade bordes redondeados */
-    padding-top: 30px;
-    padding-left: 20px;
-    padding-bottom: 30px;
-    padding-right: 20px;
-    box-shadow: 0 4px 8px rgba(253, 253, 253, 0.1); /* Añade una sombra */
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 30px 20px;
+    box-shadow: 0 4px 8px rgba(253, 253, 253, 0.1);
 }
 
-/* Estilos para los íconos dentro de los cuadros */
 .section-container section .section-1 i,
 .section-container section .section-2 i,
 .section-container section .section-3 i {
-    font-size: 5vw; /* Tamaño del ícono relativo al ancho de la pantalla */
-    color: #555555; /* Color del ícono */
-    margin-bottom: 20px; /* Añade espacio inferior de 20px */
+    font-size: 5vw;
+    color: #555555;
+    margin-bottom: 20px;
 }
 
-/* Estilos para los títulos dentro de los cuadros */
 .section-container section h1 {
-    color: #333; /* Color del título */
-    margin-bottom: 20px; /* Añade espacio inferior de 20px */
+    color: #333;
+    margin-bottom: 20px;
 }
 
-/* Media query para dispositivos medianos */
 @media (max-width: 768px) {
     .section-container section {
-        flex-basis: 45%; /* Cambia el tamaño de las secciones para que quepan dos por fila */
+        flex-basis: 45%;
     }
 }
 
-/* Media query para dispositivos pequeños */
 @media (max-width: 480px) {
     .section-container section {
-        flex-basis: 100%; /* Cambia el tamaño de las secciones para que ocupen toda la fila */
+        flex-basis: 100%;
     }
 }
 
-/* Estilos para el título */
 .titulo {
-    text-align: center; /* Centra el texto */
-    font-size: 45px; /* Tamaño de fuente de 55px */
-    color: #555; /* Color del texto */
-    padding-top: 30px;
-    padding-bottom: 15px;
-    margin-bottom: 30px; /* Margen inferior de 30px */
+    text-align: center;
+    font-size: 45px;
+    color: #555;
+    padding: 30px 0 15px;
+    margin-bottom: 30px;
 }
+
 .titulo-2 {
-    text-align: center; /* Centra el texto */
-    font-size: 49px; /* Tamaño de fuente de 49px */
-    color: #555; /* Color del texto */
-    margin-top:60px;
-    margin-bottom: 50px; /* Margen inferior de 30px */
+    text-align: center;
+    font-size: 49px;
+    color: #555;
+    margin: 60px 0 50px;
 }
+
 .titulo-3 {
-    text-align: center; /* Centra el texto */
-    font-size: 43px; /* Tamaño de fuente de 49px */
-    color: #555; /* Color del texto */
-    margin-top:40px;
+    text-align: center;
+    font-size: 43px;
+    color: #555;
+    margin-top: 40px;
 }
+
 .contenedor1-principal-inventario {
-    text-align: center; /* Alinea el texto dentro de este contenedor al centro */
+    text-align: center;
 }
+
 .contenedor {
-    text-align: center; /* Alinea el texto dentro del contenedor al centro */
-    border: 2px solid #ccc; /* Establece un borde de 2px sólido con color #ccc */
-    border-radius: 10px; /* Establece un radio de borde de 10px para hacer los bordes redondeados */
-    padding: 20px; /* Añade un espacio de relleno de 20px dentro del contenedor */
-    display: inline-block; /* Cambia el comportamiento del contenedor a en línea y bloquea el nivel de bloqueo para permitir que el margen automático funcione */
-    margin: 0 auto; /* Centra horizontalmente el contenedor */
+    text-align: center;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    display: inline-block;
+    margin: 0 auto;
 }
 
 .contenedor i {
-    font-size: 40px; /* Establece el tamaño de fuente del icono en 40px */
-    border-radius: 50%; /* Hace que el icono tenga bordes redondeados para que parezca circular */
-    padding: 20px; /* Añade un espacio de relleno de 20px alrededor del icono */
-    background-color: #f0f0f0; /* Establece un color de fondo gris claro para el icono */
-    color: #555555; /* Color del ícono */
+    font-size: 40px;
+    border-radius: 50%;
+    padding: 20px;
+    background-color: #f0f0f0;
+    color: #555555;
 }
 
-/* Estilos para el contenedor de los cuadros indicativos */
 .cuadro-indicativo {
-    display: flex; /* Utiliza flexbox para organizar los elementos secundarios */
-    justify-content: center; /* Centra los elementos secundarios horizontalmente */
-    flex-wrap: wrap; /* Permitir que los cuadros se envuelvan a una nueva línea */
-    margin-top: 40px; /* Margen superior de 40px */
-    margin-bottom: 40px;/* Margen inferior de 40px */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 40px 0;
 }
 
-/* Estilos para cada cuadro */
 .cuadro {
-    border: 1px solid #ddd; /* Añade un borde sólido con color #ddd */
-    border-radius: 12px; /* Añade bordes redondeados */
-    padding: 30px; /* Añade espacio interno */
-    text-align: center; /* Centra el contenido */
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3); /* Añade una sombra */
-    width: calc(30% - 40px); /* Utiliza calc() para restar el margen */
-    margin: 20px; /* Añade margen */
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+    width: calc(30% - 40px);
+    margin: 20px;
 }
 
-/* Media query para dispositivos medianos */
 @media (max-width: 768px) {
     .cuadro {
-        width: calc(50% - 40px); /* Cambia a dos columnas en dispositivos más pequeños */
+        width: calc(50% - 40px);
     }
 }
 
-/* Media query para dispositivos pequeños */
 @media (max-width: 480px) {
     .cuadro {
-        width: calc(100% - 40px); /* Cambia a una columna en dispositivos móviles */
+        width: calc(100% - 40px);
     }
 }
-/* Estilos para el título de cada cuadro */
+
 .cuadro h2 {
-    color: #333; /* Color del título */
-    margin-bottom: 20px; /* Añade espacio inferior de 20px */
+    color: #333;
+    margin-bottom: 20px;
 }
 
-/* Estilos para el texto de cada cuadro */
 .cuadro p {
-    color: #666; /* Color del texto */
-    font-size: 16px; /* Tamaño de fuente de 16px */
-    line-height: 1.6; /* Altura de línea de 1.6 */
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
 }
 
-/* Estilos para los íconos de cada cuadro */
 .cuadro i {
-    font-size: 48px; /* Tamaño de fuente de 48px */
-    color: #555; /* Color del ícono */
-    margin-bottom: 20px; /* Añade espacio inferior de 20px */
+    font-size: 48px;
+    color: #555;
+    margin-bottom: 20px;
 }
-/* Estilos para letras e íconos en modo oscuro cuando el interruptor está activado */
+
 .dark .cuadro i,
 .dark .section-container section i,
 .dark .titulo,
@@ -187,9 +169,8 @@
 .dark .dashboard-title,
 .dark .title,
 .dark .paragraph,
-.dark .subtitle
-{
-    color: #fff; /* Cambia el color de las letras y los íconos a blanco */
+.dark .subtitle {
+    color: #fff;
 }
 
 nav.sidebar {
@@ -201,19 +182,17 @@ nav.sidebar {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding-left: 20px; /* Espacio a la izquierda */
-    padding-right: 60px; /* Espacio a la derecha */
+    padding: 0 60px 0 20px;
 }
+
 .dashboard-title {
-    font-size: 46px; /* Tamaño grande */
-    text-align: center; /* Centrado */
-    font-weight: bold; /* Negrita */
-    font-family: Arial, sans-serif; /* Fuente elegante */
-    color: #333; /* Color del texto */
-    margin-bottom: 20px; /* Espacio inferior */
-    margin-left: -45px;
-    margin-top: 30px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Sombreado del borde */
+    font-size: 46px;
+    text-align: center;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 30px 0 20px -45px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .section-containecito {
@@ -223,14 +202,14 @@ nav.sidebar {
     border: 1px solid #ccc;
     padding: 10px;
     margin: 10px;
-    width: calc(33.33% - 20px); /* Tres en una fila */
-    height: 300px; /* Tamaño fijo para los bloques */
-    padding-top: 40px;
-    padding-bottom: 20px;
+    width: calc(33.33% - 20px);
+    height: 300px;
+    padding: 40px 0 20px;
 }
+
 .section-containecito img {
-    width: 100px; /* Tamaño fijo para las imágenes */
-    height: 100px; /* Tamaño fijo para las imágenes */
+    width: 100px;
+    height: 100px;
     margin-bottom: 10px;
 }
 
@@ -243,38 +222,38 @@ nav.sidebar {
     margin-top: auto;
     text-align: right;
 }
+
 .section-containecito:nth-child(1) {
-    background-color: #bdbec1; /* Color para la primera sección */
-    color:white;
+    background-color: #bdbec1;
+    color: white;
 }
 
 .section-containecito:nth-child(2) {
-    background-color: #3b5897; /* Color para la segunda sección */
-    color:white;
+    background-color: #3b5897;
+    color: white;
 }
 
 .section-containecito:nth-child(3) {
-    background-color: #00acf0; /* Color para la tercera sección */
-    color:white;
+    background-color: #00acf0;
+    color: white;
 }
 
 .section-containecito:nth-child(4) {
-    background-color: #8b9b4b; /* Color para la cuarta sección */
-    color:white;
+    background-color: #8b9b4b;
+    color: white;
 }
 
 .section-containecito:nth-child(5) {
-    background-color: #fbbd23; /* Color para la quinta sección */
-    color:white;
+    background-color: #fbbd23;
+    color: white;
 }
 
 .section-containecito img {
-    filter: brightness(0) invert(1); /* Cambia la imagen a blanco */
+    filter: brightness(0) invert(1);
 }
+
 .scroll-view {
-    padding-top: 30px;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 30px 16px 0;
 }
 
 .linear-layout {
@@ -282,9 +261,9 @@ nav.sidebar {
 }
 
 #logo_tecnostore {
-    width: 300px; /* Ajusta el tamaño según sea necesario */
+    width: 300px;
     display: block;
-    margin: 60px auto; /* Centra la imagen horizontalmente y añade un margen superior */
+    margin: 60px auto;
 }
 
 .title {
@@ -300,8 +279,7 @@ nav.sidebar {
     font-weight: bold;
     color: black;
     text-align: center;
-    margin-top: 25px;
-    margin-bottom: 36px;
+    margin: 25px 0 36px;
 }
 
 .paragraph {
@@ -323,9 +301,11 @@ nav.sidebar {
     margin: 8px;
     margin-bottom: 30px;
 }
+
 i {
     color: red;
 }
+
 .logo-container {
     display: flex;
     justify-content: center;
@@ -335,15 +315,16 @@ i {
 #logo_tecnostore {
     border: 2px solid white;
     border-radius: 8px;
-    padding:20px;
+    padding: 20px;
 }
+
 @media screen and (max-width: 768px) {
     .main-home {
-        flex-direction: column; /* Cambiamos la dirección a columna */
-        align-items: center; /* Centramos los elementos horizontalmente */
+        flex-direction: column;
+        align-items: center;
     }
 
     .section-containecito {
-        width: calc(50% - 20px); /* Dos en una fila */
+        width: calc(50% - 20px);
     }
 }

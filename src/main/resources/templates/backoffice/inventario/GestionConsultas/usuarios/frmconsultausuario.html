@@ -7,56 +7,65 @@
     <script src="https://kit.fontawesome.com/1842a186b5.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" th:href="@{css/bootstrap/bootstrap.css}">
+    <style>
+        .dark #ConsultaUsuario{
+            color: #fff;
+        }
+    </style>
 </head>
 <body style="background-color: var(--body-color)">
     <nav th:replace="fragment/layout :: nav"></nav>
-    <h1 class="text-center mt-3">Consulta De Usuarios</h1>
-    <div class="container mt-3">
-        <form th:action="@{/gestionconsulta-usuarios}" method="post">
-            <div class="mb-3 form-floating d-flex align-items-center me-2">
-                <select id="cboRolConsultaUser" class="form-select me-2 w-100" name="idrol">
-                    <option value="0">Seleccione</option>
-                    <option th:each="gru:${rolesgestionuser}" th:value="${gru.idrol}" th:text="${gru.descripcion}"></option>
-                </select>
-                <label for="cboRolConsultaUser">Rol</label>
-                <button type="submit" class="btn btn-primary me-2">Consultar</button>
-                <a th:href="@{/gestion-consultas}" class="btn btn-danger">Retornar</a>
+    <main>
+        <h1 id="ConsultaUsuario" class="text-center mt-3">Consulta De Usuarios</h1>
+        <div class="container mt-3">
+            <form th:action="@{/gestionconsulta-usuarios}" method="post">
+                <div class="mb-3 form-floating d-flex align-items-center me-2">
+                    <select id="cboRolConsultaUser" class="form-select me-2 w-100" name="idrol">
+                        <option value="0">Seleccione</option>
+                        <option th:each="gru:${rolesgestionuser}" th:value="${gru.idrol}" th:text="${gru.descripcion}"></option>
+                    </select>
+                    <label for="cboRolConsultaUser">Rol</label>
+                    <button type="submit" class="btn btn-primary me-2">Consultar</button>
+                    <a th:href="@{/gestion-consultas}" class="btn btn-danger">Retornar</a>
+                </div>
+                <div th:if="${gestuserconsulta != null}">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>ID Usuario</th>
+                            <th>Usuario</th>
+                            <th>Fecha Registro</th>
+                            <th>Rol</th>
+                            <th>Menus</th>
+                            <th>Foto</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="gcu:${gestuserconsulta}">
+                            <td th:text="${gcu.idusuario}"></td>
+                            <td th:text="${gcu.nomusuario}"></td>
+                            <td th:text="${gcu.fecharegistro}"></td>
+                            <td th:text="${gcu.nomrol}"></td>
+                            <td th:text="${gcu.enlacesmenus}"></td>
+                            <td>
+                                <img th:src="${gcu.foto}" alt="nada" width="80" height="80">
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div th:if="${error != null}">
+                    <div class="alert alert-danger" th:text="${error}"></div>
+                </div>
+            </form>
+            <div th:if="${gestuserconsulta == null}" class="mt-3">
+                <p class="alert alert-info">No Se Encontraron Consultas</p>
             </div>
-            <div th:if="${gestuserconsulta != null}">
-                <table class="table table-hover table-bordered">
-                    <thead>
-                    <tr>
-                        <th>ID Usuario</th>
-                        <th>Usuario</th>
-                        <th>Fecha Registro</th>
-                        <th>Rol</th>
-                        <th>Menus</th>
-                        <th>Foto</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="gcu:${gestuserconsulta}">
-                        <td th:text="${gcu.idusuario}"></td>
-                        <td th:text="${gcu.nomusuario}"></td>
-                        <td th:text="${gcu.fecharegistro}"></td>
-                        <td th:text="${gcu.nomrol}"></td>
-                        <td th:text="${gcu.enlacesmenus}"></td>
-                        <td>
-                            <img th:src="${gcu.foto}" alt="nada" width="80" height="80">
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div th:if="${error != null}">
-                <div class="alert alert-danger" th:text="${error}"></div>
-            </div>
-        </form>
-        <div th:if="${gestuserconsulta == null}" class="mt-3">
-            <p class="alert alert-info">No Se Encontraron Consultas</p>
         </div>
-    </div>
+    </main>
 
     <script th:src="@{js/js/principal/principal.js}"></script>
+    <script th:src="@{js/jquery/jquery.js}"></script>
+    <script th:src="@{js/bootstrap/bootstrap.bundle.js}"></script>
 </body>
 </html>

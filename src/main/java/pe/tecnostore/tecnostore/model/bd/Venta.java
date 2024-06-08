@@ -16,8 +16,6 @@ public class Venta {
     private String numeroventa;
     private Integer idusuario;
     private Integer idcliente;
-    private Double subtotal;
-    private Double impuestototal;
     private Double total;
     private LocalDate fecharegistro;
 
