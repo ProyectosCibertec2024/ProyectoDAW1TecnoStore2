@@ -50,7 +50,7 @@ public class ProductoController {
             if(producto.getIdproducto() < cod) {
                 if(!imagen.isEmpty()) {
                     String nombreArchivo = imagen.getOriginalFilename();
-                    File archivo = imagenService.convertToFile(imagen, nombreArchivo);
+                    File archivo = imagenService.convertToFile(imagen);
                     String contenido = imagen.getContentType();
                     String imagenUrl = imagenService.uploadFile(archivo, nombreArchivo, contenido, "productos");
                     producto.setNombreimagen(nombreArchivo);
@@ -76,7 +76,7 @@ public class ProductoController {
             }else {
                 if(!imagen.isEmpty()) {
                     String nombreArchivo = imagen.getOriginalFilename();
-                    File archivo = imagenService.convertToFile(imagen, nombreArchivo);
+                    File archivo = imagenService.convertToFile(imagen);
                     String contenido = imagen.getContentType();
                     String imagenUrl = imagenService.uploadFile(archivo, nombreArchivo, contenido, "productos");
                     producto.setNombreimagen(nombreArchivo);
