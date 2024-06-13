@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Venta</title>
+    <link rel="stylesheet" th:href="@{/css/principal/principal.css}">
+    <script src="https://kit.fontawesome.com/1842a186b5.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.css}">
+    <style>
+        .dark #titleVentas{
+            color: #fff;
+        }
+    </style>
+</head>
+<body style="background-color: var(--body-color)">
+    <main>
+        <nav th:replace="fragment/layout :: nav"></nav>
+        <input th:value="${ventas.idventa}" type="hidden" id="txtvaloridventa">
+        <h1 class="text-center mt-3" id="titleVentas">Listado De Detalle Venta</h1>
+        <div class="container mt-3">
+            <button class="btn btn-primary btnnuevo"><i class="fas fa-plus me-1"></i>Nuevo Detalle Venta</button>
+            <a class="btn btn-danger" th:href="@{/ventas}">Retornar</a>
+            <table class="table table-hover table-bordered mt-3" id="tbdetalleventa">
+                <thead>
+                    <tr>
+                        <th>Id Detalle</th>
+                        <th>Numero Venta</th>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Sub Total</th>
+                        <th class="text-center">Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="dv:${detallelist}">
+                        <td th:text="${dv.iddetalleventa}"></td>
+                        <td th:text="${dv.venta.numeroventa}"></td>
+                        <td th:text="${dv.producto.marca}"></td>
+                        <td th:text="${dv.cantidad}"></td>
+                        <td th:text="${dv.precio}"></td>
+                        <td th:text="${dv.subtotal}"></td>
+                        <td class="text-center">
+                            <button class="btn btn-info btnactualizar"
+                                    th:data-iddetalleventa="${dv.iddetalleventa}"><i class="fas fa-edit"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div th:if="${#lists.isEmpty(detallelist)}" id="message">
+                <p class="alert alert-danger">No Hay Detalles Asociados a la Venta</p>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modaldetalleventa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Detalle Venta</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form onsubmit="return validarDetalleVentas()">
+                        <div class="modal-body mt-1">
+                            <input type="hidden" id="txtiddetalleventa" readonly>
+                            <input type="hidden" id="txtidventa" readonly>
+                            <div class="form-floating input-group mb-3">
+                                <input type="hidden" id="txtidproducto">
+                                <input type="text" class="form-control rounded-start-3" id="txtvalorproducto" placeholder="" aria-label="" aria-describedby="button-addon2" readonly>
+                                <button class="btn btn-secondary btnverproducto rounded-end-3" type="button" id="button-addon2"><i class="far fa-eye me-2"></i></button>
+                                <label for="txtvalorproducto">Producto</label>
+                                <small class="text-danger" id="validvalorproducto"></small>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" id="txtcantidadprod"
+                                       placeholder="" value="0">
+                                <label for="txtcantidadprod">Cantidad</label>
+                                <small class="text-danger" id="validcantidadprod"></small>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="txtprecioprod"
+                                       placeholder="" readonly value="0.0">
+                                <label for="txtprecioprod">Precio</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="txttotalprod"
+                                       placeholder="" readonly value="0.0">
+                                <label for="txttotalprod">Total</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-angle-left me-1"></i>Cerrar</button>
+                            <button type="button" class="btn btn-success btnguardar"><i class="fas fa-save me-1"></i>Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- LISTADO DE PRODUCTOS -->
+        <div class="modal fade" id="modalselectproduct" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel1">Seleccione Producto</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-hover table-bordered mt-1" id="tbproducto">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Producto</th>
+                                <th>Categoria</th>
+                                <th>Precio</th>
+                                <th>Fecha</th>
+                                <th>Imagen</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <!--aca se cargaran los datos atravez de jquery-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script th:src="@{/js/jquery/jquery.js}"></script>
+    <script th:src="@{/js/bootstrap/bootstrap.bundle.js}"></script>
+    <script th:src="@{/js/js/principal/principal.js}"></script>
+    <script th:src="@{/js/web/backoffice/detalleventa/frmdetalleventa.js}"></script>
+</body>
+</html>

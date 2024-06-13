@@ -37,4 +37,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
             "WHERE idusuario=:idusuario")
     void actualizarUsuarioSinImagen(String nombre, String username, String password, String rep_pass,
                                     String dni, Integer idrol, Boolean activo, Integer idusuario);
+
+    @Query("SELECT u.idusuario FROM Usuario u WHERE u.username=:nombre")
+    int obtenerIdUsuarioxNombre(String nombre);
 }

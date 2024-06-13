@@ -9,5 +9,4 @@ public class RolMenuDTO {
     private Integer idrol;
     private String descripcionrol;
     private String descripcionmenus;
-    private Integer idenlace;
 }

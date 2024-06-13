@@ -19,13 +19,11 @@ public class Venta {
     private Double total;
     private LocalDate fecharegistro;
 
-    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idusuario", insertable = false, updatable = false,
                 foreignKey = @ForeignKey(name = "FkIdUsuarioToVenta"))
     private Usuario usuario;
 
-    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idcliente", insertable = false, updatable = false,
                 foreignKey = @ForeignKey(name = "FkIdClienteToCliente"))

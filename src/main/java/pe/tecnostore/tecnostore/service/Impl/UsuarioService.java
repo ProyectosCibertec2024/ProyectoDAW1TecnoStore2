@@ -63,6 +63,11 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
     }
 
     @Override
+    public int obtenerIdUsuarioxNombre(String nombre) {
+        return usuarioRepository.obtenerIdUsuarioxNombre(nombre);
+    }
+
+    @Override
     public Usuario iniciarSesion(String username) {
         return usuarioRepository.iniciarSesion(username);
     }

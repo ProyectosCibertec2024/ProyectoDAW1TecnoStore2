@@ -12,4 +12,5 @@ public interface IClienteService {
     void actualizarCliente(String nomcliente, String apecliente, String dnicliente,
                            String direccion, String telefono, Boolean activo, Integer idcliente);
     int obtenerCantidadCliente();
+    List<Cliente> obtenerClientexNombre(String nomcliente);
 }

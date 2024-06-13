@@ -4,8 +4,11 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import pe.tecnostore.tecnostore.model.bd.Cliente;
+
+import java.util.List;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
@@ -22,4 +25,8 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
     @Query("SELECT COUNT(*) FROM Cliente")
     int obtenerCantidadCliente();
+
+    //PARA VENTAS
+    @Query("SELECT c FROM Cliente c WHERE CONCAT(c.nomcliente, ' ', c.apecliente) LIKE %:valor%")
+    List<Cliente> buscarPorNombreYApellido(@Param("valor") String valor);
 }

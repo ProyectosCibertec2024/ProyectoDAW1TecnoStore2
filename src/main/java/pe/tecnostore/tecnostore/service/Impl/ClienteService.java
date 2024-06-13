@@ -43,4 +43,9 @@ public class ClienteService implements IClienteService {
     public int obtenerCantidadCliente() {
         return clienteRepository.obtenerCantidadCliente();
     }
+
+    @Override
+    public List<Cliente> obtenerClientexNombre(String nomcliente) {
+        return clienteRepository.buscarPorNombreYApellido(nomcliente);
+    }
 }
