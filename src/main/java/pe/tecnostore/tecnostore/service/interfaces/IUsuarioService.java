@@ -21,4 +21,5 @@ public interface IUsuarioService {
 
     void actualizarUsuarioSinImagen(String nombre, String username, String password, String rep_pass,
                                     String dni, Integer idrol, Boolean activo, Integer idusuario);
+    int obtenerIdUsuarioxNombre(String nombre);
 }

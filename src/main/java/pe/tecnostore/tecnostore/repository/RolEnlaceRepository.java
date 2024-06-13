@@ -14,8 +14,8 @@ import java.util.Optional;
 public interface RolEnlaceRepository extends JpaRepository<RolEnlace, Integer> {
     Optional<RolEnlace> findByPkIdrolAndPkIdenlace(Integer idrol, Integer idenlace);
 
-    @Query(value = "SELECT new pe.tecnostore.tecnostore.model.dto.object.gestion.usuarios.RolMenuDTO(r.idrol, r.descripcion, CAST(GROUP_CONCAT(em.descripcion) as string), re.enlace.idenlace) " +
-            "FROM Rol r JOIN RolEnlace re ON r.idrol = re.rol.idrol JOIN EnlaceMenu em ON re.enlace.idenlace = em.idenlace GROUP BY r.idrol")
+    @Query(value = "SELECT new pe.tecnostore.tecnostore.model.dto.object.gestion.usuarios.RolMenuDTO(r.idrol, r.descripcion, CAST(GROUP_CONCAT(em.descripcion) as string)) " +
+            "FROM Rol r JOIN RolEnlace re ON r.idrol = re.rol.idrol JOIN EnlaceMenu em ON re.enlace.idenlace = em.idenlace GROUP BY r.idrol, r.descripcion")
     List<RolMenuDTO> obtenerMenusRol();
 
     @Query(value = "SELECT new pe.tecnostore.tecnostore.model.dto.object.gestion.usuarios.RolMenuIdRolDTO(r.idrol, r.descripcion, CAST(GROUP_CONCAT(em.descripcion) as string), CAST(group_concat(em.idenlace) as string))" +
