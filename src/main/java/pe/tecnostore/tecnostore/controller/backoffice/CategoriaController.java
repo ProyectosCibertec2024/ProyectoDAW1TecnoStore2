@@ -35,7 +35,12 @@ public class CategoriaController {
         boolean rs = true;
         String men = "Guardado Exitosamente";
         try {
-            categoriaService.guardarCategoria(categoria);
+            int cod = categoriaService.obtenerID();
+            if(categoria.getIdcategoria() < cod) {
+                categoriaService.guardarCategoria(categoria);
+            }else {
+                categoriaService.guardarCategoria(categoria);
+            }
         }catch (Exception e) {
             men = "Ups, Hubo un error : " + e.getCause().getMessage();
             rs = false;

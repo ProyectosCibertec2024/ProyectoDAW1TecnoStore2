@@ -17,7 +17,6 @@
         }
         #suggestions div:hover {
             color: #0d6efd;
-
         }
     </style>
 </head>
@@ -51,10 +50,19 @@
                         <button class="btn btn-info" id="btnactualizar"
                                 th:data-idventa="${v.idventa}"><i class="fas fa-edit"></i></button>
                         <a th:href="@{/venta-detalle/{idventa}(idventa=${v.idventa})}" class="btn btn-warning"><i class="far fa-eye me-2"></i>Detalle</a>
+                        <div th:if="${v.total > 0}">
+                            <a th:href="@{/generar-reporte/{idventa}(idventa=${v.idventa})}" class="btn btn-primary"><i class="fas fa-file-pdf"></i></a>
+                        </div>
+                        <div th:if="${v.total <= 0}">
+                            <a class="btn btn-secondary disabled" disabled="disabled"><i class="fas fa-file-pdf"></i></a>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
             </table>
+            <div th:if="${#lists.isEmpty(ventalist)}" id="listadoventas">
+                <p class="alert alert-danger">No se encontraron ventas registradas</p>
+            </div>
         </div>
 
     <div class="modal fade" id="modalventas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

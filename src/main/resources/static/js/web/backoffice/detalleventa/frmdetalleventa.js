@@ -80,8 +80,9 @@ function actualizarTotal() {
         success: function () {
             console.log("Se Actualizo Exitosamente");
         },
-        error: function (error) {
-            console.log(error);
+        error: function (xhr, status, error) {
+            console.error('Error en la solicitud:', status, error);
+            console.log(xhr.responseText);
         }
     });
 }

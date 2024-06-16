@@ -1,6 +1,4 @@
 package pe.tecnostore.tecnostore.model.bd;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 

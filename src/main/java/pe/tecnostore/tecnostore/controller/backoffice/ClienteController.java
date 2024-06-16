@@ -43,9 +43,10 @@ public class ClienteController {
         boolean rs = true;
         String men = "Guardado Exitosamente";
         try {
-            if(cliente.getIdcliente() != null) {
+            int cod = clienteService.obtenerIdCliente();
+            if(cliente.getIdcliente() < cod) {
                 clienteService.actualizarCliente(cliente.getNomcliente(), cliente.getApecliente(),
-                        cliente.getDnicliente(), cliente.getDireccion(), cliente.getTelefono(),
+                        cliente.getDnicliente(), cliente.getDireccion(), cliente.getFonocliente(),
                         cliente.getActivo(), cliente.getIdcliente());
             }else {
                 LocalDate fecha = LocalDate.now();

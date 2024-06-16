@@ -12,4 +12,5 @@ public interface IVentasService {
     int obtenerIdVenta();
     void actualizarventa(int idcliente, int idventa);
     List<Venta> consultaVentaxUsuario(int idusuario);
+    double consultarVentaToIdVentaxTotal(int idventa);
 }
