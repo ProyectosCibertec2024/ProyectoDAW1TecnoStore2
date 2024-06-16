@@ -18,7 +18,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
     @Modifying
     @Transactional
     @Query("UPDATE Cliente set nomcliente=:nomcliente, apecliente=:apecliente, " +
-            "dnicliente=:dnicliente, direccion=:direccion, telefono=:telefono, activo=:activo " +
+            "dnicliente=:dnicliente, direccion=:direccion, fonocliente=:telefono, activo=:activo " +
             "WHERE idcliente=:idcliente")
     void actualizarCliente(String nomcliente, String apecliente, String dnicliente,
                            String direccion, String telefono, Boolean activo, Integer idcliente);

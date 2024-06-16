@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Facturas</title>
+    <link rel="stylesheet" th:href="@{/css/principal/principal.css}">
+    <script src="https://kit.fontawesome.com/1842a186b5.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.css}">
+    <style>
+        .dark #titleVentas{
+            color: #fff;
+        }
+    </style>
+</head>
+<body style="background-color: var(--body-color)">
+    <main>
+        <nav th:replace="fragment/layout :: nav"></nav>
+        <h1 class="text-center mt-3" id="titleVentas">Listado De Factura</h1>
+        <div class="container mt-3">
+
+            <table class="table table-hover table-bordered mt-3" id="tbfactura">
+                <thead>
+                    <tr>
+                        <th>Numero Factura</th>
+                        <th>Numero Venta</th>
+                        <th>Fecha Emision</th>
+                        <th class="text-center">Factura</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="fl:${facturalist}">
+                        <td th:text="${fl.numerofactura}"></td>
+                        <td th:text="${fl.ventafactura.numeroventa}"></td>
+                        <td th:text="${fl.fechaemision}"></td>
+                        <td class="text-center">
+                            <a th:href="${fl.urlfactura}" target="_blank">
+                                <img th:src="@{/img/ic_pdf.png}" width="60" height="60" th:alt="${fl.nomfactura}">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div th:if="${#lists.isEmpty(facturalist)}">
+                <p class="alert alert-danger">No Hay Facturas Realizadas</p>
+            </div>
+        </div>
+    </main>
+
+    <script th:src="@{/js/jquery/jquery.js}"></script>
+    <script th:src="@{/js/bootstrap/bootstrap.bundle.js}"></script>
+    <script th:src="@{/js/js/principal/principal.js}"></script>
+</body>
+</html>

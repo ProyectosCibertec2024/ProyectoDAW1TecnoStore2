@@ -60,7 +60,7 @@ public class ProductoController {
                     productoService.actualizarProducto(producto.getMarca(),
                             producto.getIdcategoria(),producto.getStock(),producto.getUrlimagen(),
                             producto.getNombreimagen(),producto.getPrecio(),producto.getColor(),
-                            producto.getResolucion(), producto.getProcesador(),producto.getDescuento(),
+                            producto.getResolucion(), producto.getProcesador(),producto.getDescuento() / 100,
                             producto.getRam(), producto.getEspaciodisco(),producto.getEspaciodisco(),
                             producto.getIdproveedor(), producto.getActivo(),producto.getIdproducto());
                     archivo.delete();
@@ -69,7 +69,7 @@ public class ProductoController {
                     productoService.actualizarProductoSinImagen(producto.getMarca(),
                             producto.getIdcategoria(),producto.getStock(),producto.getPrecio(),
                             producto.getColor(), producto.getResolucion(), producto.getProcesador(),
-                            producto.getDescuento(), producto.getRam(), producto.getEspaciodisco(),producto.getEspaciodisco(),
+                            producto.getDescuento() / 100, producto.getRam(), producto.getEspaciodisco(),producto.getEspaciodisco(),
                             producto.getIdproveedor(), producto.getActivo(),producto.getIdproducto());
                     model.addAttribute("p", new Producto());
                 }
@@ -79,6 +79,8 @@ public class ProductoController {
                     File archivo = imagenService.convertToFile(imagen);
                     String contenido = imagen.getContentType();
                     String imagenUrl = imagenService.uploadFile(archivo, nombreArchivo, contenido, "productos");
+                    double descuento = producto.getDescuento() / 100;
+                    producto.setDescuento(descuento);
                     producto.setNombreimagen(nombreArchivo);
                     producto.setUrlimagen(imagenUrl);
                     LocalDate fecha = LocalDate.now();

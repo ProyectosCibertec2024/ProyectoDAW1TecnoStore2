@@ -20,13 +20,12 @@ public class Cliente {
     @Column(columnDefinition = "varchar(100)")
     private String apecliente;
     @Column(columnDefinition = "varchar(8)")
-    @Pattern(regexp = "^\\d{8}$", message = "DNI invalido")
     private String dnicliente;
     @Column(columnDefinition = "varchar(100)")
     private String direccion;
-    @Column(columnDefinition = "varchar(11)")
+    @Column(name = "fonocliente", columnDefinition = "varchar(11)")
     @Pattern(regexp = "^\\d{9,11}$", message = "El Telefono debe tener entre 9 y 11 digitos")
-    private String telefono;
+    private String fonocliente;
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate fecharegistro;
     private Boolean activo;

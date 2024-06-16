@@ -1,6 +1,7 @@
 package pe.tecnostore.tecnostore.model.bd;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -32,4 +33,8 @@ public class Venta {
     @JsonIgnore
     @OneToMany(mappedBy = "venta", targetEntity = DetalleVenta.class)
     private List<DetalleVenta> detalleVentaList;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "ventafactura", cascade = CascadeType.ALL)
+    private List<Factura> facturaList;
 }

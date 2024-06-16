@@ -26,7 +26,7 @@ $(document).on("click", ".btnactualizar", function () {
          $("#txtapecliente").val(resultado.apecliente);
          $("#txtdnicliente").val(resultado.dnicliente);
          $("#txtdireccliente").val(resultado.direccion);
-         $("#txttelcliente").val(resultado.telefono);
+         $("#txttelcliente").val(resultado.fonocliente);
          if(resultado.activo) {
             $("#swactivocli").prop("checked", true);
          }else {
@@ -51,7 +51,7 @@ $(document).on("click", ".btnguardar", function () {
             apecliente: $("#txtapecliente").val(),
             dnicliente: $("#txtdnicliente").val(),
             direccion: $("#txtdireccliente").val(),
-            telefono: $("#txttelcliente").val(),
+            fonocliente: $("#txttelcliente").val(),
             activo: $("#swactivocli").prop("checked")
          }),
          success: function (resultado) {
@@ -83,7 +83,7 @@ function listarClientes() {
                     <td>${value.apecliente}</td>
                     <td>${value.dnicliente}</td>
                     <td>${value.direccion}</td>
-                    <td>${value.telefono}</td>
+                    <td>${value.fonocliente}</td>
                     <td>
                         <button class="btn btn-info btnactualizar"
                                 data-idcliente="${value.idcliente}"><i class="fas fa-edit"></i></button>

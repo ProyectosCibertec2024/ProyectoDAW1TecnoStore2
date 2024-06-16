@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generar Venta</title>
+    <link rel="stylesheet" th:href="@{/css/principal/principal.css}">
+    <script src="https://kit.fontawesome.com/1842a186b5.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" th:href="@{/css/bootstrap/bootstrap.css}">
+    <style>
+        .dark #titleVentas{
+            color: #fff;
+        }
+    </style>
+</head>
+<body style="background-color: var(--body-color)">
+    <main>
+        <nav th:replace="fragment/layout :: nav"></nav>
+        <div id="modalgenerarfactura" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Factura</h5>
+                    </div>
+                    <form th:action="@{/generar-reporte/{idventa}(idventa=${idventa})}" method="post">
+                        <input type="hidden" name="idfactura" th:value="${idfacturaautogenerado}">
+                        <div class="modal-body">
+                            <p>¿Desea Generar La Factura?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-danger" th:href="@{/ventas}">Cancelar</a>
+                            <button type="submit" class="btn btn-primary" formtarget="_blank">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script th:src="@{/js/jquery/jquery.js}"></script>
+    <script th:src="@{/js/bootstrap/bootstrap.bundle.js}"></script>
+    <script th:src="@{/js/js/principal/principal.js}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var myModal = new bootstrap.Modal(document.getElementById('modalgenerarfactura'));
+            myModal.show();
+        });
+    </script>
+</body>
+</html>

@@ -176,9 +176,14 @@ function validarProducto() {
    } else if(!document.producto.descuento.value.match(/^\d+(\.\d+)?$/)){
       descuento.innerText = "Solo Se Permite Digitos & Decimales";
       return false;
-   } else {
+   }else if (document.producto.descuento.value > 100 || document.producto.descuento.value < 0) {
+       descuento.innerText = "El Desuento debe ser entre 0 y 100";
+       return false;
+   }else {
       descuento.innerText = "";
    }
+
+   return true;
 }
 
 function limpiarValidacionProducto() {
@@ -208,6 +213,17 @@ function limpiarValidacionProducto() {
     pantallatamanio.innerText = "";
     idproveedor.innerText = "";
 
+}
+
+function obtenerIdProducto() {
+   $.ajax({
+      type: "GET",
+      url: "/idproducto",
+      dataType: "json",
+      success: function (resultado) {
+         $("#txtidproducto").val(resultado);
+      }
+   });
 }
 
 /*$("#txtidproducto").val("");
@@ -366,14 +382,3 @@ function cargarComboCategoriaxProveedor(idcategoria, idproveedor) {
       }
    });
 }*/
-
-function obtenerIdProducto() {
-   $.ajax({
-      type: "GET",
-      url: "/idproducto",
-      dataType: "json",
-      success: function (resultado) {
-         $("#txtidproducto").val(resultado);
-      }
-   });
-}

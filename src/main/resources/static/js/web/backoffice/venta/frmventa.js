@@ -24,7 +24,8 @@ $(document).on("click",".btnguardar",function () {
                 if(resultado.resultado) {
                     alert(resultado.mensaje);
                     $("#modalventas").modal("hide");
-                    listadoVentas();
+                    $("#listadoventas").hide();
+                    window.location.reload();
                 }else {
                     alert(resultado.mensaje);
                 }
@@ -50,12 +51,15 @@ $(document).on("click", "#btnactualizar", function () {
             $("#txtidcliente").val(resultado.idcliente);
             $("#txtvalorcliente").val(resultado.nomcliente + ' ' + resultado.apecliente);
             $("#modalventas").modal("show");
+        }, error : function (xhr, status, error) {
+            console.error('Error en la solicitud:', status, error);
+            console.log(xhr.responseText);
         }
     });
 
 });
 
-function listadoVentas() {
+/*function listadoVentas() {
     $.ajax({
         type: "GET",
         url: "/venta-list",
@@ -72,16 +76,21 @@ function listadoVentas() {
                         <td>${value.fecharegistro}</td>
                         <td>${value.total}</td>
                         <td>
-                        <button class="btn btn-info" id="btnactualizar"
+                            <button class="btn btn-info" id="btnactualizar"
                                 data-idventa="${value.idventa}"><i class="fas fa-edit"></i></button>
-                        <a href="/venta-detalle/${value.idventa}" class="btn btn-warning"><i class="far fa-eye me-2"></i>Detalle</a>
-                    </td>
+                            <a href="/venta-detalle/${value.idventa}" class="btn btn-warning"><i class="far fa-eye me-2"></i>Detalle</a>
+                            <a href="/generar-reporte/${value.idventa}" class="btn btn-primary"
+                                            data-idventa="${value.idventa}"><i class="fas fa-file-pdf"></i></a>
+                        </td>
                     </tr>`
                 )
             });
+        }, error : function (xhr, status, error) {
+            console.error('Error en la solicitud:', status, error);
+            console.log(xhr.responseText);
         }
     });
-}
+}*/
 
 function cargarNumVenta() {
     $.ajax({
@@ -108,10 +117,22 @@ function cargarIdVenta() {
 function validarVentas() {
     var txvalorcliente = document.getElementById("txtvalorcliente");
     var validcliente = document.getElementById("validnomcliente");
+    var txtidcliente = document.getElementById("txtidcliente");
+
     if(txvalorcliente.value === "") {
         validcliente.innerText = "Completa Este Campo";
         return false;
+    }else {
+        validcliente.innerText = "";
     }
+
+    if (txtidcliente.value === "") {
+        validcliente.innerText = "No Se Encontro Al Cliente";
+        return false;
+    }else {
+        validcliente.innerText = "";
+    }
+
     return true;
 }
 

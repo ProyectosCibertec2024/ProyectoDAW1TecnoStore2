@@ -52,4 +52,9 @@ public class VentaService implements IVentasService {
     public List<Venta> consultaVentaxUsuario(int idusuario) {
         return ventaRepository.consultaVentaxUsuario(idusuario);
     }
+
+    @Override
+    public double consultarVentaToIdVentaxTotal(int idventa) {
+        return ventaRepository.consultarVentaToIdVentaxTotal(idventa);
+    }
 }
