@@ -19,4 +19,9 @@ public class GestionConsultaProveedorService implements IGestionConsultaProveedo
         String nom = nomproveedor + "%";
         return proveedorRepository.consultaProveedorxNomprov(nom);
     }
+
+    @Override
+    public List<ProveedorConsultaDTO> consultaProveedor() {
+        return proveedorRepository.consultaProveedor();
+    }
 }

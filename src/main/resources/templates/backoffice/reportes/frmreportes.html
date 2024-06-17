@@ -18,37 +18,128 @@
         <nav th:replace="fragment/layout :: nav"></nav>
         <h1 class="text-center mt-3" id="titleVentas">Listado De Factura</h1>
         <div class="container mt-3">
+            <form th:action="@{/reportes}" method="post">
+                <div class="d-flex align-items-center me-2">
+                    <div class="form-floating mb-3 me-4">
+                        <input type="date" class="form-control" id="txtfecha1" name="fecha1">
+                        <label for="txtfecha1">Desde</label>
+                    </div>
+                    <div class="form-floating mb-3 me-4">
+                        <input type="date" class="form-control me-2" id="txtfecha2" name="fecha2">
+                        <label for="txtfecha2">Hasta</label>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary me-2">Consultar</button>
+                        <a class="btn btn-info me-2" th:href="@{/reportes}">Listar</a>
+                    </div>
+                </div>
+                <div th:if="${error != null}">
+                    <p class="alert alert-danger" th:text="${error}"></p>
+                </div>
+                <div th:if="${!#lists.isEmpty(listafechas)}">
+                    <table class="table table-hover table-bordered mt-3">
+                        <thead>
+                        <tr>
+                            <th>Factura</th>
+                            <th>Venta</th>
+                            <th>Cliente</th>
+                            <th>Apellido</th>
+                            <th>DNI</th>
+                            <th>Direccion</th>
+                            <th>Telefono</th>
+                            <th>Emision</th>
+                            <th class="text-center">Factura</th>
+                            <th class="text-center">Accion</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="lf:${listafechas}">
+                            <td th:text="${lf.numerofactura}"></td>
+                            <td th:text="${lf.numeroventa}"></td>
+                            <td th:text="${lf.nomcliente}"></td>
+                            <td th:text="${lf.apecliente}"></td>
+                            <td th:text="${lf.dnicliente}"></td>
+                            <td th:text="${lf.direccion}"></td>
+                            <td th:text="${lf.fonocliente}"></td>
+                            <td th:text="${lf.fechaemision}"></td>
+                            <td class="text-center">
+                                <a th:href="${lf.urlfactura}" target="_blank">
+                                    <img th:src="@{/img/ic_pdf.png}" width="60" height="60" alt="nada">
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-info btnactualizar"><i class="fas fa-edit"></i></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div th:if="${#lists.isEmpty(listafechas)}">
+                    <table class="table table-hover table-bordered mt-3">
+                        <thead>
+                        <tr>
+                            <th>Factura</th>
+                            <th>Venta</th>
+                            <th>Cliente</th>
+                            <th>Apellido</th>
+                            <th>DNI</th>
+                            <th>Direccion</th>
+                            <th>Telefono</th>
+                            <th>Emision</th>
+                            <th class="text-center">Factura</th>
+                            <th class="text-center">Accion</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="fl:${facturalist}">
+                            <td th:text="${fl.numerofactura}"></td>
+                            <td th:text="${fl.numeroventa}"></td>
+                            <td th:text="${fl.nomcliente}"></td>
+                            <td th:text="${fl.apecliente}"></td>
+                            <td th:text="${fl.dnicliente}"></td>
+                            <td th:text="${fl.direccion}"></td>
+                            <td th:text="${fl.fonocliente}"></td>
+                            <td th:text="${fl.fechaemision}"></td>
+                            <td class="text-center">
+                                <a th:href="${fl.urlfactura}" target="_blank">
+                                    <img th:src="@{/img/ic_pdf.png}" width="60" height="60" alt="nada">
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-info btnactualizar"><i class="fas fa-edit"></i></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
 
-            <table class="table table-hover table-bordered mt-3" id="tbfactura">
-                <thead>
-                    <tr>
-                        <th>Numero Factura</th>
-                        <th>Numero Venta</th>
-                        <th>Fecha Emision</th>
-                        <th class="text-center">Factura</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="fl:${facturalist}">
-                        <td th:text="${fl.numerofactura}"></td>
-                        <td th:text="${fl.ventafactura.numeroventa}"></td>
-                        <td th:text="${fl.fechaemision}"></td>
-                        <td class="text-center">
-                            <a th:href="${fl.urlfactura}" target="_blank">
-                                <img th:src="@{/img/ic_pdf.png}" width="60" height="60" th:alt="${fl.nomfactura}">
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div th:if="${#lists.isEmpty(facturalist)}">
-                <p class="alert alert-danger">No Hay Facturas Realizadas</p>
+        <div id="modalactualizarfactura" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Modificar Factura</h5>
+                    </div>
+                    <form th:action="@{/generar-reporte/{idventa}(idventa=${idventa})}" method="post">
+                        <input type="hidden" name="idfactura" th:value="${idfacturaautogenerado}">
+                        <div class="modal-body">
+                            <p>¿Desea Generar La Factura?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-danger" th:href="@{/ventas}">Cancelar</a>
+                            <button type="submit" class="btn btn-primary" formtarget="_blank">Guardar</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
+
     </main>
 
     <script th:src="@{/js/jquery/jquery.js}"></script>
     <script th:src="@{/js/bootstrap/bootstrap.bundle.js}"></script>
     <script th:src="@{/js/js/principal/principal.js}"></script>
+    <script th:src="@{/js/web/backoffice/reporte/frmreporte.js}"></script>
 </body>
 </html>

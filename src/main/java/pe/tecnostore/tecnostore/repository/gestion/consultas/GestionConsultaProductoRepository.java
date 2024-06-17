@@ -17,4 +17,11 @@ public interface GestionConsultaProductoRepository extends JpaRepository<Product
             " WHERE p.marca LIKE :nomproducto" +
             " group by p.idproducto, p.marca, c.descripcion, p.precio, pr.nomproveedor, p.fecharegistro, p.urlimagen")
     List<ProductoConsultaDTO> consultaProductoXMarca(String nomproducto);
+
+    @Query("SELECT new pe.tecnostore.tecnostore.model.dto.object.gestion.consultas.ProductoConsultaDTO(p.idproducto, p.marca, c.descripcion, p.precio, pr.nomproveedor, p.fecharegistro, p.urlimagen) " +
+            " FROM Producto p" +
+            " JOIN p.categoria c" +
+            " JOIN p.proveedor pr" +
+            " group by p.idproducto, p.marca, c.descripcion, p.precio, pr.nomproveedor, p.fecharegistro, p.urlimagen")
+    List<ProductoConsultaDTO> consultaProducto();
 }

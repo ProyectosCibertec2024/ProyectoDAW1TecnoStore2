@@ -63,4 +63,9 @@ public class FacturaService implements IFacturaService {
     public List<FacturaConsultaFechaDTO> consultafechaFactura(LocalDate fecha1, LocalDate fecha2) {
         return facturaRepository.consultafechaFactura(fecha1, fecha2);
     }
+
+    @Override
+    public List<FacturaConsultaFechaDTO> consultarFactura() {
+        return facturaRepository.consultarFactura();
+    }
 }

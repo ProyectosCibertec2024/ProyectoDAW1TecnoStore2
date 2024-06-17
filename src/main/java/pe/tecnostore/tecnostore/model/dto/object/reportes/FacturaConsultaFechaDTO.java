@@ -18,4 +18,5 @@ public class FacturaConsultaFechaDTO {
     private String direccion;
     private String fonocliente;
     private LocalDate fechaemision;
+    private String urlfactura;
 }

@@ -16,4 +16,10 @@ public interface GestionConsultaProveedorRepository extends JpaRepository<Provee
             " WHERE pr.nomproveedor LIKE :nomproveedor " +
             " GROUP BY pr.idproveedor, pr.nomproveedor, e.nomempresa, pr.correo, pr.telefono, pr.fecharegistro")
     List<ProveedorConsultaDTO> consultaProveedorxNomprov(String nomproveedor);
+
+    @Query("SELECT new pe.tecnostore.tecnostore.model.dto.object.gestion.consultas.ProveedorConsultaDTO(pr.idproveedor, pr.nomproveedor, e.nomempresa, pr.correo, pr.telefono, pr.fecharegistro)" +
+            " FROM Proveedor pr" +
+            " JOIN pr.empresa e" +
+            " GROUP BY pr.idproveedor, pr.nomproveedor, e.nomempresa, pr.correo, pr.telefono, pr.fecharegistro")
+    List<ProveedorConsultaDTO> consultaProveedor();
 }

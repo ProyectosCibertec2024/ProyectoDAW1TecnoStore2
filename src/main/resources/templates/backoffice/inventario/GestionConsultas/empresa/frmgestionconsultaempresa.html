@@ -27,10 +27,14 @@
                    </select>
                    <label for="cboidempresa">Tipo Empresa</label>
                    <button type="submit" class="btn btn-primary me-2">Consultar</button>
+                   <a class="btn btn-info me-2 btnlistartodo" th:href="@{/gestionconsulta-empresas}">Listar</a>
                    <a th:href="@{/gestion-consultas}" class="btn btn-danger">Retornar</a>
                </div>
-               <div th:if="${empresaconsultagestion != null}">
-                   <table class="table table-bordered table-hover">
+               <div th:if="${error != null}" id="mensaje">
+                   <p class="alert alert-danger" th:text="${error}"></p>
+               </div>
+               <div th:if="${!#lists.isEmpty(empresaconsultagestion)}">
+                   <table class="table table-bordered table-hover" id="tbempresaconsulta">
                        <thead>
                        <tr>
                            <th>ID Empresa</th>
@@ -54,14 +58,38 @@
                        </tr>
                        </tbody>
                    </table>
+                   <div class="mt-3" th:if="${#lists.isEmpty(empresaconsultagestion)}">
+                       <p class="alert alert-info">No se Encontraron Consultas</p>
+                   </div>
                </div>
-               <div th:if="${error != null}">
-                   <p class="alert alert-danger" th:text="${error}"></p>
+               <div th:if="${#lists.isEmpty(empresaconsultagestion)}">
+                   <table class="table table-bordered table-hover" id="tbempresasinconsulta">
+                       <thead>
+                       <tr>
+                           <th>ID Empresa</th>
+                           <th>Empresa</th>
+                           <th>Tipo</th>
+                           <th>Bancos</th>
+                           <th>Telefono</th>
+                           <th>Email</th>
+                           <th>Registro</th>
+                       </tr>
+                       </thead>
+                       <tbody>
+                       <tr th:each="gec:${gestionempresasinparam}">
+                           <td th:text="${gec.idempresa}"></td>
+                           <td th:text="${gec.nomempresa}"></td>
+                           <td th:text="${gec.tipoempresa}"></td>
+                           <td th:text="${gec.bancos}"></td>
+                           <td th:text="${gec.telefono}"></td>
+                           <td th:text="${gec.email}"></td>
+                           <td th:text="${gec.registro}"></td>
+                       </tr>
+                       </tbody>
+                   </table>
                </div>
            </form>
-           <div class="mt-3" th:if="${empresaconsultagestion == null}">
-               <p class="alert alert-info">No se Encontraron Consultas</p>
-           </div>
+
        </div>
    </main>
     <script th:src="@{js/js/principal/principal.js}"></script>

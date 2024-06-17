@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pe.tecnostore.tecnostore.firebase.storage.ImagenService;
 import pe.tecnostore.tecnostore.model.bd.Factura;
+import pe.tecnostore.tecnostore.model.dto.object.reportes.FacturaConsultaFechaDTO;
 import pe.tecnostore.tecnostore.model.dto.object.reportes.FacturaDTO;
 import pe.tecnostore.tecnostore.service.interfaces.IFacturaService;
 
@@ -29,7 +30,34 @@ public class FacturaController {
 
     @GetMapping(value = "/reportes")
     public String reportes(Model model) {
-        model.addAttribute("facturalist", facturaService.listadoFacturas());
+        model.addAttribute("facturalist", facturaService.consultarFactura());
+        return "backoffice/reportes/frmreportes";
+    }
+
+    /*@GetMapping(value = "/reportesconsulta-list")
+    @ResponseBody
+    public List<FacturaConsultaFechaDTO> reporteFacturaConsultaFechaDTOS() {
+        return facturaService.consultarFactura();
+    }*/
+
+    @PostMapping(value = "/reportes")
+    public String reportesConsulta(@RequestParam("fecha1") LocalDate fecha1,
+                                   @RequestParam("fecha2") LocalDate fecha2,
+                                   Model model) {
+        try{
+            if(fecha1 == null && fecha2 == null) {
+                model.addAttribute("error", "Ingrese Las Fechas");
+            }else {
+                List<FacturaConsultaFechaDTO> lista = facturaService.consultafechaFactura(fecha1, fecha2);
+                if(lista.isEmpty()) {
+                    model.addAttribute("error", "No Se Encontraron Facturas");
+                }else {
+                    model.addAttribute("listafechas", lista);
+                }
+            }
+        }catch (Exception e) {
+            System.out.println("Error en listar por fecha : " + e.getMessage());
+        }
         return "backoffice/reportes/frmreportes";
     }
 
