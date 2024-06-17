@@ -48,11 +48,21 @@ public interface FacturaRepository extends JpaRepository<Factura, Integer> {
                                      @Param("nomfactura") String nomfactura,
                                      @Param("idfactura") int idfactura);
 
-    @Query("SELECT new pe.tecnostore.tecnostore.model.dto.object.reportes.FacturaConsultaFechaDTO(f.numerofactura, v.numeroventa, c.nomcliente, c.apecliente, c.dnicliente, c.direccion, c.fonocliente, f.fechaemision)" +
+    @Query("SELECT new pe.tecnostore.tecnostore.model.dto.object.reportes.FacturaConsultaFechaDTO(f.numerofactura, v.numeroventa, c.nomcliente, c.apecliente, c.dnicliente, c.direccion, c.fonocliente, f.fechaemision, f.urlfactura)" +
             "FROM Factura f" +
             " JOIN f.ventafactura v" +
             " JOIN v.cliente c" +
             " WHERE DATE(f.fechaemision) BETWEEN :fecha1 and :fecha2" +
             " GROUP BY f.numerofactura, v.numeroventa, c.nomcliente, c.apecliente, c.dnicliente, c.direccion, c.fonocliente, f.fechaemision")
     List<FacturaConsultaFechaDTO> consultafechaFactura(@Param("fecha1") LocalDate fecha1, @Param("fecha2") LocalDate fecha2);
+
+    @Query("SELECT new pe.tecnostore.tecnostore.model.dto.object.reportes.FacturaConsultaFechaDTO(f.numerofactura, v.numeroventa, c.nomcliente, c.apecliente, c.dnicliente, c.direccion, c.fonocliente, f.fechaemision, f.urlfactura)" +
+            "FROM Factura f" +
+            " JOIN f.ventafactura v" +
+            " JOIN v.cliente c" +
+            " GROUP BY f.numerofactura, v.numeroventa, c.nomcliente, c.apecliente, c.dnicliente, c.direccion, c.fonocliente, f.fechaemision")
+    List<FacturaConsultaFechaDTO> consultarFactura();
+
+    @Query("SELECT f FROM Factura f WHERE f.numerofactura=:numerofactura")
+    Factura buscarFactura(@Param("numerofactura") Integer numerofactura);
 }

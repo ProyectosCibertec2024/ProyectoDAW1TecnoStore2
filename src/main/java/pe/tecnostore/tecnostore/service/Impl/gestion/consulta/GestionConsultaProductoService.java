@@ -19,4 +19,9 @@ public class GestionConsultaProductoService implements IGestionConsultaProductoS
         String nom = nomproducto + "%";
         return gestionConsultaProductoRepository.consultaProductoXMarca(nom);
     }
+
+    @Override
+    public List<ProductoConsultaDTO> consultaProducto() {
+        return gestionConsultaProductoRepository.consultaProducto();
+    }
 }

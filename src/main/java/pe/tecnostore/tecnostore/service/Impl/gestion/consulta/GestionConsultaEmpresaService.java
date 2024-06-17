@@ -18,4 +18,9 @@ public class GestionConsultaEmpresaService implements IGestionConsultaEmpresaSer
     public List<EmpresaConsultaDTO> consultaEmpresa(int idtipoempresa) {
         return gestionConsultaEmpresaService.consultaEmpresa(idtipoempresa);
     }
+
+    @Override
+    public List<EmpresaConsultaDTO> consultarEmpresaSinParam() {
+        return gestionConsultaEmpresaService.consultarEmpresaSinParam();
+    }
 }

@@ -23,9 +23,13 @@
                     <input type="text" name="nomproveedor" class="form-control me-2 w-100" id="txtnomproveedor">
                     <label for="txtnomproveedor">Nombre Proveedor</label>
                     <button type="submit" class="btn btn-primary me-2">Consultar</button>
+                    <a th:href="@{/gestionconsulta-proveedores}" class="btn btn-info me-2">Listar</a>
                     <a th:href="@{/gestion-consultas}" class="btn btn-danger">Retornar</a>
                 </div>
-                <div th:if="${proveedorconsultagestion != null}">
+                <div th:if="${error != null}">
+                    <p class="alert alert-danger" th:text="${error}"></p>
+                </div>
+                <div th:if="${!#lists.isEmpty(proveedorconsultagestion)}">
                     <table class="table table-hover table-bordered">
                         <thead>
                         <tr>
@@ -48,14 +52,35 @@
                         </tr>
                         </tbody>
                     </table>
+                    <div th:if="${proveedorconsultagestion == null}">
+                        <p class="alert alert-info">No Se Encontraron Consultas</p>
+                    </div>
                 </div>
-                <div th:if="${error != null}">
-                    <p class="alert alert-danger" th:text="${error}"></p>
+                <div th:if="${#lists.isEmpty(proveedorconsultagestion)}">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <td>ID Proveedor</td>
+                            <td>Proveedor</td>
+                            <td>Empresa</td>
+                            <td>Email</td>
+                            <td>Telefono</td>
+                            <td>Registro</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="gcp:${proveedorconsulta}">
+                            <td th:text="${gcp.idproveedor}"></td>
+                            <td th:text="${gcp.nomproveedor}"></td>
+                            <td th:text="${gcp.nomempresa}"></td>
+                            <td th:text="${gcp.correo}"></td>
+                            <td th:text="${gcp.telefono}"></td>
+                            <td th:text="${gcp.registro}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
             </form>
-            <div th:if="${proveedorconsultagestion == null}">
-                <p class="alert alert-info">No Se Encontraron Consultas</p>
-            </div>
         </div>
     </main>
     <script th:src="@{js/js/principal/principal.js}"></script>

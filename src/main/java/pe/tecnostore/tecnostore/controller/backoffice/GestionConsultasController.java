@@ -3,14 +3,12 @@ package pe.tecnostore.tecnostore.controller.backoffice;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import pe.tecnostore.tecnostore.model.dto.object.gestion.consultas.EmpresaConsultaDTO;
 import pe.tecnostore.tecnostore.model.dto.object.gestion.consultas.ProductoConsultaDTO;
 import pe.tecnostore.tecnostore.model.dto.object.gestion.consultas.ProveedorConsultaDTO;
 import pe.tecnostore.tecnostore.model.dto.object.gestion.consultas.UsuarioConsultaDTO;
+import pe.tecnostore.tecnostore.service.Impl.UsuarioService;
 import pe.tecnostore.tecnostore.service.interfaces.IRolService;
 import pe.tecnostore.tecnostore.service.interfaces.ITipoEmpresaService;
 import pe.tecnostore.tecnostore.service.interfaces.gestion.consultas.IGestionConsultaEmpresaService;
@@ -26,6 +24,7 @@ import java.util.List;
 @Controller
 public class GestionConsultasController {
 
+    private final UsuarioService usuarioService;
     private IGestionConsultaUsuarioService gestionConsultaUsuarioService;
     private IRolService rolService;
     private ITipoEmpresaService tipoEmpresaService;
@@ -43,8 +42,15 @@ public class GestionConsultasController {
     @GetMapping(value = "/gestionconsulta-usuarios")
     public String gestionConsultasUsuarios(Model model) {
         model.addAttribute("rolesgestionuser", rolService.listadoRols());
+        model.addAttribute("consultaUsuario", gestionConsultaUsuarioService.consultaUsuario());
         return "backoffice/inventario/GestionConsultas/usuarios/frmconsultausuario";
     }
+
+    /*@GetMapping(value = "/gestionconsultausuarios-list")
+    @ResponseBody
+    public List<UsuarioConsultaDTO> gestionlistadousuario() {
+        return gestionConsultaUsuarioService.consultaUsuario();
+    }*/
 
     @PostMapping(value = "/gestionconsulta-usuarios")
     public String gestionConsultaUsuarios(@RequestParam("idrol") int idrol, Model model) {
@@ -53,17 +59,15 @@ public class GestionConsultasController {
             if(idrol == 0) {
                 mensaje = "Seleccione Un Rol";
                 model.addAttribute("error", mensaje);
-                model.addAttribute("rolesgestionuser", rolService.listadoRols());
             }else {
                 List<UsuarioConsultaDTO> lista = gestionConsultaUsuarioService.consultaUsuarioxRol(idrol);
                 if(lista.isEmpty()) {
-                    model.addAttribute("error", "No se encontraron usuarios para el rol seleccionado");
-                    model.addAttribute("rolesgestionuser", rolService.listadoRols());
+                    model.addAttribute("error", "No se encontraron Consultas para el rol seleccionado");
                 } else {
                     model.addAttribute("gestuserconsulta", lista);
-                    model.addAttribute("rolesgestionuser", rolService.listadoRols());
                 }
             }
+            model.addAttribute("rolesgestionuser", rolService.listadoRols());
         }catch (Exception e) {
             System.out.println("Error en : " + e.getMessage());
         }
@@ -73,7 +77,14 @@ public class GestionConsultasController {
     @GetMapping(value = "/gestionconsulta-empresas")
     public String gestionConsultaEmpresa(Model model) {
         model.addAttribute("tipoempresagestion", tipoEmpresaService.listadoTipoEmpresas());
+        model.addAttribute("gestionempresasinparam", gestionConsultaEmpresaService.consultarEmpresaSinParam());
         return "backoffice/inventario/GestionConsultas/empresa/frmgestionconsultaempresa";
+    }
+
+    @GetMapping(value = "/gestionempresa-list")
+    @ResponseBody
+    public List<EmpresaConsultaDTO> gestionConsultaList() {
+        return gestionConsultaEmpresaService.consultarEmpresaSinParam();
     }
 
     @PostMapping(value = "/gestionconsulta-empresas")
@@ -84,11 +95,13 @@ public class GestionConsultasController {
             if(idtipoempresa == 0) {
                 mensaje = "Seleccione El Tipo de Empresa";
                 model.addAttribute("error", mensaje);
+                model.addAttribute("gestionempresasinparam", gestionConsultaEmpresaService.consultarEmpresaSinParam());
             }else {
                 List<EmpresaConsultaDTO> lista = gestionConsultaEmpresaService.consultaEmpresa(idtipoempresa);
                 if(lista.isEmpty()) {
                     mensaje = "No se encontraron empresas para el tipo empresa seleccionado";
                     model.addAttribute("error", mensaje);
+                    model.addAttribute("gestionempresasinparam", gestionConsultaEmpresaService.consultarEmpresaSinParam());
                 }else {
                     model.addAttribute("empresaconsultagestion", lista);
                 }
@@ -102,7 +115,8 @@ public class GestionConsultasController {
 
     /*GESTION CONSULTAS PROVEEDOR*/
     @GetMapping(value = "/gestionconsulta-proveedores")
-    public String gestionConsultaProveedores() {
+    public String gestionConsultaProveedores(Model model) {
+        model.addAttribute("proveedorconsulta", gestionConsultaProveedorService.consultaProveedor());
         return "backoffice/inventario/GestionConsultas/proveedor/frmgestionconsultaproveedor";
     }
 
@@ -131,7 +145,8 @@ public class GestionConsultasController {
 
     /*GESTION CONSULTAS PRODUCTO*/
     @GetMapping(value = "/gestionconsulta-productos")
-    public String gestionConsultaProductos() {
+    public String gestionConsultaProductos(Model model) {
+        model.addAttribute("gestionproductoconsulta", gestionConsultaProductoService.consultaProducto());
         return "backoffice/inventario/GestionConsultas/producto/frmgestionconsultaproductos";
     }
 

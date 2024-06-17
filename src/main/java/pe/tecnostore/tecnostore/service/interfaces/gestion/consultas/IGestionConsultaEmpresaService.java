@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IGestionConsultaEmpresaService {
     List<EmpresaConsultaDTO> consultaEmpresa(int idtipoempresa);
+    List<EmpresaConsultaDTO> consultarEmpresaSinParam();
 }

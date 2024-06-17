@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IGestionConsultaProveedorService {
     List<ProveedorConsultaDTO> consultaProveedorxNomprov(String nomproveedor);
+    List<ProveedorConsultaDTO> consultaProveedor();
 }

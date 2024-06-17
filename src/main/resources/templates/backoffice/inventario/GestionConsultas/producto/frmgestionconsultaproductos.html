@@ -23,9 +23,10 @@
                    <input type="text" name="nomproducto" class="form-control me-2 w-100" id="txtnomproducto">
                    <label for="txtnomproducto">Nombre Producto</label>
                    <button type="submit" class="btn btn-primary me-2">Consultar</button>
+                   <a class="btn btn-info me-2" th:href="@{/gestionconsulta-productos}">Listar</a>
                    <a th:href="@{/gestion-consultas}" class="btn btn-danger">Retornar</a>
                </div>
-               <div th:if="${productoconsultagestion != null}">
+               <div th:if="${!#lists.isEmpty(productoconsultagestion)}">
                    <table class="table table-hover table-bordered">
                        <thead>
                        <tr>
@@ -40,6 +41,34 @@
                        </thead>
                        <tbody>
                        <tr th:each="gcp:${productoconsultagestion}">
+                           <td th:text="${gcp.idproducto}"></td>
+                           <td th:text="${gcp.marca}"></td>
+                           <td th:text="${gcp.categoria}"></td>
+                           <td th:text="${gcp.precio}"></td>
+                           <td th:text="${gcp.nomproveedor}"></td>
+                           <td th:text="${gcp.registro}"></td>
+                           <td>
+                               <img th:src="${gcp.imagen}" alt="nada" width="80" height="80">
+                           </td>
+                       </tr>
+                       </tbody>
+                   </table>
+               </div>
+               <div th:if="${#lists.isEmpty(gestionproductoconsulta)}">
+                   <table class="table table-hover table-bordered">
+                       <thead>
+                       <tr>
+                           <th>ID Producto</th>
+                           <th>Producto</th>
+                           <th>Categoria</th>
+                           <th>Precio</th>
+                           <th>Proveedor</th>
+                           <th>Registro</th>
+                           <th>Imagen</th>
+                       </tr>
+                       </thead>
+                       <tbody>
+                       <tr th:each="gcp:${gestionproductoconsulta}">
                            <td th:text="${gcp.idproducto}"></td>
                            <td th:text="${gcp.marca}"></td>
                            <td th:text="${gcp.categoria}"></td>

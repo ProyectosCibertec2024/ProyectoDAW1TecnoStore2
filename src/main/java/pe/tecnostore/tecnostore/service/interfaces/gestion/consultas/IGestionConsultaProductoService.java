@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IGestionConsultaProductoService {
     List<ProductoConsultaDTO> consultaProductoXMarca(String nomproducto);
+    List<ProductoConsultaDTO> consultaProducto();
 }
