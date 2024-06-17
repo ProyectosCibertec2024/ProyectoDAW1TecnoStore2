@@ -106,7 +106,8 @@
                                 </a>
                             </td>
                             <td class="text-center">
-                                <button type="button" class="btn btn-info btnactualizar"><i class="fas fa-edit"></i></button>
+                                <button type="button" class="btn btn-info btnactualizar"
+                                        th:data-numerofactura="${fl.numerofactura}"><i class="fas fa-edit"></i></button>
                             </td>
                         </tr>
                         </tbody>
@@ -121,16 +122,26 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="staticBackdropLabel">Modificar Factura</h5>
                     </div>
-                    <form th:action="@{/generar-reporte/{idventa}(idventa=${idventa})}" method="post">
-                        <input type="hidden" name="idfactura" th:value="${idfacturaautogenerado}">
-                        <div class="modal-body">
-                            <p>¿Desea Generar La Factura?</p>
+                    <form id="formactualizarfactura" th:action="@{/factura}" method="post" onsubmit="return validarReportes()">
+                    <div class="modal-body">
+                        <input type="hidden" name="idfactura" id="txtidfactura" readonly>
+                        <input type="hidden" name="idventa" id="txtidventa" readonly>
+                        <div class="form-floating mb-3">
+                            <input type="text" id="txtnumerofactura" name="numerofactura" class="form-control" readonly>
+                            <label for="txtnumerofactura">Numero Factura</label>
                         </div>
-                        <div class="modal-footer">
-                            <a class="btn btn-danger" th:href="@{/ventas}">Cancelar</a>
-                            <button type="submit" class="btn btn-primary" formtarget="_blank">Guardar</button>
+                        <div class="form-switch mb-3">
+                            <input type="hidden" name="estado" id="estadoHidden">
+                            <input type="checkbox" id="txtchactivo" class="form-check-input"
+                                   role="switch">
+                            <label for="txtchactivo">Estado</label>
                         </div>
-                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fas fa-angle-left me-1"></i>Cerrar</button>
+                        <button type="submit" formtarget="_blank" class="btn btn-success btnguardar"><i class="fas fa-save me-1"></i>Modificar Factura</button>
+                    </div>
+                </form>
                 </div>
             </div>
         </div>

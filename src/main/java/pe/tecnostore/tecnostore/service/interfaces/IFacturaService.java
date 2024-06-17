@@ -18,4 +18,5 @@ public interface IFacturaService {
     void actualizarFacturaUrlxNombre(Factura factura);
     List<FacturaConsultaFechaDTO> consultafechaFactura(LocalDate fecha1, LocalDate fecha2);
     List<FacturaConsultaFechaDTO> consultarFactura();
+    Factura buscarFacturaxNumeroFactura(Integer numerofactura);
 }

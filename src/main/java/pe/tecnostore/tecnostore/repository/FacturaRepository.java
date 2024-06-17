@@ -62,4 +62,7 @@ public interface FacturaRepository extends JpaRepository<Factura, Integer> {
             " JOIN v.cliente c" +
             " GROUP BY f.numerofactura, v.numeroventa, c.nomcliente, c.apecliente, c.dnicliente, c.direccion, c.fonocliente, f.fechaemision")
     List<FacturaConsultaFechaDTO> consultarFactura();
+
+    @Query("SELECT f FROM Factura f WHERE f.numerofactura=:numerofactura")
+    Factura buscarFactura(@Param("numerofactura") Integer numerofactura);
 }

@@ -34,6 +34,52 @@ public class FacturaController {
         return "backoffice/reportes/frmreportes";
     }
 
+    @GetMapping(value = "/factura/{numerofactura}")
+    @ResponseBody
+    public Factura buscarFactura(@PathVariable Integer numerofactura) {
+        return facturaService.buscarFacturaxNumeroFactura(numerofactura);
+    }
+
+    @PostMapping(value = "/factura")
+    public String actualizarFactura(@ModelAttribute Factura factura) {
+        String urlfactura = "";
+        try {
+            Factura buscado = facturaService.buscarFacturaxNumeroFactura(factura.getNumerofactura());
+            buscado.setEstado(factura.getEstado());
+            facturaService.guardarFactura(buscado);
+
+            List<FacturaDTO> facturars = facturaService.consultarFacturaIdVenta(buscado.getIdventa());
+            InputStream jasperStream = getClass().getResourceAsStream("/factura.jasper");
+            if (jasperStream == null) {
+                throw new RuntimeException("El archivo factura.jasper no se encontro.");
+            }
+
+            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(facturars);
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(jasperStream);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap<>(), dataSource);
+            //Map<String, Object> parameters = new HashMap<>();
+            //parameters.put("idventa", idventa);
+            //JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
+
+            File archivoPdf = File.createTempFile("tempPdf", ".pdf");
+            JasperExportManager.exportReportToPdfStream(jasperPrint, new FileOutputStream(archivoPdf));
+
+            String nombreArchivo = buscado.getNomfactura();
+            String urlpdf = imagenService.uploadFile(archivoPdf, nombreArchivo, "application/pdf", "facturas");
+
+            factura.setUrlfactura(urlpdf);
+            factura.setNomfactura(nombreArchivo);
+            facturaService.actualizarFacturaUrlxNombre(factura);
+
+            archivoPdf.delete();
+
+            urlfactura = "redirect:" + factura.getUrlfactura();
+        }catch (Exception e) {
+            System.out.println("Error En Modificar : " + e.getMessage());
+        }
+        return urlfactura;
+    }
+
     /*@GetMapping(value = "/reportesconsulta-list")
     @ResponseBody
     public List<FacturaConsultaFechaDTO> reporteFacturaConsultaFechaDTOS() {

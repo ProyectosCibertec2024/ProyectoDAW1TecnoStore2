@@ -68,4 +68,9 @@ public class FacturaService implements IFacturaService {
     public List<FacturaConsultaFechaDTO> consultarFactura() {
         return facturaRepository.consultarFactura();
     }
+
+    @Override
+    public Factura buscarFacturaxNumeroFactura(Integer numerofactura) {
+        return facturaRepository.buscarFactura(numerofactura);
+    }
 }
