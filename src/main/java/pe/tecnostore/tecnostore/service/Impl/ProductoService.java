@@ -3,6 +3,7 @@ package pe.tecnostore.tecnostore.service.Impl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pe.tecnostore.tecnostore.model.bd.Producto;
+import pe.tecnostore.tecnostore.model.dto.object.dashboard.ProductoDTO;
 import pe.tecnostore.tecnostore.repository.ProductoRepository;
 import pe.tecnostore.tecnostore.service.interfaces.IProductoService;
 
@@ -47,5 +48,10 @@ public class ProductoService implements IProductoService {
     @Override
     public int obtenerCantidadProducto() {
         return productoRepository.obtenerCantidadProducto();
+    }
+
+    @Override
+    public List<ProductoDTO> productosmasvendidos() {
+        return productoRepository.productosmasvendidos();
     }
 }

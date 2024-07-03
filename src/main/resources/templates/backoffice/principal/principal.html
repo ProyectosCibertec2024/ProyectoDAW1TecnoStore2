@@ -71,6 +71,11 @@
 
     <hr class="title mt-5">
 
+    <h2 class="text-center m-5 title">Top 5 Productos Más Vendidos</h2>
+    <canvas id="top5prod" width="400" height="200"></canvas>
+
+    <hr class="title mt-5">
+
     <article class="scroll-view">
         <section class="linear-layout">
 
@@ -118,6 +123,40 @@
 
 <script th:src="@{/js/js/principal/principal.js}"></script>
 <script>
+    /* PRODUCTOS */
+    document.addEventListener('DOMContentLoaded', () => {
+        fetch('/dashboard-ventas-productos')
+            .then(response => response.json())
+            .then(data => {
+                const labels = data.map(producto => producto.marca);
+                const cantidadVendida = data.map(producto => producto.totalVendido);
+
+                const ctx = document.getElementById('top5prod').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Total Vendido',
+                            data: cantidadVendida,
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    });
+
+    /*VENTAS*/
     async function fetchVentasData() {
         const response = await fetch('/dashboard-ventas');
         return await response.json();

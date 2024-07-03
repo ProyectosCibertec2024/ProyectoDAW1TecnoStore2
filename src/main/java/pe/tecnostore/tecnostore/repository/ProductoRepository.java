@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import pe.tecnostore.tecnostore.model.bd.Producto;
+import pe.tecnostore.tecnostore.model.dto.object.dashboard.ProductoDTO;
+
+import java.util.List;
 
 @Repository
 public interface ProductoRepository extends JpaRepository<Producto, Integer> {
@@ -39,4 +42,9 @@ public interface ProductoRepository extends JpaRepository<Producto, Integer> {
 
     @Query("SELECT COUNT(*) FROM Producto")
     int obtenerCantidadProducto();
+
+    @Query("SELECT new pe.tecnostore.tecnostore.model.dto.object.dashboard.ProductoDTO(p.idproducto, p.marca, SUM(dv.cantidad)) FROM Producto p JOIN p.detalleVentaList dv" +
+            " GROUP BY p.idproducto ORDER BY SUM(dv.cantidad) DESC" +
+            " LIMIT 5")
+    List<ProductoDTO> productosmasvendidos();
 }
