@@ -13,7 +13,7 @@ $(document).on("click",".btnnuevo", function () {
 });
 
 $(document).on("click",".btnguardar", function () {
-
+    event.preventDefault()
     if(validarDetalleVentas()) {
         $.ajax({
             type: "POST",
@@ -140,7 +140,7 @@ function validarDetalleVentas() {
         valorProductoError.innerText = "";
     }
 
-    if(cantidad.value === 0) {
+    if(cantidad.value <= 0) {
         cantidadError.innerText = "La Cantidad debe ser mayor a 0";
         return false;
     }else if(!cantidad.value.match(/^\d+$/)) {

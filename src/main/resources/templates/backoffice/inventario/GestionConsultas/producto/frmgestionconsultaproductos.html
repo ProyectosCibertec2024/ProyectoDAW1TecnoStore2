@@ -26,6 +26,9 @@
                    <a class="btn btn-info me-2" th:href="@{/gestionconsulta-productos}">Listar</a>
                    <a th:href="@{/gestion-consultas}" class="btn btn-danger">Retornar</a>
                </div>
+               <div th:if="${error != null}">
+                   <p class="alert alert-danger" th:text="${error}"></p>
+               </div>
                <div th:if="${!#lists.isEmpty(productoconsultagestion)}">
                    <table class="table table-hover table-bordered">
                        <thead>
@@ -53,8 +56,11 @@
                        </tr>
                        </tbody>
                    </table>
+                   <div th:if="${productoconsultagestion == null}">
+                       <p class="alert alert-info">No Se Encontraron Consultas</p>
+                   </div>
                </div>
-               <div th:if="${#lists.isEmpty(gestionproductoconsulta)}">
+               <div th:if="${#lists.isEmpty(productoconsultagestion)}">
                    <table class="table table-hover table-bordered">
                        <thead>
                        <tr>
@@ -82,13 +88,7 @@
                        </tbody>
                    </table>
                </div>
-               <div th:if="${error != null}">
-                   <p class="alert alert-danger" th:text="${error}"></p>
-               </div>
            </form>
-           <div th:if="${productoconsultagestion == null}">
-               <p class="alert alert-info">No Se Encontraron Consultas</p>
-           </div>
        </div>
    </main>
     <script th:src="@{js/js/principal/principal.js}"></script>

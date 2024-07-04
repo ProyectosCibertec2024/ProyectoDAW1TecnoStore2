@@ -80,12 +80,6 @@ public class FacturaController {
         return urlfactura;
     }
 
-    /*@GetMapping(value = "/reportesconsulta-list")
-    @ResponseBody
-    public List<FacturaConsultaFechaDTO> reporteFacturaConsultaFechaDTOS() {
-        return facturaService.consultarFactura();
-    }*/
-
     @PostMapping(value = "/reportes")
     public String reportesConsulta(@RequestParam("fecha1") LocalDate fecha1,
                                    @RequestParam("fecha2") LocalDate fecha2,
