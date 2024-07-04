@@ -14,7 +14,7 @@
 <body style="background-color: var(--body-color)">
 <nav th:replace="fragment/layout :: nav"></nav>
 <main>
-    <h1 class="text-center mt-3">Listado de Usuarios</h1>
+    <h1 class="text-center mt-3 title">Listado de Usuarios</h1>
     <div class="container">
         <button class="btn btn-primary btnnuevo"><i class="fas fa-plus me-1"></i>Nuevo</button>
         <a class="btn btn-secondary" th:href="@{/gestionusuario}"><i class="fas fa-arrow-left me-1"></i>Retornar</a>
@@ -69,8 +69,8 @@
                             <small class="text-danger" id="validusernameusuario"></small>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control" type="text" placeholder="" id="txtreppassword" name="txtreppassword" th:field="*{rep_pass}">
-                            <label for="txtreppassword">Repetir Password</label>
+                            <input class="form-control" type="password" placeholder="" id="txtreppassword" name="txtreppassword" th:field="*{rep_pass}">
+                            <label for="txtreppassword">Password</label>
                             <small class="text-danger" id="validreppassword"></small>
                         </div>
                         <div class="form-floating mb-3">

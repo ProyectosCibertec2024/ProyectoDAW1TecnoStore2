@@ -25,7 +25,6 @@ $(document).on("click", ".btnactualizar", function () {
             $("#txtidusuario").val(resultado.idusuario);
             $("#txtnomusuario").val(resultado.nombre);
             $("#txtusernameusuario").val(resultado.username);
-            //$("#txtpasswordusuario").val(resultado.password);
             $("#txtreppassword").val(resultado.rep_pass);
             $("#txtdniusuario").val(resultado.dni);
             $("#cboRol").val(resultado.idrol);
@@ -52,33 +51,31 @@ function obtenerIdUsuario() {
 
 $(document).on("submit", "form[name='usuario']", function(event) {
     event.preventDefault();
+    if(validarUsuario()) {
+        $.ajax({
+            type: $(this).attr("method"),
+            url: $(this).attr("action"),
+            data: new FormData(this),
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                mostrarMensajeExito("Guardado Exitosamente");
 
-    $.ajax({
-        type: $(this).attr("method"),
-        url: $(this).attr("action"),
-        data: new FormData(this),
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function(response) {
-            mostrarMensajeExito("Guardado Exitosamente");
+                $.get("/usuario-list", function (data) {
+                    $("#tbusuario").html(data);
+                });
 
-            $.get("/usuario-list", function(data) {
-                $("#tbusuario").html(data);
-            });
-
-            $("#modalusuario").modal("hide");
-        },
-        error: function(xhr, status, error) {
-            mostrarMensajeError("Error al guardar el usuario");
-        }
-    });
-});
-
-$(document).on("click", ".btnguardar", function () {
-    setTimeout(function () {
-        window.location.reload();
-    }, 1500);
+                $("#modalusuario").modal("hide");
+                setTimeout(function () {
+                    window.location.reload();
+                }, 1500);
+            },
+            error: function (xhr, status, error) {
+                mostrarMensajeError("Error al guardar el usuario");
+            }
+        });
+    }
 });
 
 function validarUsuario() {
@@ -86,44 +83,39 @@ function validarUsuario() {
     var email = $('#txtusernameusuario').val();
     var repPassword = $('#txtreppassword').val();
     var dni = $('#txtdniusuario').val();
-    var rol = $('#cboRol').val();
-
-    var isValid = true;
 
     if (!nombre.trim()) {
         $('#validnomusuario').text('Debe ingresar un nombre').show();
-        isValid = false;
+        return false;
     } else {
         $('#validnomusuario').text('').hide();
     }
 
     if (!email.trim()) {
         $('#validusernameusuario').text('Debe ingresar un email').show();
-        isValid = false;
+        return false;
     } else {
         $('#validusernameusuario').text('').hide();
     }
 
-    if (repPassword.trim() !== $('#txtpassword').val().trim()) {
-        $('#validreppassword').text('Las contraseñas no coinciden').show();
-        isValid = false;
+    if (!repPassword.trim()) {
+        $('#validreppassword').text('Ingrese La contraseña').show();
+        return false;
     } else {
         $('#validreppassword').text('').hide();
     }
 
     if (!dni.trim()) {
         $('#validdniusuario').text('Debe ingresar un DNI').show();
-        isValid = false;
+        return false;
+    }else if(!dni.match("^\\d{8}$")) {
+        $('#validdniusuario').text('El DNI debe tener 8 digitos').show();
+        return false;
     } else {
         $('#validdniusuario').text('').hide();
     }
 
-    if (rol === '0') {
-        alert('Debe seleccionar un rol');
-        isValid = false;
-    }
-
-    return isValid;
+    return true;
 }
 
 function mostrarMensajeExito(mensaje) {
