@@ -14,7 +14,7 @@ public class VentaServiceTest {
 
     @Test
     void calcularNumeroVenta() {
-        String numventa = ventasService.generarNumeroVenta();
-        Assertions.assertEquals(numventa, "V00002");
+        String numventas = ventasService.generarNumeroVenta();
+        Assertions.assertEquals(numventas, "V00002");
     }
 }

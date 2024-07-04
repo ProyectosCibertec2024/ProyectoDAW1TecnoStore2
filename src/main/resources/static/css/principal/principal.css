@@ -373,6 +373,10 @@ body.dark .switch::before{
 body.dark .home .text{
     color: var(--text-color);
 }
+
+body.dark .title {
+    color: var(--text-color);
+}
 main {
     margin-left: 120px;
 }

@@ -19,38 +19,33 @@ $(document).on("click",".btnnuevo", function () {
     obtenerIdProducto();
 });
 
-$(document).on("click", ".btnguardar", function () {
-   if(validarProducto()) {
-      $("#modalproducto").modal("hide");
-       setTimeout(function () {
-           window.location.reload();
-       }, 1500);
-   }
-});
-
 $(document).on("submit", "form[name='producto']", function(event) {
     event.preventDefault();
+    if(validarProducto()) {
+        $.ajax({
+            type: $(this).attr("method"),
+            url: $(this).attr("action"),
+            data: new FormData(this),
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                mostrarMensajeExito("Guardado Exitosamente");
 
-    $.ajax({
-        type: $(this).attr("method"),
-        url: $(this).attr("action"),
-        data: new FormData(this),
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function(response) {
-            mostrarMensajeExito("Guardado Exitosamente");
+                $.get("/producto-list", function (data) {
+                    $("#tbproducto").html(data);
+                });
 
-            $.get("/producto-list", function(data) {
-                $("#tbproducto").html(data);
-            });
-
-            $("#modalproducto").modal("hide");
-        },
-        error: function(xhr, status, error) {
-            mostrarMensajeError("Error al guardar el producto");
-        }
-    });
+                $("#modalproducto").modal("hide");
+                setTimeout(function () {
+                    window.location.reload();
+                }, 1500);
+            },
+            error: function (xhr, status, error) {
+                mostrarMensajeError("Error al guardar el producto");
+            }
+        });
+    }
 });
 
 $(document).on("click",".btnactualizar",function () {
