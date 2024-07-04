@@ -30,3 +30,6 @@ body {
     padding-right: 55px; /* Agrega espacio al lado derecho del cuerpo de la página */
     padding-bottom: 20px;/* Agrega espacio al lado inferior del cuerpo de la página */
 }
+.dark #title-usuarios{
+    color:#fff;
+}
