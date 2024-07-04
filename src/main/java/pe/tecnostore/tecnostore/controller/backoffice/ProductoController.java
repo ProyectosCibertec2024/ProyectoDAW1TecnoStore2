@@ -90,12 +90,16 @@ public class ProductoController {
                     model.addAttribute("p", new Producto());
                 }
             }
+            model.addAttribute("mensaje", men);
+            model.addAttribute("exito", rs);
         }catch (Exception e) {
             rs = false;
             men = "Ups, Hubo un error : " + e.getCause().getMessage();
+            model.addAttribute("mensaje", men);
+            model.addAttribute("exito", rs);
             System.out.println(e.getCause().getLocalizedMessage());
         }
-        return "redirect:/producto";
+        return "backoffice/inventario/GestionInventario/producto/frmproducto";
     }
 
     @GetMapping(value = "/producto/{idproducto}")

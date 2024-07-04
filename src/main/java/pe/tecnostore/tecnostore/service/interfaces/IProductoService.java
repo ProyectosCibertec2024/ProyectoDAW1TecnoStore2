@@ -1,6 +1,7 @@
 package pe.tecnostore.tecnostore.service.interfaces;
 
 import pe.tecnostore.tecnostore.model.bd.Producto;
+import pe.tecnostore.tecnostore.model.dto.object.dashboard.ProductoDTO;
 
 import java.util.List;
 
@@ -20,4 +21,5 @@ public interface IProductoService {
                                      Integer idproducto);
 
     int obtenerCantidadProducto();
+    List<ProductoDTO> productosmasvendidos();
 }

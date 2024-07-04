@@ -50,3 +50,99 @@ function obtenerIdUsuario() {
     })
 }
 
+$(document).on("submit", "form[name='usuario']", function(event) {
+    event.preventDefault();
+
+    $.ajax({
+        type: $(this).attr("method"),
+        url: $(this).attr("action"),
+        data: new FormData(this),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            mostrarMensajeExito("Guardado Exitosamente");
+
+            $.get("/usuario-list", function(data) {
+                $("#tbusuario").html(data);
+            });
+
+            $("#modalusuario").modal("hide");
+        },
+        error: function(xhr, status, error) {
+            mostrarMensajeError("Error al guardar el usuario");
+        }
+    });
+});
+
+$(document).on("click", ".btnguardar", function () {
+    setTimeout(function () {
+        window.location.reload();
+    }, 1500);
+});
+
+function validarUsuario() {
+    var nombre = $('#txtnomusuario').val();
+    var email = $('#txtusernameusuario').val();
+    var repPassword = $('#txtreppassword').val();
+    var dni = $('#txtdniusuario').val();
+    var rol = $('#cboRol').val();
+
+    var isValid = true;
+
+    if (!nombre.trim()) {
+        $('#validnomusuario').text('Debe ingresar un nombre').show();
+        isValid = false;
+    } else {
+        $('#validnomusuario').text('').hide();
+    }
+
+    if (!email.trim()) {
+        $('#validusernameusuario').text('Debe ingresar un email').show();
+        isValid = false;
+    } else {
+        $('#validusernameusuario').text('').hide();
+    }
+
+    if (repPassword.trim() !== $('#txtpassword').val().trim()) {
+        $('#validreppassword').text('Las contraseñas no coinciden').show();
+        isValid = false;
+    } else {
+        $('#validreppassword').text('').hide();
+    }
+
+    if (!dni.trim()) {
+        $('#validdniusuario').text('Debe ingresar un DNI').show();
+        isValid = false;
+    } else {
+        $('#validdniusuario').text('').hide();
+    }
+
+    if (rol === '0') {
+        alert('Debe seleccionar un rol');
+        isValid = false;
+    }
+
+    return isValid;
+}
+
+function mostrarMensajeExito(mensaje) {
+    Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+    });
+}
+
+function mostrarMensajeError(mensaje) {
+    Swal.fire({
+        position: "top-center",
+        icon: "error",
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+    });
+}
+

@@ -29,13 +29,13 @@ $(document).on("click",".btnguardar", function () {
             }),
             success: function (resultado) {
                 if(resultado.resultado) {
-                    alert(resultado.mensaje);
+                    mostrarMensajeExito(resultado.mensaje);
                     actualizarTotal();
                     listadoDetalleVenta();
                     $("#modaldetalleventa").modal("hide");
                     $("#message").hide();
                 }else {
-                    alert(resultado.mensaje);
+                    mostrarMensajeError(resultado.mensaje);
                 }
             }
         });
@@ -230,3 +230,23 @@ document.addEventListener('DOMContentLoaded', function() {
     cantidadInput.addEventListener('input', calcularTotal);
     precioInput.addEventListener('input', calcularTotal);
 });
+
+function mostrarMensajeExito(mensaje) {
+    Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+    });
+}
+
+function mostrarMensajeError(mensaje) {
+    Swal.fire({
+        position: "top-center",
+        icon: "error",
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+    });
+}

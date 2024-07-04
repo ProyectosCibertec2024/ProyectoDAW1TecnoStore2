@@ -7,6 +7,8 @@
     <script src="https://kit.fontawesome.com/1842a186b5.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" th:href="@{css/bootstrap/bootstrap.css}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .dark #titleProducto{
             color: #fff;
@@ -61,7 +63,7 @@
                    </div>
                    <form name="producto" th:object="${p}" th:action="@{/producto}" method="post" onsubmit="return validarProducto()" enctype="multipart/form-data">
                        <div class="modal-body mt-1">
-                           <input type="text" id="txtidproducto" name="idproducto" readonly>
+                           <input type="hidden" id="txtidproducto" name="idproducto" readonly>
                            <div class="row mb-3">
                                <div class="form-floating col-md-4">
                                    <input type="text" class="form-control" id="txtmarcaprod"
@@ -173,5 +175,28 @@
     <script th:src="@{js/jquery/jquery.js}"></script>
     <script th:src="@{js/bootstrap/bootstrap.bundle.js}"></script>
     <script th:src="@{js/web/backoffice/producto/frmproducto.js}"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        $(document).ready(function() {
+            /* Muestra el mensaje de éxito si existe */
+            var exito = /*[[${exito}]]*/ false;
+            var mensajeExito = /*[[${mensaje}]]*/ "";
+
+            if (exito) {
+                mostrarMensajeExito(mensajeExito);
+            }
+        });
+
+        function mostrarMensajeExito(mensaje) {
+            Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: mensaje,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+        /*]]>*/
+    </script>
 </body>
 </html>

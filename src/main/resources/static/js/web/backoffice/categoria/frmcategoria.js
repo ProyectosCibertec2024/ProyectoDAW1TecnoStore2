@@ -36,10 +36,10 @@ $(document).on("click", ".btnguardar", function (){
             success: function (resultado) {
                 if(resultado.resultado) {
                     listaCategorias();
-                    alert(resultado.mensaje);
+                    mostrarMensajeExito(resultado.mensaje);
                     $("#modalcategoria").modal("hide");
                 }else {
-                    alert(resultado.mensaje);
+                    mostrarMensajeError(resultado.mensaje);
                 }
             }
         });
@@ -70,22 +70,37 @@ function listaCategorias() {
 }
 
 $(document).on("click", ".btneliminar", function () {
-    let mensaje = confirm('¿Deseas Eliminar Esta Categoria?');
-    if(mensaje) {
-        $.ajax({
-            type: "GET",
-            url: "/categoria-eliminar/" + $(this).attr("data-idcategoria"),
-            dataType: "json",
-            success: function (resultado) {
-                if(resultado.resultado) {
-                    alert(resultado.mensaje);
-                    listaCategorias();
-                }else {
-                    alert(resultado.mensaje);
+    let idCategoria = $(this).attr("data-idcategoria");
+
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "Esta acción no se puede deshacer. ¿Quieres eliminar esta categoría?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "GET",
+                url: "/categoria-eliminar/" + idCategoria,
+                dataType: "json",
+                success: function (resultado) {
+                    if (resultado.resultado) {
+                        mostrarMensajeExito(resultado.mensaje);
+                        listaCategorias();
+                    } else {
+                        mostrarMensajeError(resultado.mensaje);
+                    }
+                },
+                error: function () {
+                    mostrarMensajeError("Error al eliminar la categoría.");
                 }
-            }
-        });
-    }
+            });
+        }
+    });
 });
 
 function obtenerId() {
@@ -115,4 +130,26 @@ function validarCategoria() {
 function limpiarValidacionCategoria() {
     let nomcategoria = document.getElementById("validnomcategoria");
     nomcategoria.innerText = "";
+}
+
+/*MENSAJES*/
+
+function mostrarMensajeExito(mensaje) {
+    Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+    });
+}
+
+function mostrarMensajeError(mensaje) {
+    Swal.fire({
+        position: "top-center",
+        icon: "error",
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+    });
 }

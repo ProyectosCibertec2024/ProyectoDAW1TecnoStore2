@@ -67,10 +67,10 @@ $(document).on("click", ".btnguardar", function () {
             success : function (resultado) {
                 if(resultado.resultado) {
                     listadoEmpresas();
-                    alert(resultado.mensaje)
+                    mostrarMensajeExito(resultado.mensaje)
                     $("#modalempresa").modal("hide");
                 }else{
-                    alert(resultado.mensaje)
+                    mostrarMensajeError(resultado.mensaje)
                 }
                 console.log(resultado);
             }
@@ -208,4 +208,24 @@ function limpiarValidacionEmpresa() {
     telefono.innerText = "";
     email.innerText = "";
     ruc.innerText = "";
+}
+
+function mostrarMensajeExito(mensaje) {
+    Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+    });
+}
+
+function mostrarMensajeError(mensaje) {
+    Swal.fire({
+        position: "top-center",
+        icon: "error",
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+    });
 }

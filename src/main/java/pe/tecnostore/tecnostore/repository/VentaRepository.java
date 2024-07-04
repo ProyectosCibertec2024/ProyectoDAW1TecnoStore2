@@ -8,7 +8,9 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 import pe.tecnostore.tecnostore.model.bd.Venta;
+import pe.tecnostore.tecnostore.model.dto.object.dashboard.VentaDTO;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -33,4 +35,11 @@ public interface VentaRepository extends JpaRepository<Venta, Integer> {
 
     @Query("SELECT v.total FROM Venta v WHERE v.idventa=:idventa")
     double consultarVentaToIdVentaxTotal(@Param("idventa") int idventa);
+
+    @Query("SELECT new pe.tecnostore.tecnostore.model.dto.object.dashboard.VentaDTO(v.fecharegistro, SUM(v.total)) " +
+            "FROM Venta v " +
+            "WHERE v.fecharegistro BETWEEN :incio AND :fin " +
+            "GROUP BY v.fecharegistro " +
+            "ORDER BY v.fecharegistro ASC")
+    List<VentaDTO> obtnerVentasxMes(@Param("incio") LocalDate incio, @Param("fin") LocalDate fin);
 }

@@ -22,12 +22,12 @@ $(document).on("click",".btnguardar",function () {
             }),
             success: function (resultado) {
                 if(resultado.resultado) {
-                    alert(resultado.mensaje);
+                    mostrarMensajeExito(resultado.mensaje);
                     $("#modalventas").modal("hide");
                     $("#listadoventas").hide();
                     window.location.reload();
                 }else {
-                    alert(resultado.mensaje);
+                    mostrarMensajeError(resultado.mensaje);
                 }
             }
         });
@@ -191,3 +191,23 @@ document.addEventListener("DOMContentLoaded", function() {
         suggestionsContainer.style.display = "none"; // Ocultar sugerencias
     }
 });
+
+function mostrarMensajeExito(mensaje) {
+    Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+    });
+}
+
+function mostrarMensajeError(mensaje) {
+    Swal.fire({
+        position: "top-center",
+        icon: "error",
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+    });
+}

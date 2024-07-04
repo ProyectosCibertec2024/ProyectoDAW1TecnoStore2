@@ -3,9 +3,11 @@ package pe.tecnostore.tecnostore.service.Impl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import pe.tecnostore.tecnostore.model.bd.Venta;
+import pe.tecnostore.tecnostore.model.dto.object.dashboard.VentaDTO;
 import pe.tecnostore.tecnostore.repository.VentaRepository;
 import pe.tecnostore.tecnostore.service.interfaces.IVentasService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -56,5 +58,10 @@ public class VentaService implements IVentasService {
     @Override
     public double consultarVentaToIdVentaxTotal(int idventa) {
         return ventaRepository.consultarVentaToIdVentaxTotal(idventa);
+    }
+
+    @Override
+    public List<VentaDTO> obtnerVentasxMes(LocalDate incio, LocalDate fin) {
+        return ventaRepository.obtnerVentasxMes(incio, fin);
     }
 }
