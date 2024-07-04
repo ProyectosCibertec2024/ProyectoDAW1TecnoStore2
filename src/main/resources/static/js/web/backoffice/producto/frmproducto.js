@@ -21,9 +21,36 @@ $(document).on("click",".btnnuevo", function () {
 
 $(document).on("click", ".btnguardar", function () {
    if(validarProducto()) {
-      alert("Se Inserto Correctamente");
       $("#modalproducto").modal("hide");
+       setTimeout(function () {
+           window.location.reload();
+       }, 1500);
    }
+});
+
+$(document).on("submit", "form[name='producto']", function(event) {
+    event.preventDefault();
+
+    $.ajax({
+        type: $(this).attr("method"),
+        url: $(this).attr("action"),
+        data: new FormData(this),
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(response) {
+            mostrarMensajeExito("Guardado Exitosamente");
+
+            $.get("/producto-list", function(data) {
+                $("#tbproducto").html(data);
+            });
+
+            $("#modalproducto").modal("hide");
+        },
+        error: function(xhr, status, error) {
+            mostrarMensajeError("Error al guardar el producto");
+        }
+    });
 });
 
 $(document).on("click",".btnactualizar",function () {
@@ -71,6 +98,8 @@ function validarProducto() {
    let espaciodisco = document.getElementById("validespacioprod");
    let pantallatamanio = document.getElementById("validpantallaprod");
    let idproveedor = document.getElementById("valididproveedorprod");
+
+    limpiarValidacionProducto()
 
    if(document.producto.marca.value === "") {
       marca.innerText = "Campo Requerido";
@@ -187,32 +216,8 @@ function validarProducto() {
 }
 
 function limpiarValidacionProducto() {
-    let marca = document.getElementById("validmarcaprod");
-    let idcategoria = document.getElementById("valididcategoriaprod");
-    let stock = document.getElementById("validstockprod");
-    let precio = document.getElementById("validprecioprod");
-    let color = document.getElementById("validcolorprod");
-    let resolucion = document.getElementById("validprocesadorprod");
-    let procesador = document.getElementById("validmarcaprod");
-    let descuento = document.getElementById("validdescuentoprod");
-    let ram = document.getElementById("validramprod");
-    let espaciodisco = document.getElementById("validespacioprod");
-    let pantallatamanio = document.getElementById("validpantallaprod");
-    let idproveedor = document.getElementById("valididproveedorprod");
-
-    marca.innerText = "";
-    idcategoria.innerText = "";
-    stock.innerText = "";
-    precio.innerText = "";
-    color.innerText = "";
-    resolucion.innerText = "";
-    procesador.innerText = "";
-    descuento.innerText = "";
-    ram.innerText = "";
-    espaciodisco.innerText = "";
-    pantallatamanio.innerText = "";
-    idproveedor.innerText = "";
-
+    let errores = document.querySelectorAll(".text-danger");
+    errores.forEach(error => error.innerText = "");
 }
 
 function obtenerIdProducto() {
@@ -226,159 +231,22 @@ function obtenerIdProducto() {
    });
 }
 
-/*$("#txtidproducto").val("");
-  $("#txtmarcaprod").val("");
-  $("#cbocategoriaprod").empty();
-  $("#txtstockprod").val("");
-  $("#txtprecioprod").val("");
-  $("#txtcolorprod").val("");
-  $("#txtresolucionprod").val("");
-  $("#txtprocesadorprod").val("");
-  $("#txtramprod").val("");
-  $("#txtespacioprod").val("");
-  $("#txtpantallaprod").val("");
-  $("#cboproveedorprod").empty();
-  $("#txtdescuentoprod").val("");
-  $("#txturlimagen").val("");
-  //cargarCombos
-  cargarComboCategoriaxProveedor(0,0);
-  //cargar ID Producto
-  obtenerIdProducto();*/
-
-/*$(document).on("click", ".btnguardar", function () {
-
-   $.ajax({
-      type: "POST",
-      url: "/producto",
-      contentType: "application/json",
-      data: JSON.stringify({
-         idproducto: $("#txtidproducto").val(),
-         marca: $("#txtmarcaprod").val(),
-         idcategoria: $("#cbocategoriaprod").val(),
-         stock: $("#txtstockprod").val(),
-         precio: $("#txtprecioprod").val(),
-         color: $("#txtcolorprod").val(),
-         resolucion: $("#txtresolucionprod").val(),
-         procesador: $("#txtprocesadorprod").val(),
-         descuento: $("#txtdescuentoprod").val(),
-         ram: $("#txtramprod").val(),
-         espaciodisco: $("#txtespacioprod").val(),
-         pantallatamanio: $("#txtpantallaprod").val(),
-         idproveedor: $("#cboproveedorprod").val(),
-         activo: $("#swactivoprod").prop("checked")
-      }),
-      success: function (resultado) {
-         if(resultado.resultado) {
-            alert(resultado.mensaje);
-            $("#modalproducto").modal("hide");
-            listadoProductos();
-         }else{
-            alert(resultado.mensaje);
-         }
-      }
-   });
-
-});*/
-
-/*$(document).on("click", ".btnguardar", function () {
-   var formData = new FormData();
-
-   formData.append('idproducto', $("#txtidproducto").val());
-   formData.append('marca', $("#txtmarcaprod").val());
-   formData.append('idcategoria', $("#cbocategoriaprod").val());
-   formData.append('stock', $("#txtstockprod").val());
-   formData.append('precio', $("#txtprecioprod").val());
-   formData.append('color', $("#txtcolorprod").val());
-   formData.append('resolucion', $("#txtresolucionprod").val());
-   formData.append('procesador', $("#txtprocesadorprod").val());
-   formData.append('descuento', $("#txtdescuentoprod").val());
-   formData.append('ram', $("#txtramprod").val());
-   formData.append('espaciodisco', $("#txtespacioprod").val());
-   formData.append('pantallatamanio', $("#txtpantallaprod").val());
-   formData.append('idproveedor', $("#cboproveedorprod").val());
-   formData.append('activo', $("#swactivoprod").prop("checked"));
-
-   // Agregar la imagen al objeto FormData
-   var fileInput = document.getElementById('txturlimagen'); // Ajusta el ID según el de tu input de archivo
-   var file = fileInput.files[0];
-   formData.append('imagen', file);
-
-   $.ajax({
-      type: "POST",
-      url: "/producto",
-      contentType: false,
-      processData: false, // importante para evitar que jQuery procese el objeto FormData
-      data: formData,
-      success: function (resultado) {
-         if(resultado.resultado) {
-            alert(resultado.mensaje);
-            $("#modalproducto").modal("hide");
-            listadoProductos();
-         } else {
-            alert(resultado.mensaje);
-         }
-      }
-   });
-});*/
-
-/*function listadoProductos() {
-   $.ajax({
-      type: "GET",
-      url: "/producto-list",
-      dataType: "json",
-      success: function (resultado) {
-         $("#tbproducto > tbody").html("");
-         $.each(resultado, function (index, value) {
-            $("#tbproducto > tbody").append(
-                `<tr>
-                    <td>${value.idproducto}</td>
-                    <td>${value.marca}</td>
-                    <td>${value.categoria.descripcion}</td>
-                    <td>${value.precio}</td>
-                    <td>${value.fecharegistro}</td>
-                    <td>
-                        <img src="${value.urlimagen}" alt="nada">
-                    </td>
-                    <td class="d-flex justify-content-center align-content-center">
-                        <button class="btn btn-info btnactualizar"
-                                data-idproducto="${value.idproducto}"><i class="fas fa-edit"></i></button>
-                    </td>
-                </tr>`
-            )
-         });
-      }
-   });
+function mostrarMensajeExito(mensaje) {
+    Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+    });
 }
 
-function cargarComboCategoriaxProveedor(idcategoria, idproveedor) {
-   $.ajax({
-      type: "GET",
-      url: "/categoria-list",
-      dataType: "json",
-      success: function (resultado) {
-         $.each(resultado, function (index, value) {
-            $("#cbocategoriaprod").append(
-                `<option value="${value.idcategoria}">${value.descripcion}</option>`
-            );
-         });
-         if(idcategoria > 0) {
-            $("#cbocategoriaprod").val(resultado.idcategoria);
-         }
-         $.ajax({
-            type: "GET",
-            url: "/proveedor-list",
-            dataType: "json",
-            success: function (resultado) {
-               $.each(resultado, function (index, value) {
-                  $("#cboproveedorprod").append(
-                      `<option value="${value.idproveedor}">${value.nomproveedor}</option>`
-                  );
-               });
-               if (idproveedor > 0){
-                  $("#cboproveedorprod").val(resultado.idproveedor);
-               }
-            }
-         });
-      }
-   });
-}*/
+function mostrarMensajeError(mensaje) {
+    Swal.fire({
+        position: "top-center",
+        icon: "error",
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+    });
+}

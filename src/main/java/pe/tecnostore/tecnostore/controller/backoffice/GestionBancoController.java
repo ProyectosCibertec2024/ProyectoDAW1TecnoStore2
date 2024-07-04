@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pe.tecnostore.tecnostore.model.bd.Empresa;
 import pe.tecnostore.tecnostore.model.dto.object.gestion.bancos.TipoBancoEmpresaDTO;
+import pe.tecnostore.tecnostore.model.dto.object.gestion.bancos.TipoBancoEmpresaListDTO;
 import pe.tecnostore.tecnostore.service.interfaces.IEmpresaService;
 import pe.tecnostore.tecnostore.service.interfaces.IGestionBancoService;
 
@@ -28,6 +29,12 @@ public class GestionBancoController {
         model.addAttribute("gesbancos", gestionBancoService.listadoBancosToEmpresa());
 
         return "backoffice/inventario/GestionBancos/frmgestionbancos";
+    }
+
+    @GetMapping(value = "/bancos-list")
+    @ResponseBody
+    public List<TipoBancoEmpresaListDTO> listado() {
+        return gestionBancoService.listadoBancosToEmpresa();
     }
 
     @PostMapping(value = "/gestionbancos")

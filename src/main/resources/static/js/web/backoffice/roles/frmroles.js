@@ -19,11 +19,11 @@ $(document).on("click",".btnguardar", function () {
             }),
             success: function (resultado) {
                 if(resultado.resultado) {
-                    alert(resultado.mensaje)
+                    mostrarMensajeExito(resultado.mensaje)
                     listarRoles();
                     $("#modalroles").modal("hide");
                 }else {
-                    alert(resultado.mensaje)
+                    mostrarMensajeError(resultado.mensaje)
                 }
             }
         });
@@ -94,4 +94,24 @@ function validarRoles() {
 function limpiarValidRoles() {
     let validRol = document.getElementById("validnomrol");
     validRol.innerText = ""
+}
+
+function mostrarMensajeExito(mensaje) {
+    Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+    });
+}
+
+function mostrarMensajeError(mensaje) {
+    Swal.fire({
+        position: "top-center",
+        icon: "error",
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+    });
 }

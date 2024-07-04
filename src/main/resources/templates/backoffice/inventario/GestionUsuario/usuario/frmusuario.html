@@ -8,15 +8,17 @@
     <link rel="stylesheet" th:href="@{/css/inventario/gestionUsuario/usuario/frmusuario.css}">
     <script src="https://kit.fontawesome.com/1842a186b5.js" crossorigin="anonymous"></script>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body style="background-color: var(--body-color)">
 <nav th:replace="fragment/layout :: nav"></nav>
 <main>
-    <h1 id="titleUsuario" class="text-center mt-3">Listado de Usuarios</h1>
+    <h1 class="text-center mt-3">Listado de Usuarios</h1>
     <div class="container">
         <button class="btn btn-primary btnnuevo"><i class="fas fa-plus me-1"></i>Nuevo</button>
         <a class="btn btn-secondary" th:href="@{/gestionusuario}"><i class="fas fa-arrow-left me-1"></i>Retornar</a>
-        <table id="table-users" class="table table-bordered table-hover mt-3">
+        <table id="table-users tbusuario" class="table table-bordered table-hover mt-3">
             <thead>
             <tr class="nombre_campo">
                 <th>ID</th>
@@ -53,7 +55,7 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Usuario</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form name="usuario" th:action="@{/usuario-gestion}" method="post" th:object="${u}" enctype="multipart/form-data">
+                <form name="usuario" th:action="@{/usuario-gestion}" method="post" th:object="${u}" enctype="multipart/form-data" onsubmit="return validarUsuario()">
                     <div class="modal-body mt-1">
                         <input type="hidden" id="txtidusuario" name="idusuario">
                         <div class="form-floating mb-3">

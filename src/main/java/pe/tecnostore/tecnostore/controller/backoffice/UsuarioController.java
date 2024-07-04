@@ -141,9 +141,8 @@ public class UsuarioController {
             }
         }catch (Exception e) {
             System.out.println("Error : " + e.getMessage());
-            return "backoffice/inventario/GestionUsuario/usuario/frmusuario";
         }
-        return "redirect:/usuario-gestion";
+        return "backoffice/inventario/GestionUsuario/usuario/frmusuario";
     }
 
     @GetMapping(value = "/usuario-gestion/{idusuario}")
